@@ -1,0 +1,16 @@
+{
+  "name": "translit",
+  "version": "1.0.0",
+  "description": "A transliterator between ITRANS and any Indic Script.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node.exe ./index.js",
+    "eslint-fix": "eslint *.js --fix"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^4.15.0"
+  }
+}

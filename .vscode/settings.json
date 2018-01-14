@@ -1,0 +1,9 @@
+{
+  "eslint.enable": true,
+  "window.zoomLevel": 0,
+  "files.autoSave": "afterDelay",
+  "editor.minimap.enabled": false,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "editor.tabSize": 2
+}
