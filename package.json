@@ -4,13 +4,23 @@
   "description": "A transliterator between ITRANS and any Indic Script.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node.exe ./index.js",
-    "eslint-fix": "eslint *.js --fix"
+    "build": "webpack",
+    "eslint": "eslint --fix --ignore-path .gitignore",
+    "preversion": "yarn run test",
+    "postversion": "git push && git push --tags",
+    "test": "yarn run build && yarn run eslint && node ./dist/test.js",
+    "version": "rimraf dist && npm run build && git add -A dist"
   },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "eslint": "^4.15.0"
-  }
+  "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "eslint": "^4.15.0",
+    "eslint-config-inlinedb": "inlinedb/eslint-config-inlinedb",
+    "rimraf": "^2.6.2",
+    "webpack": "^3.10.0"
+  },
+  "repository": "https://github.com/vipranarayan14/akSarAntara.git"
 }
