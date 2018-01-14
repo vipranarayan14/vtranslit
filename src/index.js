@@ -16,9 +16,7 @@ const charMap = {
 
 const maxTokenLength = 3;
 
-const sampleString = '  ss a A ~Na^Nana shaNa';
-
-const translit = string => {
+export const translit = window.translit = string => {
 
   let outputString = '';
 
@@ -33,9 +31,7 @@ const translit = string => {
       processedLength
     } = getChar(token);
 
-    let processedIndex = 0;
-
-    processedIndex = processedLength === 0 ? processedLength : processedLength - 1;
+    const processedIndex = processedLength === 0 ? processedLength : processedLength - 1;
 
     outputString += char;
 
@@ -51,7 +47,7 @@ const getMatchingChar = tokenSlice => charMap[tokenSlice] ? charMap[tokenSlice] 
 
 const isCharFoundOrTokenSliceEmpty = (char, tokenSlice) => char || tokenSlice === '';
 
-function getChar(token) {
+const getChar = token => {
 
   let tokenSlice = token.slice(0, token.length),
     processedLength = tokenSlice.length,
@@ -78,18 +74,4 @@ function getChar(token) {
     tokenSlice
   };
 
-}
-
-/* eslint-disable no-console */
-console.log(
-  '\n******************',
-  `\n sampleString: "${ sampleString }"`,
-  '\n******************'
-);
-
-console.log(
-  '\n******************',
-  `\n Output: "${ translit(sampleString) }"`,
-  '\n******************'
-);
-/* eslint-enable no-console */
+};
