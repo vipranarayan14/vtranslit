@@ -1,5 +1,5 @@
 const path = require('path');
-const filename = 'hash-router.js';
+const filename = 'translit.js';
 
 module.exports = {
   entry: './src',
@@ -19,6 +19,8 @@ module.exports = {
   },
   output: {
     filename,
+    library: 'translit',
+    libraryTarget: 'umd',
     path: path.join(__dirname, 'dist'),
   }
 };

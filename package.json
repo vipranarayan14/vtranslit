@@ -2,14 +2,20 @@
   "name": "translit",
   "version": "1.0.0",
   "description": "A transliterator between ITRANS and any Indic Script.",
-  "main": "index.js",
+  "main": "dist/translit.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "bin": {
+    "translit": "bin/translit.js"
+  },
   "scripts": {
-    "build": "webpack",
+    "build": "rimraf dist && webpack",
     "eslint": "eslint --fix --ignore-path .gitignore",
     "preversion": "yarn run test",
     "postversion": "git push && git push --tags",
-    "test": "yarn run build && yarn run eslint && node ./dist/test.js",
-    "version": "rimraf dist && npm run build && git add -A dist"
+    "test": "yarn run build && yarn run eslint && node ./examples/sample"
   },
   "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
   "license": "MIT",
