@@ -16,7 +16,7 @@ const charMap = {
 
 const maxTokenLength = 3;
 
-export const translit = string => {
+export const vtranslit = string => {
 
   let outputString = '';
 

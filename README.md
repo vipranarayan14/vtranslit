@@ -1,21 +1,21 @@
-# akSarAntara
+# vtranslit
 
 A transliterator between ITRANS and any Indic Script.
 
 ## Installation
 
 ```bash
-npm install aksarantara
+npm install vtranslit
 ```
 
 ## Node usage
 
 ```bash
-translit [string to translate]
+vtranslit [string to translate]
 ```
 
 ## Browser usage
 
 ```js
-window.translit(stringToTranslit);
+window.vtranslit(stringToTranslit);
 ```

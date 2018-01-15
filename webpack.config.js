@@ -1,5 +1,5 @@
 const path = require('path');
-const filename = 'translit.js';
+const filename = 'vtranslit.js';
 
 module.exports = {
   entry: './src',
@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     filename,
-    library: 'translit',
+    library: 'vtranslit',
     libraryTarget: 'umd',
     path: path.join(__dirname, 'dist'),
   }

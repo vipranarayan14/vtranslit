@@ -2,7 +2,7 @@
 
 (function() {
 
-  const { translit } = require('../');
+  const { vtranslit } = require('../');
 
   const log = (...args) => console.log(...args); // eslint-disable-line no-console
 
@@ -17,6 +17,6 @@
   }
 
   log('Input:', stringToTranslit);
-  log('Translitered output:', translit(stringToTranslit));
+  log('Translitered output:', vtranslit(stringToTranslit));
 
 })();

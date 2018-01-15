@@ -1,4 +1,4 @@
-const { translit } = require('../');
+const { vtranslit } = require('../');
 
 const sampleString = '  ss a A ~Na^Nana shaNa';
 
@@ -11,7 +11,7 @@ console.log(`
 
 console.log(`
   ******************
-   Output: "${ translit(sampleString) }"
+   Output: "${ vtranslit(sampleString) }"
   ******************
 `);
 /* eslint-enable no-console */

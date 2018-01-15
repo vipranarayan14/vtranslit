@@ -1,14 +1,14 @@
 {
-  "name": "translit",
+  "name": "vtranslit",
   "version": "1.0.0",
   "description": "A transliterator between ITRANS and any Indic Script.",
-  "main": "dist/translit.js",
+  "main": "dist/vtranslit.js",
   "files": [
     "bin",
     "dist"
   ],
   "bin": {
-    "translit": "bin/translit.js"
+    "translit": "bin/vtranslit.js"
   },
   "scripts": {
     "build": "rimraf dist && webpack",
@@ -31,5 +31,5 @@
     "rimraf": "^2.6.2",
     "webpack": "^3.10.0"
   },
-  "repository": "https://github.com/vipranarayan14/akSarAntara.git"
+  "repository": "https://github.com/vipranarayan14/vtranslit.git"
 }
