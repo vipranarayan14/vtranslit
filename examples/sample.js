@@ -1,15 +1,17 @@
+const { translit } = require('../');
+
 const sampleString = '  ss a A ~Na^Nana shaNa';
 
 /* eslint-disable no-console */
-console.log(
-  '\n******************',
-  `\n sampleString: "${ sampleString }"`,
-  '\n******************'
-);
+console.log(`
+  ******************
+  sampleString: "${ sampleString }
+  ******************
+`);
 
-console.log(
-  '\n******************',
-  `\n Output: "${ translit(sampleString) }"`,
-  '\n******************'
-);
+console.log(`
+  ******************
+   Output: "${ translit(sampleString) }"
+  ******************
+`);
 /* eslint-enable no-console */
