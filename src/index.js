@@ -1,18 +1,5 @@
-const charMap = {
-  '^Na': 'ङ',
-  '~Na': 'ञ',
-  'A': 'आ',
-  'Na': 'ण',
-  'a': 'अ',
-  'aa': 'आ',
-  'na': 'न',
-  'sha': 'श',
-  'RRi': 'ऋ',
-  'RRI': 'ॠ',
-  'LLi': 'ऌ',
-  'LLI': 'ॡ',
-  ' ': ' '
-};
+import { charMap } from './char-mapper';
+import { getChar } from './char';
 
 const maxTokenLength = 3;
 
@@ -29,7 +16,7 @@ export const vtranslit = string => {
     const {
       char,
       processedLength
-    } = getChar(token);
+    } = getChar(token, charMap);
 
     const processedIndex = processedLength === 0 ? processedLength : processedLength - 1;
 
@@ -40,38 +27,5 @@ export const vtranslit = string => {
   }
 
   return outputString;
-
-};
-
-const getMatchingChar = tokenSlice => charMap[tokenSlice] ? charMap[tokenSlice] : '';
-
-const isCharFoundOrTokenSliceEmpty = (char, tokenSlice) => char || tokenSlice === '';
-
-const getChar = token => {
-
-  let tokenSlice = token.slice(0, token.length),
-    processedLength = tokenSlice.length,
-    char = '';
-
-  for (let i = 0, length = token.length; i < length; i += 1) {
-
-    char = getMatchingChar(tokenSlice);
-
-    if (isCharFoundOrTokenSliceEmpty(char, tokenSlice)) {
-
-      break;
-
-    }
-
-    tokenSlice = tokenSlice.slice(0, -1);
-    processedLength = tokenSlice.length;
-
-  }
-
-  return {
-    char,
-    processedLength,
-    tokenSlice
-  };
 
 };
