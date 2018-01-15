@@ -15,7 +15,7 @@
     "eslint": "eslint --fix --ignore-path .gitignore",
     "preversion": "yarn run test",
     "postversion": "git push && git push --tags",
-    "test": "yarn run build && yarn run eslint && node ./examples/sample"
+    "test": "mocha"
   },
   "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
   "license": "MIT",
@@ -23,8 +23,11 @@
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
     "eslint": "^4.15.0",
-    "eslint-config-inlinedb": "inlinedb/eslint-config-inlinedb",
+    "eslint-config-inlinedb": "inlinedb/eslint-config-inlinedb#67b8985fc43e9047db454197743111387ceeea85",
+    "mocha": "^4.1.0",
     "rimraf": "^2.6.2",
     "webpack": "^3.10.0"
   },
