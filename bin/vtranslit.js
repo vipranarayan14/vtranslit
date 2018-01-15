@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-(function() {
+(function () {
 
   const { vtranslit } = require('../');
 
@@ -8,15 +8,15 @@
 
   const stringToTranslit = process.argv[2];
 
-  if (!stringToTranslit) {
+  if (!stringToTranslit || stringToTranslit === '--help') {
 
-    log('Usage: translit [string to translit]');
+    log('Usage: vtranslit [string to translit]');
 
     return;
 
   }
 
-  log('Input:', stringToTranslit);
-  log('Translitered output:', vtranslit(stringToTranslit));
+  log('Input:\n', stringToTranslit);
+  log('Translitered output:\n', vtranslit(stringToTranslit));
 
 })();
