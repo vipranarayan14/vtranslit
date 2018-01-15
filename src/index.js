@@ -1,7 +1,7 @@
 import { charMap } from './char-mapper';
 import { getChar } from './char';
 
-const maxTokenLength = 3;
+const maxTokenLength = 5;
 
 export const vtranslit = string => {
 
