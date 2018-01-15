@@ -16,7 +16,7 @@ const charMap = {
 
 const maxTokenLength = 3;
 
-export const translit = window.translit = string => {
+export const translit = string => {
 
   let outputString = '';
 
