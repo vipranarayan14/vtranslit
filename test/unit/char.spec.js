@@ -58,4 +58,24 @@ describe('getChar', () => {
 
   });
 
+  it('should transliterate `p` to `प्`', () => {
+
+    expect(getChar('p', charMap)).to.deep.equal({
+      char: 'प्',
+      processedLength: 1,
+      tokenSlice: 'p'
+    });
+
+  });
+
+  it('should transliterate `pra` to `प्र`', () => {
+
+    expect(getChar('pra', charMap)).to.deep.equal({
+      char: 'प्र',
+      processedLength: 1,
+      tokenSlice: 'pra'
+    });
+
+  });
+
 });
