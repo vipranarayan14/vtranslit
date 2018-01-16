@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "rimraf dist && webpack",
-    "eslint": "eslint --fix --ignore-path .gitignore",
+    "eslint": "eslint --ignore-path .gitignore ./**/*.js",
     "preversion": "yarn run test",
     "postversion": "git push && git push --tags",
     "test": "mocha"
