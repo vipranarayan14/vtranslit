@@ -13,15 +13,15 @@ describe('mapChars', () => {
 
   });
 
-  it('should contain all of these - [`aa`, `A`, `|`, `RRI`]', () => {
+  it('should contain all of these - [`A`, `aa`, `RRI`, `|`, `p`, `~n`]', () => {
 
-    expect(charMap).to.contain.all.keys(['aa', 'A', '|', 'RRI']);
+    expect(charMap).to.contain.all.keys(['A', 'aa', 'RRI', '|', 'p', '~n']);
 
   });
 
-  it('should not contain any of these - [`k`, `kh`, `.m`, `.h`, ``]', () => {
+  it('should not contain any of these - [`.m`, `.h`, ``]', () => {
 
-    expect(charMap).not.to.contain.any.of.keys(['k', 'kh', '.m', '.h', '']);
+    expect(charMap).not.to.contain.any.of.keys(['.m', '.h', '']);
 
   });
 
