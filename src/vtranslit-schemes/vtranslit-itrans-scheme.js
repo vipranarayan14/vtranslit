@@ -23,7 +23,6 @@ export const itransScheme = {
   'symbols': [
     '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.a', '|', '||', 'OM'
   ],
-  'virama': [''],
-  'vowelMarks': ['a', 'A', 'i', 'I', 'u', 'U', 'RRi', 'RRI', 'LLi', 'LLI', 'e', 'ai', 'o', 'au', '.m', '.h'],
+  'vowelMarks': ['', 'a', 'A', 'i', 'I', 'u', 'U', 'RRi', 'RRI', 'LLi', 'LLI', 'e', 'ai', 'o', 'au', '.m', '.h'],
   'vowels': ['a', 'A', 'i', 'I', 'u', 'U', 'RRi', 'RRI', 'LLi', 'LLI', 'e', 'ai', 'o', 'au']
 };
