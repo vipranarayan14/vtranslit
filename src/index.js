@@ -1,5 +1,7 @@
-import { charMap } from './char-mapper';
+import { devanagariScheme } from './vtranslit-schemes/vtranslit-dev-scheme';
 import { getChar } from './char';
+import { itransScheme } from './vtranslit-schemes/vtranslit-itrans-scheme';
+import { mapChars } from './char-mapper';
 
 const maxTokenLength = 5;
 
@@ -12,6 +14,8 @@ export const vtranslit = string => {
   for (let i = 0, length = string.length; i < length; i += 1) {
 
     const token = string.substr(i, maxTokenLength);
+
+    const charMap = mapChars(itransScheme, devanagariScheme);
 
     const {
       char,

@@ -1,6 +1,10 @@
-import { charMap } from '../../src/char-mapper';
+import { devanagariScheme } from '../../src/vtranslit-schemes/vtranslit-dev-scheme';
 import { expect } from 'chai';
 import { getChar } from '../../src/char';
+import { itransScheme } from '../../src/vtranslit-schemes/vtranslit-itrans-scheme';
+import { mapChars } from '../../src/char-mapper';
+
+const charMap = mapChars(itransScheme, devanagariScheme);
 
 describe('getChar', () => {
 
@@ -24,22 +28,22 @@ describe('getChar', () => {
 
   });
 
-  it('should transliterate `~Na w` to `ञ`', () => {
+  it('should transliterate `~na w` to `ञ`', () => {
 
-    expect(getChar('~Na w', charMap)).to.deep.equal({
+    expect(getChar('~na w', charMap)).to.deep.equal({
       char: 'ञ',
       processedLength: 3,
-      tokenSlice: '~Na'
+      tokenSlice: '~na'
     });
 
   });
 
-  it('should not transliterate `w ~Na` to `ञ`', () => {
+  it('should not transliterate `w ~na` to `ञ`', () => {
 
-    expect(getChar('w ~Na', charMap)).not.to.deep.equal({
+    expect(getChar('w ~na', charMap)).not.to.deep.equal({
       char: 'ञ',
       processedLength: 3,
-      tokenSlice: '~Na'
+      tokenSlice: '~na'
     });
 
   });
