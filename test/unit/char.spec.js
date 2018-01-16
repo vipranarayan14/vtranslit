@@ -8,7 +8,7 @@ const charMap = mapChars(itransScheme, devanagariScheme);
 
 describe('getChar', () => {
 
-  it('should transliterate `a` to `अ`', () => {
+  it('should return char `अ` for `a`', () => {
 
     expect(getChar('a', charMap)).to.deep.equal({
       char: 'अ',
@@ -18,7 +18,7 @@ describe('getChar', () => {
 
   });
 
-  it('should transliterate `aa` to `आ`', () => {
+  it('should return char `आ` for `aa`', () => {
 
     expect(getChar('aa', charMap)).to.deep.equal({
       char: 'आ',
@@ -28,7 +28,7 @@ describe('getChar', () => {
 
   });
 
-  it('should transliterate `~na w` to `ञ`', () => {
+  it('should return char `ञ` for `~na w`', () => {
 
     expect(getChar('~na w', charMap)).to.deep.equal({
       char: 'ञ',
@@ -38,7 +38,7 @@ describe('getChar', () => {
 
   });
 
-  it('should not transliterate `w ~na` to `ञ`', () => {
+  it('should not return char `ञ` for `w ~na`', () => {
 
     expect(getChar('w ~na', charMap)).not.to.deep.equal({
       char: 'ञ',
@@ -48,7 +48,7 @@ describe('getChar', () => {
 
   });
 
-  it('should transliterate `Ana` to `आ`', () => {
+  it('should return char `आ` for `Ana`', () => {
 
     expect(getChar('Ana', charMap)).to.deep.equal({
       char: 'आ',
@@ -58,22 +58,12 @@ describe('getChar', () => {
 
   });
 
-  it('should transliterate `p` to `प्`', () => {
+  it('should return char `प्` for `p`', () => {
 
     expect(getChar('p', charMap)).to.deep.equal({
       char: 'प्',
       processedLength: 1,
       tokenSlice: 'p'
-    });
-
-  });
-
-  it('should transliterate `pra` to `प्र`', () => {
-
-    expect(getChar('pra', charMap)).to.deep.equal({
-      char: 'प्र',
-      processedLength: 1,
-      tokenSlice: 'pra'
     });
 
   });
