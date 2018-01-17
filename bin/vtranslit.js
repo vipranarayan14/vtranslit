@@ -2,11 +2,13 @@
 
 (function () {
 
-  const { vtranslit } = require('../');
+  const { initVtranslit } = require('../');
 
   const log = (...args) => console.log(...args); // eslint-disable-line no-console
 
   const stringToTranslit = process.argv[2];
+
+  const vtranslit = initVtranslit();
 
   if (!stringToTranslit || stringToTranslit === '--help') {
 
