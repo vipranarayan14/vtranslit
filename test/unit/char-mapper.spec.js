@@ -19,9 +19,9 @@ describe('mapChars', () => {
 
   });
 
-  it('should not contain any of these - [`.m`, `.h`, ``]', () => {
+  it('should not contain any of these - [``]', () => {
 
-    expect(charMap).not.to.contain.any.of.keys(['.m', '.h', '']);
+    expect(charMap).not.to.contain.any.of.keys(['']);
 
   });
 
