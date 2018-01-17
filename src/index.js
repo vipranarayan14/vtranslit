@@ -3,9 +3,9 @@ import { getChar } from './char';
 import { itransScheme } from './vtranslit-schemes/vtranslit-itrans-scheme';
 import { mapChars } from './char-mapper';
 
-const maxTokenLength = 5;
+const maxTokenLength = 6;
 
-export const vtranslit = string => {
+const vtranslit = charMap => string => {
 
   let outputString = '';
 
@@ -14,8 +14,6 @@ export const vtranslit = string => {
   for (let i = 0, length = string.length; i < length; i += 1) {
 
     const token = string.substr(i, maxTokenLength);
-
-    const charMap = mapChars(itransScheme, devanagariScheme);
 
     const {
       char,
@@ -31,5 +29,13 @@ export const vtranslit = string => {
   }
 
   return outputString;
+
+};
+
+export const initVtranslit = (fromScheme = itransScheme, toScheme = devanagariScheme) => {
+
+  const charMap = mapChars(fromScheme, toScheme);
+
+  return vtranslit(charMap);
 
 };
