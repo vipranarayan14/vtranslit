@@ -19,9 +19,10 @@ export const getChar = (token, charMap) => {
     }
 
     tokenSlice = tokenSlice.slice(0, -1);
-    processedLength = tokenSlice.length;
 
   }
+
+  processedLength = tokenSlice.length;
 
   return {
     char,
