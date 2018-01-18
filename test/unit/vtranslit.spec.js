@@ -34,4 +34,22 @@ describe('vtranslit', () => {
 
   });
 
+  it('should transliterate to `गोपि` for `gopi`', () => {
+
+    expect(vtranslit('gopi')).to.equal('गोपि');
+
+  });
+
+  it('should transliterate to `॥ १-१ ॥` for `|| 1-1 ||`', () => {
+
+    expect(vtranslit('|| 11 ||')).to.equal('॥ ११ ॥');
+
+  });
+
+  it('should not transliterate `#$%&*!$%()^&^$#&(`', () => {
+
+    expect(vtranslit('#$%&*!$%()^&^$#&(')).to.equal('');
+
+  });
+
 });
