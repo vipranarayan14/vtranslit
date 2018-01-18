@@ -68,4 +68,14 @@ describe('getChar', () => {
 
   });
 
+  it('should return `` for `-`', () => {
+
+    expect(getChar('', charMap)).to.deep.equal({
+      char: '',
+      processedLength: 0,
+      tokenSlice: ''
+    });
+
+  });
+
 });
