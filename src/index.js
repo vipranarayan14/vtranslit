@@ -9,8 +9,6 @@ const vtranslit = charMap => string => {
 
   let outputString = '';
 
-  string = `${ string }`;
-
   for (let i = 0, length = string.length; i < length; i += 1) {
 
     const token = string.substr(i, maxTokenLength);
