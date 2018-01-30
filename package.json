@@ -26,7 +26,6 @@
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",
     "eslint": "^4.15.0",
-    "eslint-config-inlinedb": "inlinedb/eslint-config-inlinedb#67b8985fc43e9047db454197743111387ceeea85",
     "mocha": "^4.1.0",
     "rimraf": "^2.6.2",
     "webpack": "^3.10.0"

@@ -6,5 +6,5 @@
   "parserOptions": {
     "sourceType": "module"
   },
-  "extends": "inlinedb"
+  "extends": "./default.eslintrc"
 }
