@@ -1,4 +1,5 @@
 export const itransScheme = {
+  'about': { 'scriptCode': 'Itrans', 'type': 'roman' },
   'consonants': [
     ['k'],
     ['kh'],
@@ -55,7 +56,7 @@ export const itransScheme = {
     ['OM', 'AUM']
   ],
   'vowelMarks': [
-    [''],
+    ['halantam'],
     ['a'],
     ['A', 'aa'],
     ['i'],
@@ -72,19 +73,19 @@ export const itransScheme = {
     ['au'],
   ],
   'vowels': [
-    ['a'],
-    ['A', 'aa'],
-    ['i'],
-    ['I', 'ii'],
-    ['u'],
-    ['U', 'uu'],
-    ['RRi', 'R^i'],
-    ['RRI', 'R^I'],
-    ['LLi', 'L^i'],
-    ['LLI', 'L^I'],
-    ['e'],
-    ['ai'],
-    ['o'],
-    ['au']
+    ['*a'],
+    ['*A', '*aa'],
+    ['*i'],
+    ['*I', '*ii'],
+    ['*u'],
+    ['*U', '*uu'],
+    ['*RRi', '*R^i'],
+    ['*RRI', '*R^I'],
+    ['*LLi', '*L^i'],
+    ['*LLI', '*L^I'],
+    ['*e'],
+    ['*ai'],
+    ['*o'],
+    ['*au'],
   ]
 };

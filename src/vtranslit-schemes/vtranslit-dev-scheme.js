@@ -1,4 +1,5 @@
 export const devanagariScheme = {
+  'about': { 'scriptCode': 'Deva', 'type': 'brahmic' },
   'consonants': [
     ['क'],
     ['ख'],
