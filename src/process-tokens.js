@@ -19,7 +19,7 @@ export const processTokens = (Tokens, fromSchemeTree) => {
 
       if (index < tokens.length) {
 
-        tokens.splice(index + 1, 0, getCharDetails('halantam', fromSchemeTree));
+        tokens.splice(index + 1, 0, getCharDetails(';;', fromSchemeTree));
 
       }
 
