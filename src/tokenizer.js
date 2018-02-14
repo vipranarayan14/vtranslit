@@ -4,73 +4,60 @@ import { getCharDetails } from './char-details-provider';
 export const tokenize = (str, fromSchemeTree, state) => {
 
   const inStr = str.slice(0, str.length);
+  const maxSeek = state.maxTokenLength;
+
   const tokens = [];
+
+  let seeked = 0,
+    strSlice = '',
+    tempCD = [],
+    tokenFound = [];
 
   for (let i = 0, l = inStr.length; i < l; i += 1) {
 
-    const maxSeek = state.maxTokenLength;
+    seeked += 1;
 
-    let char = inStr[i],
-      charDetails = getCharDetails(char, fromSchemeTree),
-      newCharDetails = charDetails,
-      seeked = 0;
+    strSlice += inStr[i];
+    const charDetails = getCharDetails(strSlice, fromSchemeTree);
 
-    if (charDetails) {
+    tempCD.push(charDetails);
 
-      // TODO: seek even if newCharDetails not found for supporting 'AUM'.
+    if (charDetails.type !== 'unknown') {
 
-      while (newCharDetails && seeked < maxSeek) {
+      tokenFound.push(true);
 
-        charDetails = newCharDetails;
+    } else {
 
-        i += 1;
-
-        char += inStr[i];
-
-        newCharDetails = getCharDetails(char, fromSchemeTree);
-
-        seeked += 1;
-
-      }
-
-      i = i - 1;
-
-      seeked = 0;
-
-    } else if (!charDetails) {
-
-      while (!newCharDetails && seeked < 3) {
-
-        i += 1;
-
-        char += inStr[i];
-
-        newCharDetails = getCharDetails(char, fromSchemeTree);
-
-        charDetails = newCharDetails;
-
-        seeked += 1;
-
-      }
-
-      if (!charDetails) {
-
-        i -= seeked;
-
-        charDetails = {
-
-          char: inStr[i],
-          type: 'undefined'
-
-        };
-
-      }
+      tokenFound.push(false);
 
     }
 
-    // llog(`token: "${charDetails.char}"`);
+    if (seeked === maxSeek || i === inStr.length - 1) {
 
-    tokens.push(charDetails);
+      let foundIndex = tokenFound.lastIndexOf(true);
+
+      if (foundIndex > -1) {
+
+        tokens.push(tempCD[foundIndex]);
+
+      } else {
+
+        foundIndex = 0;
+
+        tokens.push(tempCD[0]);
+
+      }
+
+      // resetting the 'i' to pick the next untokenized char.
+      i -= (seeked - 1) - foundIndex;
+
+      // reset variables
+      seeked = 0;
+      strSlice = '';
+      tempCD = [];
+      tokenFound = [];
+
+    }
 
   }
 
