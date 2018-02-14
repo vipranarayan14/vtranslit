@@ -1,2 +1,4 @@
 /* eslint-disable no-console */
-export const llog = (...msg) => console.log(msg);
+export const llog = (...msg) =>
+  // () => msg;
+  console.log(msg.join('::'));
