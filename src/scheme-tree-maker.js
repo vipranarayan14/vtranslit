@@ -40,7 +40,7 @@ const makeToSchemeTreeBranch = (scheme, schemeSubset, state) => {
       schemeTreeBranch[state.aksharaIndex] = {
 
         alternateIndex,
-        char: akshara,
+        char: alternateAkshara,
         type: schemeSubset
 
       };

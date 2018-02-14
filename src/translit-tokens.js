@@ -30,7 +30,7 @@ export const translitTokens = (tokens, fromSchemeTree, toSchemeTree) => {
 
     } else {
 
-      outStr.push(toSchemeTree[token.aksharaIndex].char.join());
+      outStr.push(toSchemeTree[token.aksharaIndex].char);
 
     }
 
