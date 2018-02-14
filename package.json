@@ -16,7 +16,7 @@
     "precommit": "yarn build",
     "preversion": "yarn run test",
     "postversion": "git push && git push --tags",
-    "test": "exit 0"
+    "test": "mocha"
   },
   "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
   "license": "MIT",
