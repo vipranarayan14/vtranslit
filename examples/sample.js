@@ -1,19 +1,37 @@
 const { vtranslit } = require('../');
 
-// const sampleStr = 'ashh ssj';
-// const sampleStr = 'A ~Na^NN^ana sha_aNa';
-const sampleStr = 'AUM vAgarthAviva saMpRRikta_u au 123 j~naanaM JNshh | asti iti me autsukhyam ||';
+const sampleStrings = [
+  `
+  shlokaH :
+  vAgarthAviva saMpRRiktau vAgarthapratipattaye |
+  jagataH pitarau vande pArvatIparameshvarau ||
+  `,
+  `
+  chihnAH : @#$%^&*(){}[]\/?<>,~\`-=
+  itarAkShrANi: P, J, K, f, F, G  
+  `,
+  `
+  chihnaiH itraAkshraiH cha sahitaM vAkhyaM:
+  #rAma, @kRRishhNaH, P. rAmanujam.
+  `
+];
 
-/* eslint-disable no-console */
-console.log(`
+sampleStrings.forEach((sampleString, index) => {
+
+  /* eslint-disable no-console */
+  console.log(`
+  sampleString: ${index + 1}
   ******************
-  sampleString: "${ sampleStr }"
+  "${ sampleString }"
   ******************
 `);
 
-console.log(`
+  console.log(`
+  Output:
   ******************
-   Output: "${ JSON.stringify(vtranslit(sampleStr)) }"
+  "${ vtranslit(sampleString) }"
   ******************
 `);
-/* eslint-enable no-console */
+  /* eslint-enable no-console */
+
+});
