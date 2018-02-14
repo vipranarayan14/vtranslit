@@ -56,7 +56,7 @@ export const itransScheme = {
     ['OM', 'AUM']
   ],
   'vowelMarks': [
-    ['halantam'],
+    [';;'],
     ['a'],
     ['A', 'aa'],
     ['i'],
