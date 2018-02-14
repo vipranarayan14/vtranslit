@@ -2,13 +2,13 @@
 
 (function () {
 
-  const { initVtranslit } = require('../');
+  const { vtranslit } = require('../');
 
   const log = (...args) => console.log(...args); // eslint-disable-line no-console
 
   const stringToTranslit = process.argv[2];
 
-  const vtranslit = initVtranslit();
+  const vt = vtranslit('Itran', 'Deva');
 
   if (!stringToTranslit || stringToTranslit === '--help') {
 
@@ -19,6 +19,6 @@
   }
 
   log('Input:\n', stringToTranslit);
-  log('Translitered output:\n', vtranslit(stringToTranslit));
+  log('Translitered output:\n', vt(stringToTranslit));
 
 })();
