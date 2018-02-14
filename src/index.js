@@ -28,5 +28,3 @@ export const vtranslit = str => {
   return outStr.join('');
 
 };
-
-/* eslint-enable complexity */
