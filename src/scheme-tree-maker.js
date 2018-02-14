@@ -1,3 +1,13 @@
+import { devanagariScheme } from './vtranslit-schemes/vtranslit-dev-scheme';
+import { itransScheme } from './vtranslit-schemes/vtranslit-itrans-scheme';
+
+const getScheme = scheme => ({
+
+  'Deva': devanagariScheme,
+  'Itran': itransScheme
+
+}[scheme]);
+
 // returns a branch for fromSchemeTree.
 const makeFromSchemeTreeBranch = (scheme, schemeSubset, state) => {
 
@@ -56,7 +66,9 @@ const makeToSchemeTreeBranch = (scheme, schemeSubset, state) => {
 };
 
 //Returns a scheme tree nade with given 'fromScheme'.
-export const makeFromSchemeTree = (fromScheme, state) => {
+export const makeFromSchemeTree = (scheme, state) => {
+
+  const fromScheme = getScheme(scheme);
 
   const fromSchemeTree = Object.assign({},
 
@@ -78,7 +90,9 @@ export const makeFromSchemeTree = (fromScheme, state) => {
 };
 
 //Returns a scheme tree nade with given 'toScheme'.
-export const makeToSchemeTree = (toScheme, state) => {
+export const makeToSchemeTree = (scheme, state) => {
+
+  const toScheme = getScheme(scheme);
 
   const toSchemeTree = Object.assign({},
 
