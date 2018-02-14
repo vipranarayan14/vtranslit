@@ -1,11 +1,9 @@
 import { makeFromSchemeTree, makeToSchemeTree } from './scheme-tree-maker';
 import { analyzeTokens } from './tokens-analyzer';
-import { devanagariScheme } from './vtranslit-schemes/vtranslit-dev-scheme';
-import { itransScheme } from './vtranslit-schemes/vtranslit-itrans-scheme';
 import { tokenize } from './tokenizer';
 import { translitTokens } from './translit-tokens';
 
-export const vtranslit = str => {
+export const vtranslit = (fromScheme, toScheme) => {
 
   const state = {
 
@@ -15,16 +13,20 @@ export const vtranslit = str => {
 
   };
 
-  const fromSchemeTree = makeFromSchemeTree(itransScheme, state);
+  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
 
-  const toSchemeTree = makeToSchemeTree(devanagariScheme, state);
+  const toSchemeTree = makeToSchemeTree(toScheme, state);
 
-  const Tokens = tokenize(str, fromSchemeTree, state);
+  return inStr => {
 
-  const tokens = analyzeTokens(Tokens, fromSchemeTree);
+    const Tokens = tokenize(inStr, fromSchemeTree, state);
 
-  const outStr = translitTokens(tokens, fromSchemeTree, toSchemeTree);
+    const tokens = analyzeTokens(Tokens, fromSchemeTree);
 
-  return outStr.join('');
+    const outStr = translitTokens(tokens, fromSchemeTree, toSchemeTree);
+
+    return outStr.join('');
+
+  };
 
 };
