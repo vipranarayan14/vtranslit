@@ -1,5 +1,7 @@
 const { vtranslit } = require('../');
 
+const vt = vtranslit('Itran', 'Deva');
+
 const sampleStrings = [
   `
   shlokaH :
@@ -29,7 +31,7 @@ sampleStrings.forEach((sampleString, index) => {
   console.log(`
   Output:
   ******************
-  "${ vtranslit(sampleString) }"
+  "${ vt(sampleString) }"
   ******************
 `);
   /* eslint-enable no-console */
