@@ -1,27 +1,50 @@
-import { devanagariScheme } from './../../src/vtranslit-schemes/vtranslit-dev-scheme';
 import { expect } from 'chai';
-import { itransScheme } from './../../src/vtranslit-schemes/vtranslit-itrans-scheme';
-import { mapChars } from '../../src/char-mapper';
+import { makeFromSchemeTree } from '../../src/make-scheme-tree';
 
-describe('mapChars', () => {
+const state = {
 
-  const charMap = mapChars(itransScheme, devanagariScheme);
+  aksharaIndex: 0,
+  maxTokenLength: 0,
+  tokenLengths: []
+
+};
+
+describe('makeFromSchemeTree', () => {
+
+  const fromSchemeTree = makeFromSchemeTree('Itran', state);
 
   it('should return an object literal', () => {
 
-    expect(charMap).to.be.an('object');
+    expect(fromSchemeTree).to.be.an('object');
 
   });
 
   it('should contain all of these - [`A`, `aa`, `RRI`, `|`, `p`, `~n`]', () => {
 
-    expect(charMap).to.contain.all.keys(['A', 'aa', 'RRI', '|', 'p', '~n']);
+    expect(fromSchemeTree).to.contain.all.keys(['A', 'aa', 'RRI', '|', 'p', '~n']);
 
   });
 
   it('should not contain any of these - [``]', () => {
 
-    expect(charMap).not.to.contain.any.of.keys(['']);
+    expect(fromSchemeTree).not.to.contain.any.of.keys(['']);
+
+  });
+
+  it('should return an object when char is looked up', () => {
+
+    expect(fromSchemeTree['~N']).to.be.an('object');
+
+  });
+
+  it('should return the details of the given char', () => {
+
+    expect(fromSchemeTree['N^']).to.deep.equal({
+      aksharaIndex: 4,
+      alternateIndex: 1,
+      char: 'N^',
+      type: 'consonants'
+    });
 
   });
 
