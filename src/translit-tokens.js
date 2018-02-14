@@ -27,6 +27,10 @@ export const translitTokens = (tokens, fromSchemeTree, toSchemeTree) => {
 
       outStr.push(token.char);
 
+    } else if (token.type === 'skip') {
+
+      outStr.push('');
+
     } else {
 
       outStr.push(toSchemeTree[token.aksharaIndex].char);

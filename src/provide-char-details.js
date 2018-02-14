@@ -5,11 +5,18 @@ export const getCharDetails = (char, fromSchemeTree) => {
   let charDetails = {};
   const charDetailsInFromSchemeTree = fromSchemeTree[char];
 
-  if (char === ' ' || char === '_') {
+  if (char === ' ') {
 
     charDetails = {
       char,
       type: 'pause'
+    };
+
+  } else if (char === '_') {
+
+    charDetails = {
+      char,
+      type: 'skip'
     };
 
   } else if (charDetailsInFromSchemeTree) {
