@@ -1,6 +1,8 @@
-# vtranslit
+# vTranslit
 
 A transliterator between ITRANS and any Indic Script.
+
+NOTE: Currently supports only transliteration from ITRANS to Devanagari.
 
 ## Installation
 
@@ -11,11 +13,17 @@ npm install vtranslit
 ## Node usage
 
 ```bash
-vtranslit [string to translate]
+const { vtranslit } = require('../');
+
+const vt = vtranslit('Itran', 'Deva');
+
+vt('stringToTransliterate');
 ```
 
 ## Browser usage
 
 ```js
-window.vtranslit(stringToTranslit);
+const vt = vtranslit('Itran', 'Deva');
+
+vt('stringToTransliterate');
 ```
