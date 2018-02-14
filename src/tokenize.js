@@ -1,4 +1,4 @@
-import { getCharDetails } from './char-details-provider';
+import { getCharDetails } from './provide-char-details';
 
 /* eslint-disable complexity */
 export const tokenize = (str, fromSchemeTree, state) => {

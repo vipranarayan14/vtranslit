@@ -1,6 +1,6 @@
-import { makeFromSchemeTree, makeToSchemeTree } from './scheme-tree-maker';
+import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { processTokens } from './process-tokens';
-import { tokenize } from './tokenizer';
+import { tokenize } from './tokenize';
 import { translitTokens } from './translit-tokens';
 
 export const vtranslit = (fromScheme, toScheme) => {
