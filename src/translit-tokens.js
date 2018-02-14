@@ -5,7 +5,7 @@ import { getCharDetails } from './char-details-provider';
 export const translitTokens = (tokens, fromSchemeTree, toSchemeTree) => {
 
   const outStr = [];
-  const vowelConditions = ['strStart', 'avasAna', 'vowelMarks', 'vowels'];
+  const vowelConditions = ['strStart', 'pause', 'vowelMarks', 'vowels'];
 
   tokens.forEach((token, index) => {
 
@@ -20,11 +20,11 @@ export const translitTokens = (tokens, fromSchemeTree, toSchemeTree) => {
 
     }
 
-    if (token.type === 'undefined') {
+    if (token.type === 'unknown') {
 
-      outStr.push('');
+      outStr.push(token.char);
 
-    } else if (token.type === 'avasAna') {
+    } else if (token.type === 'pause') {
 
       outStr.push(token.char);
 

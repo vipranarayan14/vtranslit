@@ -1,17 +1,27 @@
+/* eslint-disable complexity */
+
 export const getCharDetails = (char, fromSchemeTree) => {
 
   let charDetails = {};
+  const charDetailsInFromSchemeTree = fromSchemeTree[char];
 
   if (char === ' ' || char === '_') {
 
     charDetails = {
       char,
-      type: 'avasAna'
+      type: 'pause'
     };
+
+  } else if (charDetailsInFromSchemeTree) {
+
+    charDetails = charDetailsInFromSchemeTree;
 
   } else {
 
-    charDetails = fromSchemeTree[char];
+    charDetails = {
+      char,
+      type: 'unknown'
+    };
 
   }
 
