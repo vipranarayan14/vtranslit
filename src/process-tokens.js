@@ -2,7 +2,7 @@ import { getCharDetails } from './char-details-provider';
 
 /* eslint-disable complexity */
 
-export const analyzeTokens = (Tokens, fromSchemeTree) => {
+export const processTokens = (Tokens, fromSchemeTree) => {
 
   const tokens = Tokens.slice();
 

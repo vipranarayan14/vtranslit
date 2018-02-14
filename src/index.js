@@ -1,5 +1,5 @@
 import { makeFromSchemeTree, makeToSchemeTree } from './scheme-tree-maker';
-import { analyzeTokens } from './tokens-analyzer';
+import { processTokens } from './process-tokens';
 import { tokenize } from './tokenizer';
 import { translitTokens } from './translit-tokens';
 
@@ -19,11 +19,11 @@ export const vtranslit = (fromScheme, toScheme) => {
 
   return inStr => {
 
-    const Tokens = tokenize(inStr, fromSchemeTree, state);
+    const tokens = tokenize(inStr, fromSchemeTree, state);
 
-    const tokens = analyzeTokens(Tokens, fromSchemeTree);
+    const processedTokens = processTokens(tokens, fromSchemeTree);
 
-    const outStr = translitTokens(tokens, fromSchemeTree, toSchemeTree);
+    const outStr = translitTokens(processedTokens, fromSchemeTree, toSchemeTree);
 
     return outStr.join('');
 
