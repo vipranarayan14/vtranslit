@@ -13,7 +13,7 @@
   "scripts": {
     "build": "rimraf dist && webpack",
     "eslint": "eslint --ignore-path .gitignore ./**/*.js",
-    "precommit": "npm build",
+    "precommit": "npm run eslint && npm run build",
     "preversion": "npm run test",
     "postversion": "git push && git push --tags",
     "test": "mocha"
@@ -31,6 +31,9 @@
     "mocha": "^4.1.0",
     "rimraf": "^2.6.2",
     "webpack": "^3.10.0"
+  },
+  "dependencies": {
+    "yargs": "^11.0.0"
   },
   "repository": "https://github.com/vipranarayan14/vtranslit.git"
 }
