@@ -28,18 +28,18 @@ export const itransScheme = {
     ['m'],
     ['y'],
     ['r'],
+    ['R'],
     ['l'],
+    ['L'],
+    ['zh'],
     ['v', 'w'],
     ['sh'],
     ['Sh', 'S', 'shh'],
     ['s'],
-    ['h'],
-    ['L']
+    ['h']
   ],
   'defaultVowel': ['a'],
   'symbols': [
-    ['M', '.m'],
-    ['H', '.h'],
     ['0'],
     ['1'],
     ['2'],
@@ -50,10 +50,12 @@ export const itransScheme = {
     ['7'],
     ['8'],
     ['9'],
-    ['.a'],
     ['|'],
     ['||'],
-    ['OM', 'AUM']
+    ['OM', 'AUM'],
+    ['.a'],
+    ['M', '.m'],
+    ['H', '.h']
   ],
   'vowelMarks': [
     [';;'],
@@ -68,8 +70,10 @@ export const itransScheme = {
     ['LLi', 'L^i'],
     ['LLI', 'L^I'],
     ['e'],
+    ['E'],
     ['ai'],
     ['o'],
+    ['O'],
     ['au'],
   ],
   'vowels': [
@@ -84,8 +88,10 @@ export const itransScheme = {
     ['*LLi', '*L^i'],
     ['*LLI', '*L^I'],
     ['*e'],
+    ['*E'],
     ['*ai'],
     ['*o'],
+    ['*O'],
     ['*au'],
   ]
 };
