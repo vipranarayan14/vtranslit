@@ -24,6 +24,12 @@ describe('vtranslit', () => {
 
   });
 
+  it('should transliterate `.a` to `ऽ`', () => {
+
+    expect(vt('.a')).to.equal('ऽ');
+
+  });
+
   it('should transliterate `shrI` to `श्री`', () => {
 
     expect(vt('shrI')).to.equal('श्री');
