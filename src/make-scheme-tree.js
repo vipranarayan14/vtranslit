@@ -1,12 +1,12 @@
 import { devanagariScheme } from './vtranslit-schemes/vtranslit-deva-scheme';
 import { itransScheme } from './vtranslit-schemes/vtranslit-itran-scheme';
 
-const getScheme = scheme => ({
+const getScheme = schemeCode =>
 
-  'Deva': devanagariScheme,
-  'Itran': itransScheme
-
-}[scheme]);
+  [
+    devanagariScheme,
+    itransScheme
+  ].find(scheme => scheme.about.scriptCode === schemeCode);
 
 // returns a branch for fromSchemeTree.
 const makeFromSchemeTreeBranch = (scheme, schemeSubset, state) => {
