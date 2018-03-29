@@ -16,7 +16,8 @@
     "precommit": "npm run eslint && npm run build",
     "preversion": "npm run test",
     "postversion": "git push && git push --tags",
-    "test": "mocha"
+    "test": "mocha",
+    "timetest": "npm run build && node bin/vtranslit.js -i timetest.txt -o timetest-output.txt"
   },
   "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
   "license": "MIT",

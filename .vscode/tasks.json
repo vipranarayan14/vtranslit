@@ -12,6 +12,11 @@
             "type": "npm",
             "script": "eslint",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "timetest",
+            "problemMatcher": []
         }
     ]
 }
