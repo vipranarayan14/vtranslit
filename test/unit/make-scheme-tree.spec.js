@@ -11,7 +11,7 @@ const state = {
 
 describe('fromSchemeTree', () => {
 
-  const fromSchemeTree = makeFromSchemeTree('Itran', state);
+  const fromSchemeTree = makeFromSchemeTree('Itrn', state);
 
   it('should be an object literal', () => {
 

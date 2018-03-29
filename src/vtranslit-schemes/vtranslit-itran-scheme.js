@@ -1,5 +1,5 @@
 export const itransScheme = {
-  'about': { 'scriptCode': 'Itran', 'type': 'roman' },
+  'about': { 'scriptCode': 'Itrn', 'type': 'roman' },
   'consonants': [
     ['k'],
     ['kh'],

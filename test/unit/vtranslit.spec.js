@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { vtranslit } from '../../src/index';
 
-const vt = vtranslit('Itran', 'Deva');
+const vt = vtranslit('Itrn', 'Deva');
 
 describe('vtranslit', () => {
 

@@ -15,7 +15,7 @@ npm install vtranslit
 ```bash
 const { vtranslit } = require('../');
 
-const vt = vtranslit('Itran', 'Deva');
+const vt = vtranslit('Itrn', 'Deva');
 
 vt('stringToTransliterate');
 ```
@@ -23,7 +23,7 @@ vt('stringToTransliterate');
 ## Browser usage
 
 ```js
-const vt = vtranslit('Itran', 'Deva');
+const vt = vtranslit('Itrn', 'Deva');
 
 vt('stringToTransliterate');
 ```
