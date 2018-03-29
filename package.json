@@ -13,8 +13,8 @@
   "scripts": {
     "build": "rimraf dist && webpack",
     "eslint": "eslint --ignore-path .gitignore ./**/*.js",
-    "precommit": "yarn build",
-    "preversion": "yarn run test",
+    "precommit": "npm build",
+    "preversion": "npm run test",
     "postversion": "git push && git push --tags",
     "test": "mocha"
   },
