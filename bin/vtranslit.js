@@ -4,21 +4,81 @@
 
   const { vtranslit } = require('../');
 
+  const fs = require('fs');
+
+  const options = require('yargs')
+    .usage('Usage: $0 -f [scheme] -t [scheme] -s [string] -i [file] -o [output]')
+    .options({
+      'f': { alias: 'from', default: 'Itrn', describe: 'scheme to transliterate from', type: 'string' },
+      'i': { describe: 'path to the file to transliterate', type: 'string' },
+      'o': { describe: 'path to write the transliterated output', type: 'string' },
+      's': { alias: 'string', describe: 'string to transliterate', type: 'string' },
+      't': { alias: 'to', default: 'Deva', describe: 'scheme to transliterate to', type: 'string' },
+    })
+    .argv;
+
   const log = (...args) => console.log(...args); // eslint-disable-line no-console
 
-  const stringToTranslit = process.argv[2];
+  const handleOutput = outputString => {
 
-  const vt = vtranslit('Itran', 'Deva');
+    if (outputString) {
 
-  if (!stringToTranslit || stringToTranslit === '--help') {
+      if (options.o) {
 
-    log('Usage: vtranslit [string to translit]');
+        fs.writeFile(options.o, outputString, 'utf8', error => {
 
-    return;
+          if (error) {
+
+            log(error);
+
+          }
+
+        });
+
+        return;
+
+      }
+
+      log('Transliterated output:\n', outputString);
+
+    }
+
+  };
+
+  const handleInput = vt => {
+
+    let outputString = '';
+
+    if (options.string) {
+
+      outputString = vt(options.string);
+
+      handleOutput(outputString);
+
+    } else if (options.i) {
+
+      fs.readFile(options.i, 'utf8', (error, data) => {
+
+        outputString = vt(data.toString().trim());
+
+        handleOutput(outputString);
+
+      });
+
+    } else {
+
+      log('Either a string (-s) or a file (-i) as input is required.');
+
+    }
+
+  };
+
+  if (options.string || options.i) {
+
+    const vt = vtranslit(options.from, options.to);
+
+    handleInput(vt);
 
   }
-
-  log('Input:\n', stringToTranslit);
-  log('Translitered output:\n', vt(stringToTranslit));
 
 })();
