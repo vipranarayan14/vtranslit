@@ -6,6 +6,8 @@ export const processTokens = (Tokens, fromSchemeTree) => {
 
   const tokens = Tokens.slice();
 
+  const halantam = getCharDetails(';;', fromSchemeTree);
+
   for (let index = 0; index < tokens.length; index += 1) {
 
     const token = tokens[index];
@@ -19,7 +21,7 @@ export const processTokens = (Tokens, fromSchemeTree) => {
 
       if (index < tokens.length) {
 
-        tokens.splice(index + 1, 0, getCharDetails(';;', fromSchemeTree));
+        tokens.splice(index + 1, 0, halantam);
 
       }
 
