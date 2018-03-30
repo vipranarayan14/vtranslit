@@ -1,15 +1,15 @@
 import { expect } from 'chai';
-import { makeFromSchemeTree } from '../../src/make-scheme-tree';
+import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
 
-const state = {
+describe('fromSchemeTree  for "Itrn" scheme', () => {
 
-  aksharaIndex: 0,
-  maxTokenLength: 0,
-  tokenLengths: []
+  const state = {
 
-};
+    aksharaIndex: 0,
+    maxTokenLength: 0,
+    tokenLengths: []
 
-describe('fromSchemeTree', () => {
+  };
 
   const fromSchemeTree = makeFromSchemeTree('Itrn', state);
 
