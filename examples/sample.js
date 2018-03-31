@@ -1,6 +1,7 @@
 const { vtranslit } = require('../');
 
 const vt = vtranslit('Itrn', 'Deva');
+// const vt = vtranslit('Deva', 'Itrn');
 
 const sampleStrings = [
   `
@@ -12,10 +13,9 @@ const sampleStrings = [
   chihnAH : @#$%^&*(){}[]\/?<>,~\`-=
   itarAkShrANi: P, J, K, f, F, G  
   `,
-  `
-  chihnaiH itraAkshraiH cha sahitaM vAkhyaM:
-  #rAma, @kRRishhNaH, P. rAmanujam.
-  `
+  // `
+  // गीतागोपालौ औषधार्थं वनम् एति ।
+  // `
 ];
 
 sampleStrings.forEach((sampleString, index) => {
