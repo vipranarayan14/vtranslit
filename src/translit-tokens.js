@@ -1,40 +1,28 @@
-import { getCharDetails } from './provide-char-details';
-
 /* eslint-disable complexity */
 
-export const translitTokens = (tokens, fromSchemeTree, toSchemeTree, toScheme) => {
+export const translitTokens = (tokens, tokensType, toSchemeTree) => {
 
   const outStr = [];
 
   tokens.forEach((token, index) => {
 
-    const prevToken = (index > 0) ? tokens[index - 1] : { type: 'strStart' };
+    const tokenType = tokensType[index];
 
-    if (
-      toScheme.about.type === 'brahmic' &&
-      token.type === 'vowelMarks' &&
-      prevToken.type !== 'consonants'
-    ) {
-
-      token = getCharDetails(`*${token.char}`, fromSchemeTree);
-
-    }
-
-    if (token.type === 'unknown') {
+    if (tokenType === 'unknown') {
 
       outStr.push(token.char);
 
-    } else if (token.type === 'pause') {
+    } else if (tokenType === 'pause') {
 
       outStr.push(token.char);
 
-    } else if (token.type === 'skip') {
+    } else if (tokenType === 'skip') {
 
       outStr.push('');
 
     } else {
 
-      outStr.push(toSchemeTree[token.aksharaIndex].char);
+      outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
 
     }
 

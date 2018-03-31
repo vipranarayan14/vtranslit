@@ -1,12 +1,10 @@
-import { getCharDetails } from './provide-char-details';
-
 /* eslint-disable complexity */
 
 export const processTokens = (Tokens, fromSchemeTree, toScheme) => {
 
   const tokens = Tokens.slice();
 
-  const virama = getCharDetails(';;', fromSchemeTree);
+  const tokensType = [];
 
   for (let index = 0; index < tokens.length; index += 1) {
 
@@ -14,27 +12,40 @@ export const processTokens = (Tokens, fromSchemeTree, toScheme) => {
 
     const nextToken = (index < tokens.length - 1) ? tokens[index + 1] : { type: 'strEnd' };
 
+    const prevToken = (index > 0) ? tokens[index - 1] : { type: 'strStart' };
+
+    let tokenType = token.type;
+
     if (toScheme.about.type === 'brahmic') {
 
-      if (
-        token.type === 'consonants' &&
-        nextToken.type !== 'vowelMarks'
-      ) {
+      if (tokenType === 'deadConsonants' && nextToken.type === 'vowelMarks') {
 
-        if (index < tokens.length) {
+        tokenType = 'consonants';
 
-          tokens.splice(index + 1, 0, virama);
+      } else if (tokenType === 'vowels' && prevToken.type === 'deadConsonants') {
 
-        }
+        tokenType = 'vowelMarks';
+
+      } else if (tokenType === 'vowelMarks' && prevToken.type !== 'deadConsonants') {
+
+        tokenType = 'vowels';
+
+      }
+
+    } else if (toScheme.about.type === 'roman') {
+
+      if (tokenType === 'consonants' && nextToken.type === 'vowelMarks') {
+
+        tokenType = 'deadConsonants';
 
       }
 
     }
 
-    // console.log(token);
+    tokensType.push(tokenType);
 
   }
 
-  return tokens;
+  return { processedTokens: tokens, tokensType };
 
 };

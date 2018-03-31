@@ -24,9 +24,9 @@ export const vtranslit = (fromSchemeCode, toSchemeCode) => {
 
     const tokens = tokenize(inStr, fromSchemeTree, state);
 
-    const processedTokens = processTokens(tokens, fromSchemeTree, toScheme);
+    const { processedTokens, tokensType } = processTokens(tokens, fromSchemeTree, toScheme);
 
-    const outStr = translitTokens(processedTokens, fromSchemeTree, toSchemeTree, toScheme);
+    const outStr = translitTokens(processedTokens, tokensType, toSchemeTree);
 
     return outStr.join('');
 
