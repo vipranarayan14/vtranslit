@@ -10,7 +10,7 @@ export const tokenize = (str, fromSchemeTree, state) => {
 
   let seeked = 0,
     strSlice = '',
-    tempCD = [],
+    tempCharDetails = [],
     tokenFound = [];
 
   for (let i = 0, l = inStr.length; i < l; i += 1) {
@@ -20,7 +20,7 @@ export const tokenize = (str, fromSchemeTree, state) => {
     strSlice += inStr[i];
     const charDetails = getCharDetails(strSlice, fromSchemeTree);
 
-    tempCD.push(charDetails);
+    tempCharDetails.push(charDetails);
 
     if (charDetails.type !== 'unknown') {
 
@@ -38,13 +38,13 @@ export const tokenize = (str, fromSchemeTree, state) => {
 
       if (foundIndex > -1) {
 
-        tokens.push(tempCD[foundIndex]);
+        tokens.push(tempCharDetails[foundIndex]);
 
       } else {
 
         foundIndex = 0;
 
-        tokens.push(tempCD[0]);
+        tokens.push(tempCharDetails[0]);
 
       }
 
@@ -54,7 +54,7 @@ export const tokenize = (str, fromSchemeTree, state) => {
       // reset variables
       seeked = 0;
       strSlice = '';
-      tempCD = [];
+      tempCharDetails = [];
       tokenFound = [];
 
     }
