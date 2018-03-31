@@ -2,7 +2,7 @@ import { getCharDetails } from './provide-char-details';
 
 /* eslint-disable complexity */
 
-export const translitTokens = (tokens, fromSchemeTree, toSchemeTree) => {
+export const translitTokens = (tokens, fromSchemeTree, toSchemeTree, toScheme) => {
 
   const outStr = [];
 
@@ -11,6 +11,7 @@ export const translitTokens = (tokens, fromSchemeTree, toSchemeTree) => {
     const prevToken = (index > 0) ? tokens[index - 1] : { type: 'strStart' };
 
     if (
+      toScheme.about.type === 'brahmic' &&
       token.type === 'vowelMarks' &&
       prevToken.type !== 'consonants'
     ) {

@@ -1,13 +1,3 @@
-import { devanagariScheme } from './vtranslit-schemes/vtranslit-deva-scheme';
-import { itransScheme } from './vtranslit-schemes/vtranslit-itran-scheme';
-
-const getScheme = schemeCode =>
-
-  [
-    devanagariScheme,
-    itransScheme
-  ].find(scheme => scheme.about.scriptCode === schemeCode);
-
 // returns a branch for fromSchemeTree.
 const makeFromSchemeTreeBranch = (scheme, schemeSubset, state) => {
 
@@ -45,7 +35,7 @@ const makeToSchemeTreeBranch = (scheme, schemeSubset, state) => {
 
   scheme[schemeSubset].forEach(akshara => {
 
-    akshara.forEach((alternateAkshara, alternateIndex) => {
+    akshara.every((alternateAkshara, alternateIndex) => {
 
       schemeTreeBranch[state.aksharaIndex] = {
 
@@ -54,6 +44,15 @@ const makeToSchemeTreeBranch = (scheme, schemeSubset, state) => {
         type: schemeSubset
 
       };
+
+      // disables alternate chars when transliterating to a 'roman' scheme.
+      if (scheme.about.type === 'roman') {
+
+        return false;
+
+      }
+
+      return true;
 
     });
 
@@ -65,20 +64,54 @@ const makeToSchemeTreeBranch = (scheme, schemeSubset, state) => {
 
 };
 
-//Returns a scheme tree nade with given 'fromScheme'.
-export const makeFromSchemeTree = (scheme, state) => {
+const makeDeadConsonants = scheme => {
 
-  const fromScheme = getScheme(scheme);
+  const deadConsonants = [];
+
+  scheme.consonants.forEach(akshara => {
+
+    const deadConsonant = [];
+
+    akshara.forEach(alternateAkshara => {
+
+      if (alternateAkshara) {
+
+        deadConsonant.push(alternateAkshara + scheme.virama[0][0]);
+
+      } else {
+
+        deadConsonant.push(alternateAkshara);
+
+      }
+
+    });
+
+    deadConsonants.push(deadConsonant);
+
+  });
+
+  scheme.deadConsonants = deadConsonants;
+
+  return scheme;
+
+};
+
+//Returns a scheme tree nade with given 'fromScheme'.
+export const makeFromSchemeTree = (fromScheme, state) => {
+
+  const scheme = makeDeadConsonants(fromScheme);
 
   const fromSchemeTree = Object.assign({},
 
-    makeFromSchemeTreeBranch(fromScheme, 'consonants', state),
+    makeFromSchemeTreeBranch(scheme, 'consonants', state),
 
-    makeFromSchemeTreeBranch(fromScheme, 'vowels', state),
+    makeFromSchemeTreeBranch(scheme, 'vowelMarks', state),
 
-    makeFromSchemeTreeBranch(fromScheme, 'symbols', state),
+    makeFromSchemeTreeBranch(scheme, 'vowels', state),
 
-    makeFromSchemeTreeBranch(fromScheme, 'vowelMarks', state)
+    makeFromSchemeTreeBranch(scheme, 'symbols', state),
+
+    makeFromSchemeTreeBranch(scheme, 'deadConsonants', state)
 
   );
 
@@ -90,19 +123,21 @@ export const makeFromSchemeTree = (scheme, state) => {
 };
 
 //Returns a scheme tree nade with given 'toScheme'.
-export const makeToSchemeTree = (scheme, state) => {
+export const makeToSchemeTree = (toScheme, state) => {
 
-  const toScheme = getScheme(scheme);
+  const scheme = makeDeadConsonants(toScheme);
 
   const toSchemeTree = Object.assign({},
 
-    makeToSchemeTreeBranch(toScheme, 'consonants', state),
+    makeToSchemeTreeBranch(scheme, 'consonants', state),
 
-    makeToSchemeTreeBranch(toScheme, 'vowels', state),
+    makeToSchemeTreeBranch(scheme, 'vowelMarks', state),
 
-    makeToSchemeTreeBranch(toScheme, 'symbols', state),
+    makeToSchemeTreeBranch(scheme, 'vowels', state),
 
-    makeToSchemeTreeBranch(toScheme, 'vowelMarks', state)
+    makeToSchemeTreeBranch(scheme, 'symbols', state),
+
+    makeToSchemeTreeBranch(scheme, 'virama', state)
 
   );
 
