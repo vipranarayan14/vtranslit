@@ -1,9 +1,10 @@
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
+import { getScheme } from './get-scheme';
 import { processTokens } from './process-tokens';
 import { tokenize } from './tokenize';
 import { translitTokens } from './translit-tokens';
 
-export const vtranslit = (fromScheme, toScheme) => {
+export const vtranslit = (fromSchemeCode, toSchemeCode) => {
 
   const state = {
 
@@ -13,17 +14,19 @@ export const vtranslit = (fromScheme, toScheme) => {
 
   };
 
-  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
+  const fromScheme = getScheme(fromSchemeCode);
+  const toScheme = getScheme(toSchemeCode);
 
+  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
   const toSchemeTree = makeToSchemeTree(toScheme, state);
 
   return inStr => {
 
     const tokens = tokenize(inStr, fromSchemeTree, state);
 
-    const processedTokens = processTokens(tokens, fromSchemeTree);
+    const processedTokens = processTokens(tokens, fromSchemeTree, toScheme);
 
-    const outStr = translitTokens(processedTokens, fromSchemeTree, toSchemeTree);
+    const outStr = translitTokens(processedTokens, fromSchemeTree, toSchemeTree, toScheme);
 
     return outStr.join('');
 
