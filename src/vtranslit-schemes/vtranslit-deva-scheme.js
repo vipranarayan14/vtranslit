@@ -38,6 +38,9 @@ export const devanagariScheme = {
     ['स'],
     ['ह'],
   ],
+  'inherentVowel': [
+    ['अ']
+  ],
   'symbols': [
     ['०'],
     ['१'],
@@ -56,9 +59,10 @@ export const devanagariScheme = {
     ['ं'],
     ['ः'],
   ],
+  'virama': [
+    ['्']
+  ],
   'vowelMarks': [
-    ['्'],
-    [''],
     ['ा'],
     ['ि'],
     ['ी'],

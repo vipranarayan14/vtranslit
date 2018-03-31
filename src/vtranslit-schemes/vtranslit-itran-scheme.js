@@ -38,7 +38,9 @@ export const itransScheme = {
     ['s'],
     ['h']
   ],
-  'defaultVowel': ['a'],
+  'inherentVowel': [
+    ['#a']
+  ],
   'symbols': [
     ['0'],
     ['1'],
@@ -57,9 +59,10 @@ export const itransScheme = {
     ['M', '.m'],
     ['H', '.h']
   ],
+  'virama': [
+    [';;']
+  ],
   'vowelMarks': [
-    [';;'],
-    ['a'],
     ['A', 'aa'],
     ['i'],
     ['I', 'ii'],
