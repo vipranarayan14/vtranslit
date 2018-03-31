@@ -45,23 +45,29 @@
 
   };
 
-  const handleInput = vt => {
+  const transliterate = (vt, string) => {
 
-    let outputString = '';
+    console.time('TransliterationTime'); // eslint-disable-line no-console
+
+    const outputString = vt(string.toString().trim());
+
+    console.timeEnd('TransliterationTime'); // eslint-disable-line no-console
+
+    handleOutput(outputString);
+
+  };
+
+  const handleInput = vt => {
 
     if (options.string) {
 
-      outputString = vt(options.string);
-
-      handleOutput(outputString);
+      transliterate(vt, options.string);
 
     } else if (options.i) {
 
       fs.readFile(options.i, 'utf8', (error, data) => {
 
-        outputString = vt(data.toString().trim());
-
-        handleOutput(outputString);
+        transliterate(vt, data);
 
       });
 
