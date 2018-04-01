@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { vtranslit } from '../../../src/index';
+import { vTranslit } from '../../../src/index';
 
 // const fs = require('fs');
 
 describe('vtranslit from Deva to Itrn', () => {
 
-  const vt = vtranslit('Deva', 'Itrn');
+  const vt = vTranslit('Deva', 'Itrn');
 
   it('should transliterate `वाक् इव` to `vAk iva`', () => {
 

@@ -4,13 +4,7 @@ import { processTokens } from './process-tokens';
 import { tokenize } from './tokenize';
 import { translitTokens } from './translit-tokens';
 
-export const vtranslit = (fromSchemeCode, toSchemeCode) => {
-
-  const state = {
-
-    aksharaIndex: 0,
-    maxTokenLength: 0,
-    tokenLengths: []
+export const vTranslit = (fromSchemeCode, toSchemeCode) => {
 
   };
 

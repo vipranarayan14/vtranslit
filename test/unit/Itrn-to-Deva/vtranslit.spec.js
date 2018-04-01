@@ -1,9 +1,9 @@
 import { expect } from 'chai';
-import { vtranslit } from '../../../src/index';
+import { vTranslit } from '../../../src/index';
 
 describe('vtranslit from Itrn to Deva', () => {
 
-  const vt = vtranslit('Itrn', 'Deva');
+  const vt = vTranslit('Itrn', 'Deva');
 
   it('should not transliterate `#$%&*!$%()^&^$#&(` and just return them', () => {
 

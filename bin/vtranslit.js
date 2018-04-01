@@ -2,7 +2,7 @@
 
 (function () {
 
-  const { vtranslit } = require('../');
+  const { vTranslit } = require('../');
 
   const fs = require('fs');
 
@@ -81,7 +81,7 @@
 
   if (options.string || options.i) {
 
-    const vt = vtranslit(options.from, options.to);
+    const vt = vTranslit(options.from, options.to);
 
     handleInput(vt);
 
