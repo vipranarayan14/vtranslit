@@ -14,7 +14,7 @@ describe('fromSchemeTree  for "Itrn" scheme', () => {
 
   const fromScheme = getScheme('Itrn');
 
-  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
+  const { fromSchemeTree } = makeFromSchemeTree(fromScheme, state);
 
   it('should be an object literal', () => {
 

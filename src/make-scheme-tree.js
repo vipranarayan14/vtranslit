@@ -1,5 +1,5 @@
 // returns a branch for fromSchemeTree.
-const makeFromSchemeTreeBranch = (scheme, schemeSubset, state) => {
+const makeFromSchemeTreeBranch = (scheme, schemeSubset, tokenLengths) => {
 
   const schemeTreeBranch = {};
 
@@ -18,7 +18,7 @@ const makeFromSchemeTreeBranch = (scheme, schemeSubset, state) => {
 
         };
 
-        state.tokenLengths.push(alternateAkshara.length);
+        tokenLengths.push(alternateAkshara.length);
 
       }
 
@@ -58,26 +58,38 @@ const makeToSchemeTreeBranch = (scheme, schemeSubset, addSchemeSubset = '') => {
 
 };
 
-const makeFromSchemeTreeBranchForConsonants = (fromScheme, state) =>
+const makeFromSchemeTreeBranchForConsonants = (fromScheme, tokenLengths) => {
 
-  (fromScheme.about.type === 'roman') ? {} : makeFromSchemeTreeBranch(fromScheme, 'consonants', state);
+  if (fromScheme.about.type !== 'roman') {
+
+    return makeFromSchemeTreeBranch(fromScheme, 'consonants', tokenLengths);
+
+  }
+
+  return {};
+
+};
 
 //Returns a scheme tree nade with given 'fromScheme'.
-export const makeFromSchemeTree = (fromScheme, state) => {
+export const makeFromSchemeTree = fromScheme => {
+
+  const tokenLengths = [];
+
+  let maxTokenLength = 0;
 
   const fromSchemeTree = Object.assign({},
 
-    makeFromSchemeTreeBranch(fromScheme, 'deadConsonants', state),
-    makeFromSchemeTreeBranchForConsonants(fromScheme, state),
-    makeFromSchemeTreeBranch(fromScheme, 'vowels', state),
-    makeFromSchemeTreeBranch(fromScheme, 'vowelMarks', state),
-    makeFromSchemeTreeBranch(fromScheme, 'symbols', state)
+    makeFromSchemeTreeBranch(fromScheme, 'deadConsonants', tokenLengths),
+    makeFromSchemeTreeBranchForConsonants(fromScheme, tokenLengths),
+    makeFromSchemeTreeBranch(fromScheme, 'vowels', tokenLengths),
+    makeFromSchemeTreeBranch(fromScheme, 'vowelMarks', tokenLengths),
+    makeFromSchemeTreeBranch(fromScheme, 'symbols', tokenLengths)
 
   );
 
-  state.maxTokenLength = Math.max(...state.tokenLengths);
+  maxTokenLength = Math.max(tokenLengths);
 
-  return fromSchemeTree;
+  return { fromSchemeTree, maxTokenLength };
 
 };
 

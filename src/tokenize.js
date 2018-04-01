@@ -1,10 +1,10 @@
 import { getCharDetails } from './provide-char-details';
 
 /* eslint-disable complexity */
-export const tokenize = (str, fromSchemeTree, state) => {
+export const tokenize = (str, fromSchemeTree, maxTokenLength) => {
 
   const inStr = str.slice(0, str.length);
-  const maxSeek = state.maxTokenLength;
+  const maxSeek = maxTokenLength;
 
   const tokens = [];
 

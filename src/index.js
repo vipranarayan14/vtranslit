@@ -6,17 +6,15 @@ import { translitTokens } from './translit-tokens';
 
 export const vTranslit = (fromSchemeCode, toSchemeCode) => {
 
-  };
-
   const fromScheme = getScheme(fromSchemeCode);
   const toScheme = getScheme(toSchemeCode);
 
-  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
-  const toSchemeTree = makeToSchemeTree(toScheme, state);
+  const { fromSchemeTree, maxTokenLength } = makeFromSchemeTree(fromScheme);
+  const toSchemeTree = makeToSchemeTree(toScheme);
 
   return inStr => {
 
-    const tokens = tokenize(inStr, fromSchemeTree, state);
+    const tokens = tokenize(inStr, fromSchemeTree, maxTokenLength);
 
     const { processedTokens, tokensType } = processTokens(tokens, fromSchemeTree, toScheme);
 

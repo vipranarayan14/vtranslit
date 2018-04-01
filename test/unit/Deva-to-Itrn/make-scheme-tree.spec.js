@@ -14,7 +14,7 @@ describe('fromSchemeTree for "Deva" scheme', () => {
 
   const fromScheme = getScheme('Deva');
 
-  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
+  const { fromSchemeTree } = makeFromSchemeTree(fromScheme, state);
 
   it('should be an object literal', () => {
 
