@@ -17,6 +17,11 @@
             "type": "npm",
             "script": "timetest",
             "problemMatcher": []
+        },
+        {
+            "type": "npm",
+            "script": "start",
+            "problemMatcher": []
         }
     ]
 }
