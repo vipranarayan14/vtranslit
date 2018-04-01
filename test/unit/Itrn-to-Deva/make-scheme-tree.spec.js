@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { getScheme } from '../../../src/get-scheme';
 import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
 
 describe('fromSchemeTree  for "Itrn" scheme', () => {
@@ -11,17 +12,13 @@ describe('fromSchemeTree  for "Itrn" scheme', () => {
 
   };
 
-  const fromSchemeTree = makeFromSchemeTree('Itrn', state);
+  const fromScheme = getScheme('Itrn');
+
+  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
 
   it('should be an object literal', () => {
 
     expect(fromSchemeTree).to.be.an('object');
-
-  });
-
-  it('should contain all of these vowels - [`*A`, `*aa`, `*U`, `*RRi`, `*R^i`, `*au`]', () => {
-
-    expect(fromSchemeTree).to.contain.all.keys(['*A', '*aa', '*U', '*RRi', '*R^i', '*au']);
 
   });
 
@@ -43,7 +40,7 @@ describe('fromSchemeTree  for "Itrn" scheme', () => {
 
   });
 
-  it('should not contain any of these - [``]', () => {
+  it('should not contain any of these - [``, `ka`, `na`]', () => {
 
     expect(fromSchemeTree).not.to.contain.any.of.keys(['']);
 
@@ -58,10 +55,10 @@ describe('fromSchemeTree  for "Itrn" scheme', () => {
   it('should return the details of the given char', () => {
 
     expect(fromSchemeTree['N^']).to.deep.equal({
-      aksharaIndex: 4,
+      aksharaIndex: 'deadConsonants#4',
       alternateIndex: 1,
       char: 'N^',
-      type: 'consonants'
+      type: 'deadConsonants'
     });
 
   });

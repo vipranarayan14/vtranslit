@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import { getScheme } from '../../../src/get-scheme';
 import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
 
 describe('fromSchemeTree for "Deva" scheme', () => {
@@ -11,7 +12,9 @@ describe('fromSchemeTree for "Deva" scheme', () => {
 
   };
 
-  const fromSchemeTree = makeFromSchemeTree('Deva', state);
+  const fromScheme = getScheme('Deva');
+
+  const fromSchemeTree = makeFromSchemeTree(fromScheme, state);
 
   it('should be an object literal', () => {
 
@@ -31,9 +34,9 @@ describe('fromSchemeTree for "Deva" scheme', () => {
 
   });
 
-  it('should contain all of these vowelMarks - [`्`, `ा`, `ू`, `ॄ`, `े`, `ै`, `ौ`]', () => {
+  it('should contain all of these vowelMarks - [`ा`, `ू`, `ॄ`, `े`, `ै`, `ौ`]', () => {
 
-    expect(fromSchemeTree).to.contain.all.keys(['्', 'ा', 'ू', 'ॄ', 'े', 'ै', 'ौ']);
+    expect(fromSchemeTree).to.contain.all.keys(['ा', 'ू', 'ॄ', 'े', 'ै', 'ौ']);
 
   });
 
@@ -43,11 +46,11 @@ describe('fromSchemeTree for "Deva" scheme', () => {
 
   });
 
-  // it('should not contain any of these - [``]', () => {
+  it('should not contain any of these - [``]', () => {
 
-  //   expect(fromSchemeTree).not.to.contain.any.of.keys(['']);
+    expect(fromSchemeTree).not.to.contain.any.of.keys(['']);
 
-  // });
+  });
 
   it('should return an object when char is looked up', () => {
 
@@ -58,7 +61,7 @@ describe('fromSchemeTree for "Deva" scheme', () => {
   it('should return the details of the given char', () => {
 
     expect(fromSchemeTree['ङ']).to.deep.equal({
-      aksharaIndex: 4,
+      aksharaIndex: 'consonants#4',
       alternateIndex: 0,
       char: 'ङ',
       type: 'consonants'
