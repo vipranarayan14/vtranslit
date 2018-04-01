@@ -7,22 +7,80 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vTranslit</title>
 
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    main {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .container {
+      padding: 10px 10px;
+      width: 100%;
+    }
+
+    .input-box-container,
+    .output-box-container {
+
+      margin: 5px auto;
+    }
+
+    .scheme-selector,
+    .translit-box {
+      display: block;
+      padding: 5px;
+    }
+
+    .translit-box {
+      width: 100%;
+      height: 220px;
+      border-radius: 0 0 5px 5px;
+      border: 1px solid black;
+      resize: none;
+      font-size: 16px;
+    }
+
+  </style>
 </head>
 
 <body>
 
-  <select id="fromScheme">
-    <option value="Itrn" selected="selected">ITRANS</option>
-    <option value="Deva">Devanagari</option>
-  </select>
+  <main>
 
-  <select id="toScheme">
-    <option value="Itrn">ITRANS</option>
-    <option value="Deva" selected="selected">Devanagari</option>
-  </select>
+    <h1>vTranslit</h1>
+    <hr>
 
-  <textarea id="inputBox"></textarea>
-  <textarea id="outputBox" readonly></textarea>
+    <div class="container">
+
+      <div class="input-box-container">
+        <select id="fromScheme" class="scheme-selector">
+          <option value="Itrn" selected="selected">ITRANS</option>
+          <option value="Deva">Devanagari</option>
+        </select>
+
+        <textarea id="inputBox" class="translit-box" autofocus></textarea>
+      </div>
+
+      <div class="output-box-container">
+        <select id="toScheme" class="scheme-selector">
+          <option value="Itrn">ITRANS</option>
+          <option value="Deva" selected="selected">Devanagari</option>
+        </select>
+
+        <textarea id="outputBox" class="translit-box" readonly></textarea>
+      </div>
+
+    </div>
+  </main>
 
   <script src="./dist/vtranslit.js"></script>
   <script>
@@ -44,7 +102,7 @@
 
     fromSchemeSelect.addEventListener('change', initvTranslit);
     toSchemeSelect.addEventListener('change', initvTranslit);
-    
+
     window.addEventListener('DOMContentLoaded', initvTranslit);
 
     inputBox.addEventListener('keyup', transliterate);
