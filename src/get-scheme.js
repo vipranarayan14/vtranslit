@@ -1,5 +1,5 @@
-import { devanagariScheme } from './vtranslit-schemes/vtranslit-deva-scheme';
-import { itransScheme } from './vtranslit-schemes/vtranslit-itran-scheme';
+import { devanagariScheme } from './vtranslit-schemes/vtranslit-Deva-scheme';
+import { itransScheme } from './vtranslit-schemes/vtranslit-Itrn-scheme';
 
 export const getScheme = schemeCode =>
 
