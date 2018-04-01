@@ -1,5 +1,6 @@
 TODO
-1. support for 'devanagariScheme' to 'itransScheme'.
-2. support for 'tamilScheme'.
-3. support for calculating maxTokenLength. DONE
-4. support for characters not in a scheme. DONE
+1. support for 'devanagariScheme' to 'itransScheme'.  DONE
+2. support for 'tamilScheme'.                         DONE
+3. support for calculating maxTokenLength.            DONE
+4. support for characters not in a scheme.            DONE
+5. support for 'tamilScheme' to 'devanagariScheme'.
