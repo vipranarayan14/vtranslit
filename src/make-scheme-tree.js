@@ -87,7 +87,7 @@ export const makeFromSchemeTree = fromScheme => {
 
   );
 
-  maxTokenLength = Math.max(tokenLengths);
+  maxTokenLength = Math.max(...tokenLengths);
 
   return { fromSchemeTree, maxTokenLength };
 
