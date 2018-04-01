@@ -7,13 +7,49 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vTranslit</title>
 
-  <script src="./dist/vtranslit.js"></script>
 </head>
 
-<textarea id="vt-from"></textarea>
-<textarea id="vt-to"></textarea>
-
 <body>
+
+  <select id="fromScheme">
+    <option value="Itrn" selected="selected">ITRANS</option>
+    <option value="Deva">Devanagari</option>
+  </select>
+
+  <select id="toScheme">
+    <option value="Itrn">ITRANS</option>
+    <option value="Deva" selected="selected">Devanagari</option>
+  </select>
+
+  <textarea id="inputBox"></textarea>
+  <textarea id="outputBox" readonly></textarea>
+
+  <script src="./dist/vtranslit.js"></script>
+  <script>
+    const inputBox = document.querySelector('#inputBox');
+    const outputBox = document.querySelector('#outputBox');
+    const fromSchemeSelect = document.querySelector('#fromScheme');
+    const toSchemeSelect = document.querySelector('#toScheme');
+
+    let vt = window.vTranslit('Itrn', 'Deva');
+
+    const initvTranslit = () => {
+
+      vt = window.vTranslit(fromSchemeSelect.value, toSchemeSelect.value);
+
+      transliterate();
+    }
+
+    const transliterate = () => outputBox.value = vt(inputBox.value);
+
+    fromSchemeSelect.addEventListener('change', initvTranslit);
+    toSchemeSelect.addEventListener('change', initvTranslit);
+    
+    window.addEventListener('DOMContentLoaded', initvTranslit);
+
+    inputBox.addEventListener('keyup', transliterate);
+
+  </script>
 
 </body>
 
