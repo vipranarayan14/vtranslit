@@ -21,6 +21,7 @@ export const itransScheme = {
     ['da'],
     ['dha'],
     ['na'],
+    ['^na'],
     ['pa'],
     ['pha'],
     ['ba'],
@@ -59,6 +60,7 @@ export const itransScheme = {
     ['d'],
     ['dh'],
     ['n'],
+    ['^n'],
     ['p'],
     ['ph'],
     ['b'],
@@ -95,7 +97,8 @@ export const itransScheme = {
     ['OM', 'AUM'],
     ['.a'],
     ['M', '.m'],
-    ['H', '.h']
+    ['H', '.h'],
+    ['.N']
   ],
   'virama': [
     [';;']
