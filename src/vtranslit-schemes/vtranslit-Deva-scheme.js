@@ -1,5 +1,5 @@
 export const devanagariScheme = {
-  'about': { 'scriptCode': 'Deva', 'type': 'brahmic' },
+  'about': { 'schemeCode': 'Deva', 'schemeName': 'Devanagari', 'type': 'brahmic' },
   'consonants': [
     ['क'],
     ['ख'],

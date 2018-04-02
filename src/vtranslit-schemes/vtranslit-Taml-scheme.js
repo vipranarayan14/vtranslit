@@ -1,5 +1,5 @@
 export const tamilScheme = {
-  'about': { 'scriptCode': 'Taml', 'type': 'brahmic' },
+  'about': { 'schemeCode': 'Taml', 'schemeName': 'Tamil', 'type': 'brahmic' },
   'consonants': [
     ['க'],
     [''],
