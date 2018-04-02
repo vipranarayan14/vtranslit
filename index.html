@@ -27,6 +27,16 @@
       font-size: 16px;
     }
 
+    body {
+      background: #d2ff52;
+      background: -moz-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+      background: -webkit-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+      background: -o-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+      background: -ms-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+      background: linear-gradient(to right, #d2ff52 0%, #91e842 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1);
+    }
+
     h1 {
       text-align: center;
       font-size: 28px;
@@ -47,21 +57,24 @@
       margin: 5px auto;
     }
 
-    .scheme-selector,
+    .toolbar,
     .translit-box {
       display: block;
-      padding: 5px;
     }
 
-    .scheme-selector {
+    .scheme-selector,
+    .copy-to-clipboard {
       -webkit-appearance: none;
       -moz-appearance: none;
       background-color: #a0a0a0;
       border: none;
       color: #fff;
+      padding: 5px;
+      margin: 0 5px 0 0;
     }
 
     .translit-box {
+      padding: 5px;
       width: 100%;
       height: 220px;
       border-radius: 0 0 5px 5px;
@@ -84,15 +97,27 @@
     <div class="container">
 
       <div class="input-box-container">
-        <select id="fromScheme" class="scheme-selector">
-        </select>
+
+        <div class="toolbar">
+          <select id="fromScheme" class="scheme-selector"></select>
+
+          <button class="copy-to-clipboard" data-clip-target="#inputBox">
+            Copy Text
+          </button>
+        </div>
 
         <textarea id="inputBox" class="translit-box" autofocus></textarea>
       </div>
 
       <div class="output-box-container">
-        <select id="toScheme" class="scheme-selector">
-        </select>
+
+        <div class="toolbar">
+          <select id="toScheme" class="scheme-selector"></select>
+
+          <button class="copy-to-clipboard" data-clip-target="#outputBox">
+            Copy Text
+          </button>
+        </div>
 
         <textarea id="outputBox" class="translit-box" readonly></textarea>
       </div>
@@ -108,6 +133,7 @@
       const outputBox = document.querySelector('#outputBox');
       const fromSchemeSelect = document.querySelector('#fromScheme');
       const toSchemeSelect = document.querySelector('#toScheme');
+      const copyToClipboard = document.querySelectorAll('.copy-to-clipboard');
 
       const vTranslit = window.vTranslit;
       const availableSchemes = vTranslit.getAvailableSchemes();
@@ -189,9 +215,25 @@
       fromSchemeSelect.addEventListener('change', init);
       toSchemeSelect.addEventListener('change', handleToSchemeSelect);
 
-      window.addEventListener('DOMContentLoaded', init);
+      copyToClipboard.forEach(button =>
+
+        button.addEventListener('click', e => {
+
+          const clipTarget = document.querySelector(e.target.dataset.clipTarget);
+
+          clipTarget.select();
+
+          document.execCommand("Copy");
+
+          alert('Selected text is copied to clipboard');
+
+        })
+
+      );
 
       inputBox.addEventListener('keyup', transliterate);
+
+      window.addEventListener('DOMContentLoaded', init);
 
     })(window);
 
