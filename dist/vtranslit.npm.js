@@ -85,9 +85,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.vTranslit = undefined;
 
-var _makeSchemeTree = __webpack_require__(1);
+var _getScheme = __webpack_require__(1);
 
-var _getScheme = __webpack_require__(2);
+var _makeSchemeTree = __webpack_require__(5);
 
 var _processTokens2 = __webpack_require__(6);
 
@@ -95,7 +95,7 @@ var _tokenize = __webpack_require__(7);
 
 var _translitTokens = __webpack_require__(9);
 
-var vTranslit = exports.vTranslit = function vTranslit(fromSchemeCode, toSchemeCode) {
+var init = function init(fromSchemeCode, toSchemeCode) {
 
   var fromScheme = (0, _getScheme.getScheme)(fromSchemeCode);
   var toScheme = (0, _getScheme.getScheme)(toSchemeCode);
@@ -120,8 +120,117 @@ var vTranslit = exports.vTranslit = function vTranslit(fromSchemeCode, toSchemeC
   };
 };
 
+var vTranslit = exports.vTranslit = {
+  getAvailableSchemes: _getScheme.getAvailableSchemes,
+  init: init
+};
+
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getScheme = exports.getAvailableSchemes = undefined;
+
+var _vtranslitDevaScheme = __webpack_require__(2);
+
+var _vtranslitItrnScheme = __webpack_require__(3);
+
+var _vtranslitTamlScheme = __webpack_require__(4);
+
+var schemes = [_vtranslitItrnScheme.itransScheme, _vtranslitDevaScheme.devanagariScheme, _vtranslitTamlScheme.tamilScheme];
+
+var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
+
+  var availableSchemes = [];
+
+  schemes.forEach(function (scheme) {
+
+    availableSchemes.push({
+      code: scheme.about.schemeCode,
+      name: scheme.about.schemeName
+    });
+  });
+
+  return availableSchemes;
+};
+
+var getScheme = exports.getScheme = function getScheme(schemeCode) {
+  return schemes.find(function (scheme) {
+    return scheme.about.schemeCode === schemeCode;
+  });
+};
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var devanagariScheme = exports.devanagariScheme = {
+  'about': { 'schemeCode': 'Deva', 'schemeName': 'Devanagari', 'type': 'brahmic' },
+  'consonants': [['क'], ['ख'], ['ग'], ['घ'], ['ङ'], ['च'], ['छ'], ['ज'], ['झ'], ['ञ'], ['ट'], ['ठ'], ['ड'], ['ढ'], ['ण'], ['त'], ['थ'], ['द'], ['ध'], ['न'], [''], ['प'], ['फ'], ['ब'], ['भ'], ['म'], ['य'], ['र'], [''], ['ल'], ['ळ'], [''], ['व'], ['श'], ['ष'], ['स'], ['ह']],
+  'deadConsonants': [['क्'], ['ख्'], ['ग्'], ['घ्'], ['ङ्'], ['च्'], ['छ्'], ['ज्'], ['झ्'], ['ञ्'], ['ट्'], ['ठ्'], ['ड्'], ['ढ्'], ['ण्'], ['त्'], ['थ्'], ['द्'], ['ध्'], ['न्'], [''], ['प्'], ['फ्'], ['ब्'], ['भ्'], ['म्'], ['य्'], ['र्'], [''], ['ल्'], ['ळ्'], [''], ['व्'], ['श्'], ['ष्'], ['स्'], ['ह्']],
+  'inherentVowel': [['अ']],
+  'symbols': [['०'], ['१'], ['२'], ['३'], ['४'], ['५'], ['६'], ['७'], ['८'], ['९'], ['।'], ['॥'], ['ॐ'], ['ऽ'], ['ं'], ['ः'], ['ँ']],
+  'virama': [['्']],
+  'vowelMarks': [[''], ['ा'], ['ि'], ['ी'], ['ु'], ['ू'], ['ृ'], ['ॄ'], ['ॢ'], ['ॣ'], ['े'], [''], ['ै'], ['ो'], [''], ['ौ']],
+  'vowels': [['अ'], ['आ'], ['इ'], ['ई'], ['उ'], ['ऊ'], ['ऋ'], ['ॠ'], ['ऌ'], ['ॡ'], ['ए'], [''], ['ऐ'], ['ओ'], [''], ['औ']]
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var itransScheme = exports.itransScheme = {
+  'about': { 'schemeCode': 'Itrn', 'schemeName': 'ITRANS', 'type': 'roman' },
+  'consonants': [['ka'], ['kha'], ['ga'], ['gha'], ['~Na', 'N^a'], ['cha'], ['Cha'], ['ja'], ['jha'], ['~na', 'JNa'], ['Ta'], ['Tha'], ['Da'], ['Dha'], ['Na'], ['ta'], ['tha'], ['da'], ['dha'], ['na'], ['^na'], ['pa'], ['pha'], ['ba'], ['bha'], ['ma'], ['ya'], ['ra'], ['Ra'], ['la'], ['La'], ['zha'], ['va', 'wa'], ['sha'], ['Sha', 'Sa', 'shha'], ['sa'], ['ha']],
+  'deadConsonants': [['k'], ['kh'], ['g'], ['gh'], ['~N', 'N^'], ['ch'], ['Ch'], ['j'], ['jh'], ['~n', 'JN'], ['T'], ['Th'], ['D'], ['Dh'], ['N'], ['t'], ['th'], ['d'], ['dh'], ['n'], ['^n'], ['p'], ['ph'], ['b'], ['bh'], ['m'], ['y'], ['r'], ['R'], ['l'], ['L'], ['zh'], ['v', 'w'], ['sh'], ['Sh', 'S', 'shh'], ['s'], ['h']],
+  'inherentVowel': [['#a']],
+  'symbols': [['0'], ['1'], ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'], ['|'], ['||'], ['OM', 'AUM'], ['.a'], ['M', '.m'], ['H', '.h'], ['.N']],
+  'virama': [[';;']],
+  'vowelMarks': [['a'], ['A', 'aa'], ['i'], ['I', 'ii'], ['u'], ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], ['e'], ['E'], ['ai'], ['o'], ['O'], ['au']],
+  'vowels': [['a'], ['A', 'aa'], ['i'], ['I', 'ii'], ['u'], ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], ['e'], ['E'], ['ai'], ['o'], ['O'], ['au']]
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var tamilScheme = exports.tamilScheme = {
+  'about': { 'schemeCode': 'Taml', 'schemeName': 'Tamil', 'type': 'brahmic' },
+  'consonants': [['க'], [''], [''], [''], ['ங'], ['ச'], [''], ['ஜ'], [''], ['ஞ'], ['ட'], [''], [''], [''], ['ண'], ['த'], [''], [''], [''], ['ந'], ['ன'], ['ப'], [''], [''], [''], ['ம'], ['ய'], ['ர'], ['ற'], ['ல'], ['ள'], ['ழ'], ['வ'], ['ஶ'], ['ஷ'], ['ஸ'], ['ஹ']],
+  'deadConsonants': [['க்'], [''], [''], [''], ['ங்'], ['ச்'], [''], ['ஜ்'], [''], ['ஞ்'], ['ட்'], [''], [''], [''], ['ண்'], ['த்'], [''], [''], [''], ['ந்'], ['ன்'], ['ப்'], [''], [''], [''], ['ம்'], ['ய்'], ['ர்'], ['ற்'], ['ல்'], ['ள்'], ['ழ்'], ['வ்'], ['ஶ்'], ['ஷ்'], ['ஸ்'], ['ஹ்']],
+  'inherentVowel': [['அ']],
+  'symbols': [['௦'], ['௧'], ['௨'], ['௩'], ['௪'], ['௫'], ['௬'], ['௭'], ['௮'], ['௯'], ['.'], ['.'], ['ௐ'], [''], ['ஂ'], ['ஃ'], ['']],
+  'virama': [['்']],
+  'vowelMarks': [[''], ['ா'], ['ி'], ['ீ'], ['ு'], ['ூ'], [''], [''], [''], [''], ['ெ'], ['ே'], ['ை'], ['ொ'], ['ோ'], ['ௌ']],
+  'vowels': [['அ'], ['ஆ'], ['இ'], ['ஈ'], ['உ'], ['ஊ'], [''], [''], [''], [''], ['எ'], ['ஏ'], ['ஐ'], ['ஒ'], ['ஓ'], ['ஔ']]
+};
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -217,93 +326,6 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
   toSchemeTree = Object.assign({}, toSchemeTree, makeToSchemeTreeBranch(toScheme, 'deadConsonants', 'consonants'), makeToSchemeTreeBranch(toScheme, 'consonants', 'deadConsonants'), makeToSchemeTreeBranch(toScheme, 'vowels', 'vowelMarks'), makeToSchemeTreeBranch(toScheme, 'vowelMarks', 'vowels'), makeToSchemeTreeBranch(toScheme, 'symbols'));
 
   return toSchemeTree;
-};
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getScheme = undefined;
-
-var _vtranslitDevaScheme = __webpack_require__(3);
-
-var _vtranslitItrnScheme = __webpack_require__(4);
-
-var _vtranslitTamlScheme = __webpack_require__(5);
-
-var getScheme = exports.getScheme = function getScheme(schemeCode) {
-  return [_vtranslitItrnScheme.itransScheme, _vtranslitDevaScheme.devanagariScheme, _vtranslitTamlScheme.tamilScheme].find(function (scheme) {
-    return scheme.about.scriptCode === schemeCode;
-  });
-};
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var devanagariScheme = exports.devanagariScheme = {
-  'about': { 'scriptCode': 'Deva', 'type': 'brahmic' },
-  'consonants': [['क'], ['ख'], ['ग'], ['घ'], ['ङ'], ['च'], ['छ'], ['ज'], ['झ'], ['ञ'], ['ट'], ['ठ'], ['ड'], ['ढ'], ['ण'], ['त'], ['थ'], ['द'], ['ध'], ['न'], [''], ['प'], ['फ'], ['ब'], ['भ'], ['म'], ['य'], ['र'], [''], ['ल'], ['ळ'], [''], ['व'], ['श'], ['ष'], ['स'], ['ह']],
-  'deadConsonants': [['क्'], ['ख्'], ['ग्'], ['घ्'], ['ङ्'], ['च्'], ['छ्'], ['ज्'], ['झ्'], ['ञ्'], ['ट्'], ['ठ्'], ['ड्'], ['ढ्'], ['ण्'], ['त्'], ['थ्'], ['द्'], ['ध्'], ['न्'], [''], ['प्'], ['फ्'], ['ब्'], ['भ्'], ['म्'], ['य्'], ['र्'], [''], ['ल्'], ['ळ्'], [''], ['व्'], ['श्'], ['ष्'], ['स्'], ['ह्']],
-  'inherentVowel': [['अ']],
-  'symbols': [['०'], ['१'], ['२'], ['३'], ['४'], ['५'], ['६'], ['७'], ['८'], ['९'], ['।'], ['॥'], ['ॐ'], ['ऽ'], ['ं'], ['ः'], ['ँ']],
-  'virama': [['्']],
-  'vowelMarks': [[''], ['ा'], ['ि'], ['ी'], ['ु'], ['ू'], ['ृ'], ['ॄ'], ['ॢ'], ['ॣ'], ['े'], [''], ['ै'], ['ो'], [''], ['ौ']],
-  'vowels': [['अ'], ['आ'], ['इ'], ['ई'], ['उ'], ['ऊ'], ['ऋ'], ['ॠ'], ['ऌ'], ['ॡ'], ['ए'], [''], ['ऐ'], ['ओ'], [''], ['औ']]
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var itransScheme = exports.itransScheme = {
-  'about': { 'scriptCode': 'Itrn', 'type': 'roman' },
-  'consonants': [['ka'], ['kha'], ['ga'], ['gha'], ['~Na', 'N^a'], ['cha'], ['Cha'], ['ja'], ['jha'], ['~na', 'JNa'], ['Ta'], ['Tha'], ['Da'], ['Dha'], ['Na'], ['ta'], ['tha'], ['da'], ['dha'], ['na'], ['^na'], ['pa'], ['pha'], ['ba'], ['bha'], ['ma'], ['ya'], ['ra'], ['Ra'], ['la'], ['La'], ['zha'], ['va', 'wa'], ['sha'], ['Sha', 'Sa', 'shha'], ['sa'], ['ha']],
-  'deadConsonants': [['k'], ['kh'], ['g'], ['gh'], ['~N', 'N^'], ['ch'], ['Ch'], ['j'], ['jh'], ['~n', 'JN'], ['T'], ['Th'], ['D'], ['Dh'], ['N'], ['t'], ['th'], ['d'], ['dh'], ['n'], ['^n'], ['p'], ['ph'], ['b'], ['bh'], ['m'], ['y'], ['r'], ['R'], ['l'], ['L'], ['zh'], ['v', 'w'], ['sh'], ['Sh', 'S', 'shh'], ['s'], ['h']],
-  'inherentVowel': [['#a']],
-  'symbols': [['0'], ['1'], ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'], ['|'], ['||'], ['OM', 'AUM'], ['.a'], ['M', '.m'], ['H', '.h'], ['.N']],
-  'virama': [[';;']],
-  'vowelMarks': [['a'], ['A', 'aa'], ['i'], ['I', 'ii'], ['u'], ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], ['e'], ['E'], ['ai'], ['o'], ['O'], ['au']],
-  'vowels': [['a'], ['A', 'aa'], ['i'], ['I', 'ii'], ['u'], ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], ['e'], ['E'], ['ai'], ['o'], ['O'], ['au']]
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var tamilScheme = exports.tamilScheme = {
-  'about': { 'scriptCode': 'Taml', 'type': 'brahmic' },
-  'consonants': [['க'], [''], [''], [''], ['ங'], ['ச'], [''], ['ஜ'], [''], ['ஞ'], ['ட'], [''], [''], [''], ['ண'], ['த'], [''], [''], [''], ['ந'], ['ன'], ['ப'], [''], [''], [''], ['ம'], ['ய'], ['ர'], ['ற'], ['ல'], ['ள'], ['ழ'], ['வ'], ['ஶ'], ['ஷ'], ['ஸ'], ['ஹ']],
-  'deadConsonants': [['க்'], [''], [''], [''], ['ங்'], ['ச்'], [''], ['ஜ்'], [''], ['ஞ்'], ['ட்'], [''], [''], [''], ['ண்'], ['த்'], [''], [''], [''], ['ந்'], ['ன்'], ['ப்'], [''], [''], [''], ['ம்'], ['ய்'], ['ர்'], ['ற்'], ['ல்'], ['ள்'], ['ழ்'], ['வ்'], ['ஶ்'], ['ஷ்'], ['ஸ்'], ['ஹ்']],
-  'inherentVowel': [['அ']],
-  'symbols': [['௦'], ['௧'], ['௨'], ['௩'], ['௪'], ['௫'], ['௬'], ['௭'], ['௮'], ['௯'], ['.'], ['.'], ['ௐ'], [''], ['ஂ'], ['ஃ'], ['']],
-  'virama': [['்']],
-  'vowelMarks': [[''], ['ா'], ['ி'], ['ீ'], ['ு'], ['ூ'], [''], [''], [''], [''], ['ெ'], ['ே'], ['ை'], ['ொ'], ['ோ'], ['ௌ']],
-  'vowels': [['அ'], ['ஆ'], ['இ'], ['ஈ'], ['உ'], ['ஊ'], [''], [''], [''], [''], ['எ'], ['ஏ'], ['ஐ'], ['ஒ'], ['ஓ'], ['ஔ']]
 };
 
 /***/ }),
