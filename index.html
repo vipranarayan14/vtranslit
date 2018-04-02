@@ -18,6 +18,10 @@
       padding: 0;
     }
 
+    h1 {
+      text-align: center;
+    }
+
     main {
       max-width: 600px;
       margin: 0 auto;
@@ -63,9 +67,6 @@
 
       <div class="input-box-container">
         <select id="fromScheme" class="scheme-selector">
-          <option value="Itrn" selected="selected">ITRANS</option>
-          <option value="Deva">Devanagari</option>
-          <option value="Taml">Tamil</option>
         </select>
 
         <textarea id="inputBox" class="translit-box" autofocus></textarea>
@@ -73,9 +74,6 @@
 
       <div class="output-box-container">
         <select id="toScheme" class="scheme-selector">
-          <option value="Itrn">ITRANS</option>
-          <option value="Deva" selected="selected">Devanagari</option>
-          <option value="Taml">Tamil</option>
         </select>
 
         <textarea id="outputBox" class="translit-box" readonly></textarea>
@@ -86,28 +84,82 @@
 
   <script src="./dist/vtranslit.js"></script>
   <script>
-    const inputBox = document.querySelector('#inputBox');
-    const outputBox = document.querySelector('#outputBox');
-    const fromSchemeSelect = document.querySelector('#fromScheme');
-    const toSchemeSelect = document.querySelector('#toScheme');
+    ((window) => {
 
-    let vt = window.vTranslit('Itrn', 'Deva');
+      const inputBox = document.querySelector('#inputBox');
+      const outputBox = document.querySelector('#outputBox');
+      const fromSchemeSelect = document.querySelector('#fromScheme');
+      const toSchemeSelect = document.querySelector('#toScheme');
 
-    const initvTranslit = () => {
+      const vTranslit = window.vTranslit;
+      const availableSchemes = vTranslit.getAvailableSchemes();
 
-      vt = window.vTranslit(fromSchemeSelect.value, toSchemeSelect.value);
+      let vt;
 
-      transliterate();
-    }
+      availableSchemes.forEach(scheme => {
 
-    const transliterate = () => outputBox.value = vt(inputBox.value);
+        fromSchemeSelect.options[fromSchemeSelect.options.length] =
+          new Option(scheme.name, scheme.code);
 
-    fromSchemeSelect.addEventListener('change', initvTranslit);
-    toSchemeSelect.addEventListener('change', initvTranslit);
+      });
 
-    window.addEventListener('DOMContentLoaded', initvTranslit);
+      const makeToSchemeOptions = () => {
 
-    inputBox.addEventListener('keyup', transliterate);
+        if (
+          fromSchemeSelect.value === 'Itrn' &&
+          toSchemeSelect.length < availableSchemes.length
+        ) {
+
+          toSchemeSelect.options.length = 0;
+
+          availableSchemes.forEach(scheme => {
+
+            if (scheme.code !== 'Itrn') {
+
+              toSchemeSelect.options[toSchemeSelect.options.length] =
+                new Option(scheme.name, scheme.code);
+
+            }
+
+          });
+
+        } else {
+
+          toSchemeSelect.options.length = 0;
+          toSchemeSelect.options[0] = new Option('ITRANS', 'Itrn');
+
+        }
+
+      }
+
+      const init = () => {
+
+        makeToSchemeOptions();
+
+        vt = vTranslit.init(fromSchemeSelect.value, toSchemeSelect.value);
+
+        transliterate();
+
+      };
+
+      const handleToSchemeSelect = () => {
+
+        vt = vTranslit.init(fromSchemeSelect.value, toSchemeSelect.value);
+
+        transliterate();
+
+      }
+
+      const transliterate = () => outputBox.value = vt(inputBox.value);
+
+      fromSchemeSelect.addEventListener('change', init);
+      toSchemeSelect.addEventListener('change', handleToSchemeSelect);
+
+      window.addEventListener('DOMContentLoaded', init);
+
+      inputBox.addEventListener('keyup', transliterate);
+
+    })(window);
 
   </script>
 
