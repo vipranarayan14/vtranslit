@@ -1,10 +1,10 @@
+import { getAvailableSchemes, getScheme } from './get-scheme';
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
-import { getScheme } from './get-scheme';
 import { processTokens } from './process-tokens';
 import { tokenize } from './tokenize';
 import { translitTokens } from './translit-tokens';
 
-export const vTranslit = (fromSchemeCode, toSchemeCode) => {
+const init = (fromSchemeCode, toSchemeCode) => {
 
   const fromScheme = getScheme(fromSchemeCode);
   const toScheme = getScheme(toSchemeCode);
@@ -24,4 +24,9 @@ export const vTranslit = (fromSchemeCode, toSchemeCode) => {
 
   };
 
+};
+
+export const vTranslit = {
+  getAvailableSchemes,
+  init
 };
