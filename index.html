@@ -7,6 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>vTranslit</title>
 
+  <link href="https://fonts.googleapis.com/css?family=Arima+Madurai|Vesper+Libre&amp;subset=devanagari,latin-ext,tamil" rel="stylesheet">
+
   <style>
     * {
       box-sizing: border-box;
@@ -18,8 +20,16 @@
       padding: 0;
     }
 
+    body,
+    body * {
+      font-family: 'Vesper Libre', serif;
+      line-height: 1.5;
+      font-size: 16px;
+    }
+
     h1 {
       text-align: center;
+      font-size: 28px;
     }
 
     main {
@@ -34,7 +44,6 @@
 
     .input-box-container,
     .output-box-container {
-
       margin: 5px auto;
     }
 
@@ -44,13 +53,22 @@
       padding: 5px;
     }
 
+    .scheme-selector {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      background-color: #a0a0a0;
+      border: none;
+      color: #fff;
+    }
+
     .translit-box {
       width: 100%;
       height: 220px;
       border-radius: 0 0 5px 5px;
-      border: 1px solid black;
+      border: 1px solid #ccc;
       resize: none;
-      font-size: 16px;
+      font-size: 18px;
+      box-shadow: inset 0 0 10px #ccc;
     }
 
   </style>
@@ -94,6 +112,11 @@
       const vTranslit = window.vTranslit;
       const availableSchemes = vTranslit.getAvailableSchemes();
 
+      const fontFamilies = {
+        'Deva': "'Vesper Libre', serif;",
+        'Taml': "'Arima Madurai', cursive;"
+      };
+
       let vt;
 
       availableSchemes.forEach(scheme => {
@@ -132,6 +155,13 @@
 
       }
 
+      const changeFont = () => {
+
+        outputBox.style.fontFamily = fontFamilies[toSchemeSelect.value];
+        console.log(outputBox.style.fontFamily = fontFamilies[toSchemeSelect.value]);
+
+      };
+
       const init = () => {
 
         makeToSchemeOptions();
@@ -139,6 +169,8 @@
         vt = vTranslit.init(fromSchemeSelect.value, toSchemeSelect.value);
 
         transliterate();
+
+        changeFont();
 
       };
 
@@ -148,7 +180,9 @@
 
         transliterate();
 
-      }
+        changeFont();
+
+      };
 
       const transliterate = () => outputBox.value = vt(inputBox.value);
 
