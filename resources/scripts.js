@@ -14,9 +14,11 @@
   var availableSchemes = vTranslit.getAvailableSchemes();
 
   var fontFamilies = {
-    'Itrn': '"Vesper Libre", serif',
-    'Deva': '"Vesper Libre", serif',
-    'Taml': '"Arima Madurai", cursive'
+    'Itrn': 'SakalBharati, serif',
+    'Deva': 'SakalBharati, serif',
+    'Knda': 'SakalBharati, serif',
+    'Taml': 'SakalBharati, serif',
+    'Telu': 'SakalBharati, serif'
   };
 
   var vt = void 0;

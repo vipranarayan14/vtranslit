@@ -1,3 +1,8 @@
+@font-face {
+    font-family: "SakalBharati";
+    src: url("fonts/SakalBharati.ttf");
+}
+
 * {
     box-sizing: border-box;
 }
@@ -10,7 +15,7 @@ body {
 
 body,
 body * {
-    font-family: 'Vesper Libre', serif;
+    font-family: serif;
     line-height: 1.5;
     font-size: 16px;
 }
