@@ -87,13 +87,13 @@ exports.vTranslit = undefined;
 
 var _getScheme = __webpack_require__(1);
 
-var _makeSchemeTree = __webpack_require__(5);
+var _makeSchemeTree = __webpack_require__(7);
 
-var _processTokens2 = __webpack_require__(6);
+var _processTokens2 = __webpack_require__(8);
 
-var _tokenize = __webpack_require__(7);
+var _tokenize = __webpack_require__(9);
 
-var _translitTokens = __webpack_require__(9);
+var _translitTokens = __webpack_require__(11);
 
 var init = function init(fromSchemeCode, toSchemeCode) {
 
@@ -141,9 +141,13 @@ var _vtranslitDevaScheme = __webpack_require__(2);
 
 var _vtranslitItrnScheme = __webpack_require__(3);
 
-var _vtranslitTamlScheme = __webpack_require__(4);
+var _vtranslitKndaScheme = __webpack_require__(4);
 
-var schemes = [_vtranslitItrnScheme.itransScheme, _vtranslitDevaScheme.devanagariScheme, _vtranslitTamlScheme.tamilScheme];
+var _vtranslitTamlScheme = __webpack_require__(5);
+
+var _vtranslitTeluScheme = __webpack_require__(6);
+
+var schemes = [_vtranslitItrnScheme.itransScheme, _vtranslitDevaScheme.devanagariScheme, _vtranslitKndaScheme.kannadaScheme, _vtranslitTamlScheme.tamilScheme, _vtranslitTeluScheme.teluguScheme];
 
 var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
 
@@ -228,6 +232,32 @@ var itransScheme = exports.itransScheme = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var kannadaScheme = exports.kannadaScheme = {
+  'about': {
+    'schemeCode': 'Knda',
+    'schemeName': 'Kannada',
+    'type': 'brahmic'
+  },
+  'data': {
+    'consonants': ['\u0C95', '\u0C96', '\u0C97', '\u0C98', '\u0C99', '\u0C9A', '\u0C9B', '\u0C9C', '\u0C9D', '\u0C9E', '\u0C9F', '\u0CA0', '\u0CA1', '\u0CA2', '\u0CA3', '\u0CA4', '\u0CA5', '\u0CA6', '\u0CA7', '\u0CA8', '', '\u0CAA', '\u0CAB', '\u0CAC', '\u0CAD', '\u0CAE', '\u0CAF', '\u0CB0', '\u0CB1', '\u0CB2', '\u0CB3', '', '\u0CB5', '\u0CB6', '\u0CB7', '\u0CB8', '\u0CB9'],
+    'deadConsonants': ['\u0C95\u0CCD', '\u0C96\u0CCD', '\u0C97\u0CCD', '\u0C98\u0CCD', '\u0C99\u0CCD', '\u0C9A\u0CCD', '\u0C9B\u0CCD', '\u0C9C\u0CCD', '\u0C9D\u0CCD', '\u0C9E\u0CCD', '\u0C9F\u0CCD', '\u0CA0\u0CCD', '\u0CA1\u0CCD', '\u0CA2\u0CCD', '\u0CA3\u0CCD', '\u0CA4\u0CCD', '\u0CA5\u0CCD', '\u0CA6\u0CCD', '\u0CA7\u0CCD', '\u0CA8\u0CCD', '', '\u0CAA\u0CCD', '\u0CAB\u0CCD', '\u0CAC\u0CCD', '\u0CAD\u0CCD', '\u0CAE\u0CCD', '\u0CAF\u0CCD', '\u0CB0\u0CCD', '\u0CB1\u0CCD', '\u0CB2\u0CCD', '\u0CB3\u0CCD', '', '\u0CB5\u0CCD', '\u0CB6\u0CCD', '\u0CB7\u0CCD', '\u0CB8\u0CCD', '\u0CB9\u0CCD'],
+    'symbols': ['\u0CE6', '\u0CE7', '\u0CE8', '\u0CE9', '\u0CEA', '\u0CEB', '\u0CEC', '\u0CED', '\u0CEE', '\u0CEF', '।', '॥', '', '\u0CBD', '\u0C82', '\u0C83', '\u0C81'],
+    'virama': ['\u0CCD'],
+    'vowelMarks': ['', '\u0CBE', '\u0CBF', '\u0CC0', '\u0CC1', '\u0CC2', '\u0CC3', '\u0CC4', '', '', '\u0CC6', '\u0CC7', '\u0CC8', '\u0CCA', '\u0CCB', '\u0CCC'],
+    'vowels': ['\u0C85', '\u0C86', '\u0C87', '\u0C88', '\u0C89', '\u0C8A', '\u0C8B', '', '\u0C8C', '', '\u0C8E', '\u0C8F', '\u0C90', '\u0C92', '\u0C93', '\u0C94']
+  }
+};
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 var tamilScheme = exports.tamilScheme = {
   'about': { 'schemeCode': 'Taml', 'schemeName': 'Tamil', 'type': 'brahmic' },
   'data': {
@@ -241,7 +271,33 @@ var tamilScheme = exports.tamilScheme = {
 };
 
 /***/ }),
-/* 5 */
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var teluguScheme = exports.teluguScheme = {
+  'about': {
+    'schemeCode': 'Telu',
+    'schemeName': 'Telugu',
+    'type': 'brahmic'
+  },
+  'data': {
+    'consonants': ['\u0C15', '\u0C16', '\u0C17', '\u0C18', '\u0C19', '\u0C1A', '\u0C13', '\u0C1C', '\u0C1D', '\u0C1E', '\u0C1F', '\u0C20', '\u0C21', '\u0C22', '\u0C23', '\u0C24', '\u0C25', '\u0C26', '\u0C27', '\u0C28', '', '\u0C22', '\u0C23', '\u0C2C', '\u0C2D', '\u0C2E', '\u0C2F', '\u0C30', '\u0C31', '\u0C32', '\u0C33', '', '\u0C35', '\u0C36', '\u0C37', '\u0C38', '\u0C39'],
+    'deadConsonants': ['\u0C15\u0C4D', '\u0C16\u0C4D', '\u0C17\u0C4D', '\u0C18\u0C4D', '\u0C19\u0C4D', '\u0C1A\u0C4D', '\u0C13\u0C4D', '\u0C1C\u0C4D', '\u0C1D\u0C4D', '\u0C1E\u0C4D', '\u0C1F\u0C4D', '\u0C20\u0C4D', '\u0C21\u0C4D', '\u0C22\u0C4D', '\u0C23\u0C4D', '\u0C24\u0C4D', '\u0C25\u0C4D', '\u0C26\u0C4D', '\u0C27\u0C4D', '\u0C28\u0C4D', '', '\u0C2A\u0C4D', '\u0C23\u0C4D', '\u0C2C\u0C4D', '\u0C2D\u0C4D', '\u0C2E\u0C4D', '\u0C2F\u0C4D', '\u0C30\u0C4D', '\u0C31\u0C4D', '\u0C32\u0C4D', '\u0C33\u0C4D', '', '\u0C35\u0C4D', '\u0C36\u0C4D', '\u0C37\u0C4D', '\u0C38\u0C4D', '\u0C39\u0C4D'],
+    'symbols': ['\u0C66', '\u0C67', '\u0C68', '\u0C69', '\u0C6A', '\u0C63', '\u0C6C', '\u0C6D', '\u0C66', '\u0C6F', '।', '॥', '', '\u0C3D', '\u0C02', '\u0C03', '\u0C01'],
+    'virama': ['\u0C4D'],
+    'vowelMarks': ['', '\u0C3E', '\u0C3F', '\u0C40', '\u0C41', '\u0C42', '\u0C43', '\u0C44', '', '', '\u0C46', '\u0C47', '\u0C48', '\u0C4A', '\u0C43', '\u0C4C'],
+    'vowels': ['\u0C05', '\u0C06', '\u0C07', '\u0C00', '\u0C09', '\u0C0A', '\u0C03', '', '\u0C0C', '', '\u0C0E', '\u0C0F', '\u0C10', '\u0C12', '\u0C13', '\u0C14']
+  }
+};
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -358,7 +414,7 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
 };
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -412,7 +468,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 };
 
 /***/ }),
-/* 7 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -423,7 +479,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.tokenize = undefined;
 
-var _provideCharDetails = __webpack_require__(8);
+var _provideCharDetails = __webpack_require__(10);
 
 /* eslint-disable complexity */
 var tokenize = exports.tokenize = function tokenize(str, fromSchemeTree, maxTokenLength) {
@@ -484,7 +540,7 @@ var tokenize = exports.tokenize = function tokenize(str, fromSchemeTree, maxToke
 };
 
 /***/ }),
-/* 8 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -527,7 +583,7 @@ var getCharDetails = exports.getCharDetails = function getCharDetails(char, from
 };
 
 /***/ }),
-/* 9 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
