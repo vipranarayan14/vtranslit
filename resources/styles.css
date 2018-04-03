@@ -1,0 +1,117 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+body,
+body * {
+    font-family: 'Vesper Libre', serif;
+    line-height: 1.5;
+    font-size: 16px;
+}
+
+body {
+    background: #d2ff52;
+    background: -moz-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+    background: -webkit-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+    background: -o-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+    background: -ms-linear-gradient(left, #d2ff52 0%, #91e842 100%);
+    background: linear-gradient(to right, #d2ff52 0%, #91e842 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1);
+}
+
+hr {
+    border: 3px dotted #448d00;
+    width: 95%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #4f970c;
+}
+
+main {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    padding: 10px 10px;
+    width: 100%;
+}
+
+.input-box-container,
+.output-box-container {
+    margin: 5px auto;
+}
+
+.toolbar,
+.translit-box {
+    display: block;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.toolbar {
+    border-width: 1px 1px 0px;
+    border-radius: 5px 5px 0 0;
+    height: 40px;
+}
+
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    /* inherit font & color from ancestor */
+    color: inherit;
+    font: inherit;
+    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
+    line-height: normal;
+    /* Corrects font smoothing for webkit */
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    /* Corrects inability to style clickable `input` types in iOS */
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+button,
+select,
+.translit-box {
+    padding: 5px;
+}
+
+.scheme-selector,
+.copy-to-clipboard {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #a0a0a0;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    margin: 0 5px 0;
+    height: 100%;
+}
+
+.translit-box {
+    width: 100%;
+    height: 220px;
+    border-radius: 0 0 5px 5px;
+    border-width: 0px 1px 1px;
+    resize: none;
+    font-size: 18px;
+    box-shadow: inset 0 0 10px #ccc;
+}
