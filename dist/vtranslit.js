@@ -168,14 +168,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var devanagariScheme = exports.devanagariScheme = {
-  'about': { 'schemeCode': 'Deva', 'schemeName': 'Devanagari', 'type': 'brahmic' },
-  'consonants': [['क'], ['ख'], ['ग'], ['घ'], ['ङ'], ['च'], ['छ'], ['ज'], ['झ'], ['ञ'], ['ट'], ['ठ'], ['ड'], ['ढ'], ['ण'], ['त'], ['थ'], ['द'], ['ध'], ['न'], [''], ['प'], ['फ'], ['ब'], ['भ'], ['म'], ['य'], ['र'], [''], ['ल'], ['ळ'], [''], ['व'], ['श'], ['ष'], ['स'], ['ह']],
-  'deadConsonants': [['क्'], ['ख्'], ['ग्'], ['घ्'], ['ङ्'], ['च्'], ['छ्'], ['ज्'], ['झ्'], ['ञ्'], ['ट्'], ['ठ्'], ['ड्'], ['ढ्'], ['ण्'], ['त्'], ['थ्'], ['द्'], ['ध्'], ['न्'], [''], ['प्'], ['फ्'], ['ब्'], ['भ्'], ['म्'], ['य्'], ['र्'], [''], ['ल्'], ['ळ्'], [''], ['व्'], ['श्'], ['ष्'], ['स्'], ['ह्']],
-  'inherentVowel': [['अ']],
-  'symbols': [['०'], ['१'], ['२'], ['३'], ['४'], ['५'], ['६'], ['७'], ['८'], ['९'], ['।'], ['॥'], ['ॐ'], ['ऽ'], ['ं'], ['ः'], ['ँ']],
-  'virama': [['्']],
-  'vowelMarks': [[''], ['ा'], ['ि'], ['ी'], ['ु'], ['ू'], ['ृ'], ['ॄ'], ['ॢ'], ['ॣ'], ['े'], [''], ['ै'], ['ो'], [''], ['ौ']],
-  'vowels': [['अ'], ['आ'], ['इ'], ['ई'], ['उ'], ['ऊ'], ['ऋ'], ['ॠ'], ['ऌ'], ['ॡ'], ['ए'], [''], ['ऐ'], ['ओ'], [''], ['औ']]
+  'about': {
+    'schemeCode': 'Deva',
+    'schemeName': 'Devanagari',
+    'type': 'brahmic'
+  },
+  'data': {
+    'consonants': ['क', 'ख', 'ग', 'घ', 'ङ', 'च', 'छ', 'ज', 'झ', 'ञ', 'ट', 'ठ', 'ड', 'ढ', 'ण', 'त', 'थ', 'द', 'ध', 'न', '', 'प', 'फ', 'ब', 'भ', 'म', 'य', 'र', '', 'ल', 'ळ', '', 'व', 'श', 'ष', 'स', 'ह'],
+    'deadConsonants': ['क्', 'ख्', 'ग्', 'घ्', 'ङ्', 'च्', 'छ्', 'ज्', 'झ्', 'ञ्', 'ट्', 'ठ्', 'ड्', 'ढ्', 'ण्', 'त्', 'थ्', 'द्', 'ध्', 'न्', '', 'प्', 'फ्', 'ब्', 'भ्', 'म्', 'य्', 'र्', '', 'ल्', 'ळ्', '', 'व्', 'श्', 'ष्', 'स्', 'ह्'],
+    'symbols': ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९', '।', '॥', 'ॐ', 'ऽ', 'ं', 'ः', 'ँ'],
+    'virama': ['्'],
+    'vowelMarks': ['', 'ा', 'ि', 'ी', 'ु', 'ू', 'ृ', 'ॄ', 'ॢ', 'ॣ', 'े', '', 'ै', 'ो', '', 'ौ'],
+    'vowels': ['अ', 'आ', 'इ', 'ई', 'उ', 'ऊ', 'ऋ', 'ॠ', 'ऌ', 'ॡ', 'ए', '', 'ऐ', 'ओ', '', 'औ']
+  }
 };
 
 /***/ }),
@@ -189,14 +194,19 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var itransScheme = exports.itransScheme = {
-  'about': { 'schemeCode': 'Itrn', 'schemeName': 'ITRANS', 'type': 'roman' },
-  'consonants': [['ka'], ['kha'], ['ga'], ['gha'], ['~Na', 'N^a'], ['cha'], ['Cha'], ['ja'], ['jha'], ['~na', 'JNa'], ['Ta'], ['Tha'], ['Da'], ['Dha'], ['Na'], ['ta'], ['tha'], ['da'], ['dha'], ['na'], ['^na'], ['pa'], ['pha'], ['ba'], ['bha'], ['ma'], ['ya'], ['ra'], ['Ra'], ['la'], ['La'], ['zha'], ['va', 'wa'], ['sha'], ['Sha', 'Sa', 'shha'], ['sa'], ['ha']],
-  'deadConsonants': [['k'], ['kh'], ['g'], ['gh'], ['~N', 'N^'], ['ch'], ['Ch'], ['j'], ['jh'], ['~n', 'JN'], ['T'], ['Th'], ['D'], ['Dh'], ['N'], ['t'], ['th'], ['d'], ['dh'], ['n'], ['^n'], ['p'], ['ph'], ['b'], ['bh'], ['m'], ['y'], ['r'], ['R'], ['l'], ['L'], ['zh'], ['v', 'w'], ['sh'], ['Sh', 'S', 'shh'], ['s'], ['h']],
-  'inherentVowel': [['#a']],
-  'symbols': [['0'], ['1'], ['2'], ['3'], ['4'], ['5'], ['6'], ['7'], ['8'], ['9'], ['|'], ['||'], ['OM', 'AUM'], ['.a'], ['M', '.m'], ['H', '.h'], ['.N']],
-  'virama': [[';;']],
-  'vowelMarks': [['a'], ['A', 'aa'], ['i'], ['I', 'ii'], ['u'], ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], ['e'], ['E'], ['ai'], ['o'], ['O'], ['au']],
-  'vowels': [['a'], ['A', 'aa'], ['i'], ['I', 'ii'], ['u'], ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], ['e'], ['E'], ['ai'], ['o'], ['O'], ['au']]
+  'about': {
+    'schemeCode': 'Itrn',
+    'schemeName': 'ITRANS',
+    'type': 'roman'
+  },
+  'data': {
+    'consonants': ['ka', 'kha', 'ga', 'gha', ['~Na', 'N^a'], 'cha', 'Cha', 'ja', 'jha', ['~na', 'JNa'], 'Ta', 'Tha', 'Da', 'Dha', 'Na', 'ta', 'tha', 'da', 'dha', 'na', '^na', 'pa', 'pha', 'ba', 'bha', 'ma', 'ya', 'ra', 'Ra', 'la', 'La', 'zha', ['va', 'wa'], 'sha', ['Sha', 'Sa', 'shha'], 'sa', 'ha'],
+    'deadConsonants': ['k', 'kh', 'g', 'gh', ['~N', 'N^'], 'ch', 'Ch', 'j', 'jh', ['~n', 'JN'], 'T', 'Th', 'D', 'Dh', 'N', 't', 'th', 'd', 'dh', 'n', '^n', 'p', 'ph', 'b', 'bh', 'm', 'y', 'r', 'R', 'l', 'L', 'zh', ['v', 'w'], 'sh', ['Sh', 'S', 'shh'], 's', 'h'],
+    'symbols': ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '|', '||', ['OM', 'AUM'], '.a', ['M', '.m'], ['H', '.h'], '.N'],
+    'virama': [';;'],
+    'vowelMarks': ['a', ['A', 'aa'], 'i', ['I', 'ii'], 'u', ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], 'e', 'E', 'ai', 'o', 'O', 'au'],
+    'vowels': ['a', ['A', 'aa'], 'i', ['I', 'ii'], 'u', ['U', 'uu'], ['RRi', 'R^i'], ['RRI', 'R^I'], ['LLi', 'L^i'], ['LLI', 'L^I'], 'e', 'E', 'ai', 'o', 'O', 'au']
+  }
 };
 
 /***/ }),
@@ -211,13 +221,14 @@ Object.defineProperty(exports, "__esModule", {
 });
 var tamilScheme = exports.tamilScheme = {
   'about': { 'schemeCode': 'Taml', 'schemeName': 'Tamil', 'type': 'brahmic' },
-  'consonants': [['க'], [''], [''], [''], ['ங'], ['ச'], [''], ['ஜ'], [''], ['ஞ'], ['ட'], [''], [''], [''], ['ண'], ['த'], [''], [''], [''], ['ந'], ['ன'], ['ப'], [''], [''], [''], ['ம'], ['ய'], ['ர'], ['ற'], ['ல'], ['ள'], ['ழ'], ['வ'], ['ஶ'], ['ஷ'], ['ஸ'], ['ஹ']],
-  'deadConsonants': [['க்'], [''], [''], [''], ['ங்'], ['ச்'], [''], ['ஜ்'], [''], ['ஞ்'], ['ட்'], [''], [''], [''], ['ண்'], ['த்'], [''], [''], [''], ['ந்'], ['ன்'], ['ப்'], [''], [''], [''], ['ம்'], ['ய்'], ['ர்'], ['ற்'], ['ல்'], ['ள்'], ['ழ்'], ['வ்'], ['ஶ்'], ['ஷ்'], ['ஸ்'], ['ஹ்']],
-  'inherentVowel': [['அ']],
-  'symbols': [['௦'], ['௧'], ['௨'], ['௩'], ['௪'], ['௫'], ['௬'], ['௭'], ['௮'], ['௯'], ['.'], ['.'], ['ௐ'], [''], ['ஂ'], ['ஃ'], ['']],
-  'virama': [['்']],
-  'vowelMarks': [[''], ['ா'], ['ி'], ['ீ'], ['ு'], ['ூ'], [''], [''], [''], [''], ['ெ'], ['ே'], ['ை'], ['ொ'], ['ோ'], ['ௌ']],
-  'vowels': [['அ'], ['ஆ'], ['இ'], ['ஈ'], ['உ'], ['ஊ'], [''], [''], [''], [''], ['எ'], ['ஏ'], ['ஐ'], ['ஒ'], ['ஓ'], ['ஔ']]
+  'data': {
+    'consonants': ['க', '', '', '', 'ங', 'ச', '', 'ஜ', '', 'ஞ', 'ட', '', '', '', 'ண', 'த', '', '', '', 'ந', 'ன', 'ப', '', '', '', 'ம', 'ய', 'ர', 'ற', 'ல', 'ள', 'ழ', 'வ', 'ஶ', 'ஷ', 'ஸ', 'ஹ'],
+    'deadConsonants': ['க்', '', '', '', 'ங்', 'ச்', '', 'ஜ்', '', 'ஞ்', 'ட்', '', '', '', 'ண்', 'த்', '', '', '', 'ந்', 'ன்', 'ப்', '', '', '', 'ம்', 'ய்', 'ர்', 'ற்', 'ல்', 'ள்', 'ழ்', 'வ்', 'ஶ்', 'ஷ்', 'ஸ்', 'ஹ்'],
+    'symbols': ['௦', '௧', '௨', '௩', '௪', '௫', '௬', '௭', '௮', '௯', '', '', 'ௐ', '', 'ஂ', 'ஃ', ''],
+    'virama': ['்'],
+    'vowelMarks': ['', 'ா', 'ி', 'ீ', 'ு', 'ூ', '', '', '', '', 'ெ', 'ே', 'ை', 'ொ', 'ோ', 'ௌ'],
+    'vowels': ['அ', 'ஆ', 'இ', 'ஈ', 'உ', 'ஊ', '', '', '', '', 'எ', 'ஏ', 'ஐ', 'ஒ', 'ஓ', 'ஔ']
+  }
 };
 
 /***/ }),
@@ -230,69 +241,87 @@ var tamilScheme = exports.tamilScheme = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var getAkshara = function getAkshara(akshara) {
+  return Array.isArray(akshara) ? akshara[0] : akshara;
+};
+
+var makeFromSchemeLeaf = function makeFromSchemeLeaf(akshara, aksharaIndex, alternateIndex, schemeBranch, schemeSubset, tokenLengths) {
+
+  if (akshara) {
+
+    schemeBranch[akshara] = {
+
+      aksharaIndex: schemeSubset + '#' + aksharaIndex,
+      alternateIndex: alternateIndex,
+      char: akshara,
+      type: schemeSubset
+
+    };
+
+    tokenLengths.push(akshara.length);
+  }
+};
+
+var makeToSchemeLeaf = function makeToSchemeLeaf(akshara, aksharaIndex, scheme, schemeBranch, schemeSubset, addSchemeSubset) {
+
+  var charDetails = {
+    char: {},
+    type: schemeSubset
+  };
+
+  if (addSchemeSubset) {
+
+    var addAkshara = scheme.data[addSchemeSubset][aksharaIndex];
+
+    charDetails.char[addSchemeSubset] = getAkshara(addAkshara);
+  }
+
+  charDetails.char[schemeSubset] = getAkshara(akshara);
+
+  schemeBranch[schemeSubset + '#' + aksharaIndex] = charDetails;
+};
+
 // returns a branch for fromSchemeTree.
-var makeFromSchemeTreeBranch = function makeFromSchemeTreeBranch(scheme, schemeSubset, tokenLengths) {
+var makeFromSchemeBranch = function makeFromSchemeBranch(scheme, schemeSubset, tokenLengths) {
 
-  var schemeTreeBranch = {};
+  var schemeBranch = {};
 
-  scheme[schemeSubset].forEach(function (akshara, aksharaIndex) {
+  if (scheme.about.type === 'roman' && schemeSubset === 'consonants') {
+
+    return schemeBranch;
+  };
+
+  scheme.data[schemeSubset].forEach(function (akshara, aksharaIndex) {
+
+    if (!Array.isArray(akshara)) {
+
+      makeFromSchemeLeaf(akshara, aksharaIndex, 0, schemeBranch, schemeSubset, tokenLengths);
+
+      return;
+    }
 
     akshara.forEach(function (alternateAkshara, alternateIndex) {
 
-      if (alternateAkshara) {
-
-        schemeTreeBranch[alternateAkshara] = {
-
-          aksharaIndex: schemeSubset + '#' + aksharaIndex,
-          alternateIndex: alternateIndex,
-          char: alternateAkshara,
-          type: schemeSubset
-
-        };
-
-        tokenLengths.push(alternateAkshara.length);
-      }
+      makeFromSchemeLeaf(alternateAkshara, aksharaIndex, alternateIndex, schemeBranch, schemeSubset, tokenLengths);
     });
   });
 
-  return schemeTreeBranch;
+  return schemeBranch;
 };
 
 // Returns a branch for toSchemeTree.
-var makeToSchemeTreeBranch = function makeToSchemeTreeBranch(scheme, schemeSubset) {
+var makeToSchemeBranch = function makeToSchemeBranch(scheme, schemeSubset) {
   var addSchemeSubset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
 
 
-  var schemeTreeBranch = {};
+  var schemeBranch = {};
 
-  scheme[schemeSubset].forEach(function (akshara, aksharaIndex) {
+  scheme.data[schemeSubset].forEach(function (akshara, aksharaIndex) {
 
-    var charDetails = {
-      char: {},
-      type: schemeSubset
-    };
-
-    if (addSchemeSubset) {
-
-      charDetails.char[addSchemeSubset] = scheme[addSchemeSubset][aksharaIndex][0];
-    }
-
-    charDetails.char[schemeSubset] = akshara[0];
-
-    schemeTreeBranch[schemeSubset + '#' + aksharaIndex] = charDetails;
+    makeToSchemeLeaf(akshara, aksharaIndex, scheme, schemeBranch, schemeSubset, addSchemeSubset);
   });
 
-  return schemeTreeBranch;
-};
-
-var makeFromSchemeTreeBranchForConsonants = function makeFromSchemeTreeBranchForConsonants(fromScheme, tokenLengths) {
-
-  if (fromScheme.about.type !== 'roman') {
-
-    return makeFromSchemeTreeBranch(fromScheme, 'consonants', tokenLengths);
-  }
-
-  return {};
+  return schemeBranch;
 };
 
 //Returns a scheme tree nade with given 'fromScheme'.
@@ -302,7 +331,7 @@ var makeFromSchemeTree = exports.makeFromSchemeTree = function makeFromSchemeTre
 
   var maxTokenLength = 0;
 
-  var fromSchemeTree = Object.assign({}, makeFromSchemeTreeBranch(fromScheme, 'deadConsonants', tokenLengths), makeFromSchemeTreeBranchForConsonants(fromScheme, tokenLengths), makeFromSchemeTreeBranch(fromScheme, 'vowels', tokenLengths), makeFromSchemeTreeBranch(fromScheme, 'vowelMarks', tokenLengths), makeFromSchemeTreeBranch(fromScheme, 'symbols', tokenLengths));
+  var fromSchemeTree = Object.assign({}, makeFromSchemeBranch(fromScheme, 'deadConsonants', tokenLengths), makeFromSchemeBranch(fromScheme, 'consonants', tokenLengths), makeFromSchemeBranch(fromScheme, 'vowels', tokenLengths), makeFromSchemeBranch(fromScheme, 'vowelMarks', tokenLengths), makeFromSchemeBranch(fromScheme, 'symbols', tokenLengths));
 
   maxTokenLength = Math.max.apply(Math, tokenLengths);
 
@@ -314,7 +343,7 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
 
   var toSchemeTree = {};
 
-  toSchemeTree = Object.assign({}, toSchemeTree, makeToSchemeTreeBranch(toScheme, 'deadConsonants', 'consonants'), makeToSchemeTreeBranch(toScheme, 'consonants', 'deadConsonants'), makeToSchemeTreeBranch(toScheme, 'vowels', 'vowelMarks'), makeToSchemeTreeBranch(toScheme, 'vowelMarks', 'vowels'), makeToSchemeTreeBranch(toScheme, 'symbols'));
+  toSchemeTree = Object.assign({}, toSchemeTree, makeToSchemeBranch(toScheme, 'deadConsonants', 'consonants'), makeToSchemeBranch(toScheme, 'consonants', 'deadConsonants'), makeToSchemeBranch(toScheme, 'vowels', 'vowelMarks'), makeToSchemeBranch(toScheme, 'vowelMarks', 'vowels'), makeToSchemeBranch(toScheme, 'symbols'));
 
   return toSchemeTree;
 };
