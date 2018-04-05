@@ -82,11 +82,11 @@
 
   };
 
-  var alertSchemeChange = function alertSchemeChange(schemeSelect) {
+  var alertSchemeChange = function alertSchemeChange(type, schemeSelect) {
 
     var selectedOptionText = schemeSelect.options[schemeSelect.selectedIndex].text;
 
-    showSnackbar('The to-scheme is changed to \'' + selectedOptionText + '\'.');
+    showSnackbar('The ' + type + ' is changed to \'' + selectedOptionText + '\'.');
 
   };
 
@@ -102,7 +102,7 @@
 
     init();
 
-    alertSchemeChange(fromSchemeSelect);
+    alertSchemeChange('from-scheme', fromSchemeSelect);
 
   };
 
@@ -110,7 +110,7 @@
 
     vt = vTranslit.init(fromSchemeSelect.value, toSchemeSelect.value);
 
-    alertSchemeChange(toSchemeSelect);
+    alertSchemeChange('to-scheme', toSchemeSelect);
 
     transliterate();
 
