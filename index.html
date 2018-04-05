@@ -13,6 +13,8 @@
 
 <body>
 
+  <div id="snackbar"></div>
+
   <main>
 
     <h1>vTranslit</h1>
@@ -23,9 +25,9 @@
       <div class="input-box-container">
 
         <div class="toolbar">
-          <select id="fromScheme" class="scheme-selector tool" title="Select scheme from"></select>
+          <select id="fromScheme" class="scheme-selector tool" title="Select from-scheme"></select>
 
-          <button class="copy-to-clipboard tool icons copy" title="click to copy" data-clip-target="#inputBox">Copy</button>
+          <button class="tool copy-button icons copy" title="click to copy" data-clip-target="#inputBox">Copy</button>
         </div>
 
         <textarea id="inputBox" class="translit-box" autofocus></textarea>
@@ -34,9 +36,9 @@
       <div class="output-box-container">
 
         <div class="toolbar">
-          <select id="toScheme" class="scheme-selector tool" title="Select scheme to"></select>
+          <select id="toScheme" class="scheme-selector tool" title="Select to-scheme"></select>
 
-          <button class="copy-to-clipboard tool icons copy" title="click to copy" data-clip-target="#outputBox">Copy</button>
+          <button class="tool copy-button icons copy" title="click to copy" data-clip-target="#outputBox">Copy</button>
         </div>
 
         <textarea id="outputBox" class="translit-box" readonly></textarea>
