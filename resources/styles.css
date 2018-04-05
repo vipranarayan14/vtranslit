@@ -13,6 +13,26 @@ body {
     padding: 0;
 }
 
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
 body,
 body * {
     font-family: serif;
@@ -21,24 +41,22 @@ body * {
 }
 
 body {
-    background: #d2ff52;
-    background: -moz-linear-gradient(left, #d2ff52 0%, #91e842 100%);
-    background: -webkit-linear-gradient(left, #d2ff52 0%, #91e842 100%);
-    background: -o-linear-gradient(left, #d2ff52 0%, #91e842 100%);
-    background: -ms-linear-gradient(left, #d2ff52 0%, #91e842 100%);
-    background: linear-gradient(to right, #d2ff52 0%, #91e842 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff52', endColorstr='#91e842', GradientType=1);
-}
-
-hr {
-    border: 3px dotted #448d00;
-    width: 95%;
+    background: #B993D6;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #8CA6DB, #B993D6);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #8CA6DB, #B993D6);
 }
 
 h1 {
     text-align: center;
     font-size: 28px;
-    color: #4f970c;
+    color: #ececec;
+}
+
+hr {
+    border: 3px dotted #ececec;
+    width: 95%;
 }
 
 main {
@@ -61,62 +79,63 @@ main {
     display: block;
     background-color: #fff;
     border: 1px solid #ccc;
+    outline: none;
 }
 
 .toolbar {
     border-width: 1px 1px 0px;
     border-radius: 5px 5px 0 0;
     height: 40px;
+    padding: 0 10px 0;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 12px;
 }
 
-button {
-    border: none;
-    margin: 0;
-    padding: 0;
-    width: auto;
-    overflow: visible;
-    background: transparent;
-    /* inherit font & color from ancestor */
-    color: inherit;
-    font: inherit;
-    /* Normalize `line-height`. Cannot be changed from `normal` in Firefox 4+. */
-    line-height: normal;
-    /* Corrects font smoothing for webkit */
-    -webkit-font-smoothing: inherit;
-    -moz-osx-font-smoothing: inherit;
-    /* Corrects inability to style clickable `input` types in iOS */
-    -webkit-appearance: none;
-}
-
-button::-moz-focus-inner {
-    border: 0;
-    padding: 0;
-}
-
-button,
-select,
-.translit-box {
-    padding: 5px;
-}
-
-.scheme-selector,
-.copy-to-clipboard {
+.toolbar .tool {
     -webkit-appearance: none;
     -moz-appearance: none;
-    background-color: #a0a0a0;
     border: none;
-    border-radius: 5px;
-    color: #fff;
-    margin: 0 5px 0;
+    font-weight: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0 10px;
+    background-color: #dadada;
+    color: #636366;
+    border-left: 2px solid #636363;
+    border-right: 2px solid #636363;
     height: 100%;
+    outline: none;
+}
+
+.scheme-selector {
+    min-width: 100px;
+}
+
+.copy-to-clipboard {
+    float: right;
+    clear: both;
 }
 
 .translit-box {
     width: 100%;
-    height: 220px;
+    height: 150px;
     border-radius: 0 0 5px 5px;
     border-width: 0px 1px 1px;
+    padding: 5px 10px;
     resize: none;
     font-size: 18px;
     box-shadow: inset 0 0 10px #ccc;
+}
+
+.icons {
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: 40px;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+.icons.copy {
+    background-image: url('images/copy-32.png');
 }

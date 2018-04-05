@@ -23,11 +23,9 @@
       <div class="input-box-container">
 
         <div class="toolbar">
-          <select id="fromScheme" class="scheme-selector"></select>
+          <select id="fromScheme" class="scheme-selector tool" title="Select scheme from"></select>
 
-          <button class="copy-to-clipboard" data-clip-target="#inputBox">
-            Copy Text
-          </button>
+          <button class="copy-to-clipboard tool icons copy" title="click to copy" data-clip-target="#inputBox">_</button>
         </div>
 
         <textarea id="inputBox" class="translit-box" autofocus></textarea>
@@ -36,11 +34,9 @@
       <div class="output-box-container">
 
         <div class="toolbar">
-          <select id="toScheme" class="scheme-selector"></select>
+          <select id="toScheme" class="scheme-selector tool" title="Select scheme to"></select>
 
-          <button class="copy-to-clipboard" data-clip-target="#outputBox">
-            Copy Text
-          </button>
+          <button class="copy-to-clipboard tool icons copy" title="click to copy" data-clip-target="#outputBox">_</button>
         </div>
 
         <textarea id="outputBox" class="translit-box" readonly></textarea>
