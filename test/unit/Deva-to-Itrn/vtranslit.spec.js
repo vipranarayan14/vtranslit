@@ -3,7 +3,7 @@ import { vTranslit } from '../../../src/index';
 
 describe('vtranslit from Deva to Itrn', () => {
 
-  const vt = vTranslit('Deva', 'Itrn');
+  const vt = vTranslit.init('Deva', 'Itrn');
 
   it('should not transliterate `#$%&*!$%()^&^$#&(=+-` and just return them', () => {
 
