@@ -12,7 +12,6 @@
   },
   "scripts": {
     "build": "rimraf dist && webpack",
-    "start": "webpack-dev-server --config webpack.config.server",
     "test": "mocha",
     "eslint": "eslint ./**/*.js",
     "precommit": "npm run eslint && npm run build",
