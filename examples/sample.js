@@ -1,6 +1,6 @@
 const { vTranslit } = require('../');
 
-const vt = vTranslit('Itrn', 'Deva');
+const vt = vTranslit.init('Itrn', 'Deva');
 // const vt = vtranslit('Deva', 'Itrn');
 
 const sampleStrings = [
