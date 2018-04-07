@@ -10,7 +10,7 @@ Currently supports transliteration from ITRANS (Itrn) to:
 
 It also supports transliteration from the above mentioned schemes to ITRANS.
 
-A beautiful [web app](https://vipranarayan14.github.io/vtranslit/) is also available.
+A beautiful [web app](https://vipranarayan14.github.io/vtranslit-web/) is also available.
 
 ## Installation
 
