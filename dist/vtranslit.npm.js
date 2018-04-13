@@ -89,9 +89,11 @@ var _getScheme = __webpack_require__(1);
 
 var _makeSchemeTree = __webpack_require__(7);
 
-var _processTokens2 = __webpack_require__(8);
+var _getCharDetails = __webpack_require__(8);
 
-var _tokenize = __webpack_require__(9);
+var _processTokens2 = __webpack_require__(9);
+
+var _tokenize = __webpack_require__(10);
 
 var _translitTokens = __webpack_require__(11);
 
@@ -108,7 +110,7 @@ var init = function init(fromSchemeCode, toSchemeCode) {
 
   return function (inStr) {
 
-    var tokens = (0, _tokenize.tokenize)(inStr, fromSchemeTree, maxTokenLength);
+    var tokens = (0, _tokenize.tokenize)(inStr, maxTokenLength, (0, _getCharDetails.getCharDetails)(fromSchemeTree));
 
     var _processTokens = (0, _processTokens2.processTokens)(tokens, fromSchemeTree, toScheme),
         processedTokens = _processTokens.processedTokens,
@@ -425,6 +427,51 @@ Object.defineProperty(exports, "__esModule", {
 });
 /* eslint-disable complexity */
 
+var getCharDetails = exports.getCharDetails = function getCharDetails(fromSchemeTree) {
+  return function (char) {
+
+    var charDetails = {};
+    var charDetailsInFromSchemeTree = fromSchemeTree[char];
+
+    if (char === ' ') {
+
+      charDetails = {
+        char: char,
+        type: 'pause'
+      };
+    } else if (char === '_') {
+
+      charDetails = {
+        char: char,
+        type: 'skip'
+      };
+    } else if (charDetailsInFromSchemeTree) {
+
+      charDetails = charDetailsInFromSchemeTree;
+    } else {
+
+      charDetails = {
+        char: char,
+        type: 'unknown'
+      };
+    }
+
+    return charDetails;
+  };
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* eslint-disable complexity */
+
 var processTokens = exports.processTokens = function processTokens(Tokens, fromSchemeTree, toScheme) {
 
   var tokens = Tokens.slice();
@@ -468,7 +515,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -477,12 +524,29 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.tokenize = undefined;
+var cannotSeek = function cannotSeek(seeked, maxSeek, inStr, i) {
+  return seeked === maxSeek || i === inStr.length - 1;
+};
 
-var _provideCharDetails = __webpack_require__(10);
+var getTokenDetails = function getTokenDetails(tempCharDetails, foundIndex) {
+  return foundIndex > -1 ? {
 
-/* eslint-disable complexity */
-var tokenize = exports.tokenize = function tokenize(str, fromSchemeTree, maxTokenLength) {
+    foundIndex: foundIndex,
+    token: tempCharDetails[foundIndex]
+
+  } : {
+
+    foundIndex: 0,
+    token: tempCharDetails[0]
+
+  };
+};
+
+var isTokenFound = function isTokenFound(charDetails) {
+  return charDetails.type !== 'unknown' ? true : false;
+};
+
+var tokenize = exports.tokenize = function tokenize(str, maxTokenLength, getCharDetails) {
 
   var inStr = str.slice(0, str.length);
   var maxSeek = maxTokenLength;
@@ -499,31 +563,22 @@ var tokenize = exports.tokenize = function tokenize(str, fromSchemeTree, maxToke
     seeked += 1;
 
     strSlice += inStr[i];
-    var charDetails = (0, _provideCharDetails.getCharDetails)(strSlice, fromSchemeTree);
+
+    var charDetails = getCharDetails(strSlice);
 
     tempCharDetails.push(charDetails);
 
-    if (charDetails.type !== 'unknown') {
+    tokenFound.push(isTokenFound(charDetails));
 
-      tokenFound.push(true);
-    } else {
-
-      tokenFound.push(false);
-    }
-
-    if (seeked === maxSeek || i === inStr.length - 1) {
+    if (cannotSeek(seeked, maxSeek, inStr, i)) {
 
       var foundIndex = tokenFound.lastIndexOf(true);
 
-      if (foundIndex > -1) {
+      var tokenDetails = getTokenDetails(tempCharDetails, foundIndex);
 
-        tokens.push(tempCharDetails[foundIndex]);
-      } else {
+      foundIndex = tokenDetails.foundIndex;
 
-        foundIndex = 0;
-
-        tokens.push(tempCharDetails[0]);
-      }
+      tokens.push(tokenDetails.token);
 
       // resetting the 'i' to pick the next untokenized char.
       i -= seeked - 1 - foundIndex;
@@ -537,49 +592,6 @@ var tokenize = exports.tokenize = function tokenize(str, fromSchemeTree, maxToke
   }
 
   return tokens;
-};
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/* eslint-disable complexity */
-
-var getCharDetails = exports.getCharDetails = function getCharDetails(char, fromSchemeTree) {
-
-  var charDetails = {};
-  var charDetailsInFromSchemeTree = fromSchemeTree[char];
-
-  if (char === ' ') {
-
-    charDetails = {
-      char: char,
-      type: 'pause'
-    };
-  } else if (char === '_') {
-
-    charDetails = {
-      char: char,
-      type: 'skip'
-    };
-  } else if (charDetailsInFromSchemeTree) {
-
-    charDetails = charDetailsInFromSchemeTree;
-  } else {
-
-    charDetails = {
-      char: char,
-      type: 'unknown'
-    };
-  }
-
-  return charDetails;
 };
 
 /***/ }),
