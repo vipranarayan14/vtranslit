@@ -10,16 +10,31 @@ const init = (fromSchemeCode, toSchemeCode) => {
   const fromScheme = getScheme(fromSchemeCode);
   const toScheme = getScheme(toSchemeCode);
 
-  const { fromSchemeTree, maxTokenLength } = makeFromSchemeTree(fromScheme);
+  const {
+    fromSchemeTree,
+    maxTokenLength
+  } = makeFromSchemeTree(fromScheme);
+
   const toSchemeTree = makeToSchemeTree(toScheme);
 
   return inStr => {
 
-    const tokens = tokenize(inStr, maxTokenLength, getCharDetails(fromSchemeTree));
+    const tokens = tokenize(
+      inStr,
+      maxTokenLength,
+      getCharDetails(fromSchemeTree)
+    );
 
-    const { processedTokens, tokensType } = processTokens(tokens, fromSchemeTree, toScheme);
+    const {
+      processedTokens,
+      tokensType
+    } = processTokens(tokens, fromSchemeTree, toScheme);
 
-    const outStr = translitTokens(processedTokens, tokensType, toSchemeTree);
+    const outStr = translitTokens(
+      processedTokens,
+      tokensType,
+      toSchemeTree
+    );
 
     return outStr.join('');
 

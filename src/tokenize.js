@@ -1,4 +1,6 @@
-const cannotSeek = (seeked, maxSeek, inStr, i) => seeked === maxSeek || i === inStr.length - 1;
+const cannotSeek = (seeked, maxSeek, inStr, i) =>
+
+  seeked === maxSeek || i === inStr.length - 1;
 
 const getTokenDetails = (tempCharDetails, foundIndex) =>
 
@@ -14,7 +16,9 @@ const getTokenDetails = (tempCharDetails, foundIndex) =>
 
   };
 
-const isTokenFound = charDetails => (charDetails.type !== 'unknown') ? true : false;
+const isTokenFound = charDetails =>
+
+  (charDetails.type !== 'unknown') ? true : false;
 
 export const tokenize = (str, maxTokenLength, getCharDetails) => {
 
