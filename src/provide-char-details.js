@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 
-export const getCharDetails = (char, fromSchemeTree) => {
+export const getCharDetails = fromSchemeTree => char => {
 
   let charDetails = {};
   const charDetailsInFromSchemeTree = fromSchemeTree[char];
