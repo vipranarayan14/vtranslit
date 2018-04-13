@@ -1,9 +1,9 @@
 const { vTranslit } = require('../');
 
-const vt = vTranslit.init('Itrn', 'Deva');
-// const vt = vtranslit('Deva', 'Itrn');
+const vtItrnToDeva = vTranslit.init('Itrn', 'Deva');
+const vtDevaToItrn = vTranslit.init('Deva', 'Itrn');
 
-const sampleStrings = [
+const stringsInItrn = [
   `
   shlokaH :
   vAgarthAviva saMpRRiktau vAgarthapratipattaye |
@@ -12,28 +12,36 @@ const sampleStrings = [
   `
   chihnAH : @#$%^&*(){}[]\/?<>,~\`-=
   itarAkShrANi: P, J, K, f, F, G  
-  `,
-  // `
-  // गीतागोपालौ औषधार्थं वनम् एति ।
-  // `
+  `
 ];
 
-sampleStrings.forEach((sampleString, index) => {
+const stringsInDeva = [
+  `
+  गीतागोपालौ औषधार्थं वनम् एति ।
+  `
+];
 
-  /* eslint-disable no-console */
-  console.log(`
-  sampleString: ${index + 1}
-  ******************
-  "${ sampleString }"
-  ******************
+const logTranslited = (strings, vtranslit) =>
+
+  strings.forEach((str, index) => {
+
+    /* eslint-disable no-console */
+    console.log(`
+sampleString: ${index + 1}
+******************
+${ str }
+******************
+    `);
+
+    console.log(`
+Output:
+******************
+${ vtranslit(str) }
+******************
 `);
+    /* eslint-enable no-console */
 
-  console.log(`
-  Output:
-  ******************
-  "${ vt(sampleString) }"
-  ******************
-`);
-  /* eslint-enable no-console */
+  });
 
-});
+logTranslited(stringsInItrn, vtItrnToDeva);
+logTranslited(stringsInDeva, vtDevaToItrn);
