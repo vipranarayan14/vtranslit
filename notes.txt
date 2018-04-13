@@ -6,7 +6,7 @@ TODO
 5.  support for 'tamilScheme' to 'devanagariScheme'.
 6.  support for kannada, telugu, marathi, grantham, 
      bengali, etc.
-7.  support for fonts for each scheme.
+7.  support for fonts for each scheme.                 DONE
 8.  test for translit file to file.
 9.  reject from scheme to same scheme.
 10. mapping char in scheme itself eg. { ch: च् }
