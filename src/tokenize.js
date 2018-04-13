@@ -1,9 +1,22 @@
-import { getCharDetails } from './provide-char-details';
+const cannotSeek = (seeked, maxSeek, inStr, i) => seeked === maxSeek || i === inStr.length - 1;
+
+const getTokenDetails = (tempCharDetails, foundIndex) =>
+
+  (foundIndex > -1) ? {
+
+    foundIndex,
+    token: tempCharDetails[foundIndex]
+
+  } : {
+
+    foundIndex: 0,
+    token: tempCharDetails[0]
+
+  };
 
 const isTokenFound = charDetails => (charDetails.type !== 'unknown') ? true : false;
 
-/* eslint-disable complexity */
-export const tokenize = (str, fromSchemeTree, maxTokenLength) => {
+export const tokenize = (str, maxTokenLength, getCharDetails) => {
 
   const inStr = str.slice(0, str.length);
   const maxSeek = maxTokenLength;
@@ -21,27 +34,21 @@ export const tokenize = (str, fromSchemeTree, maxTokenLength) => {
 
     strSlice += inStr[i];
 
-    const charDetails = getCharDetails(strSlice, fromSchemeTree);
+    const charDetails = getCharDetails(strSlice);
 
     tempCharDetails.push(charDetails);
 
     tokenFound.push(isTokenFound(charDetails));
 
-    if (seeked === maxSeek || i === inStr.length - 1) {
+    if (cannotSeek(seeked, maxSeek, inStr, i)) {
 
       let foundIndex = tokenFound.lastIndexOf(true);
 
-      if (foundIndex > -1) {
+      const tokenDetails = getTokenDetails(tempCharDetails, foundIndex);
 
-        tokens.push(tempCharDetails[foundIndex]);
+      foundIndex = tokenDetails.foundIndex;
 
-      } else {
-
-        foundIndex = 0;
-
-        tokens.push(tempCharDetails[0]);
-
-      }
+      tokens.push(tokenDetails.token);
 
       // resetting the 'i' to pick the next untokenized char.
       i -= (seeked - 1) - foundIndex;
