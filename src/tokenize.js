@@ -1,5 +1,7 @@
 import { getCharDetails } from './provide-char-details';
 
+const isTokenFound = charDetails => (charDetails.type !== 'unknown') ? true : false;
+
 /* eslint-disable complexity */
 export const tokenize = (str, fromSchemeTree, maxTokenLength) => {
 
@@ -18,19 +20,12 @@ export const tokenize = (str, fromSchemeTree, maxTokenLength) => {
     seeked += 1;
 
     strSlice += inStr[i];
+
     const charDetails = getCharDetails(strSlice, fromSchemeTree);
 
     tempCharDetails.push(charDetails);
 
-    if (charDetails.type !== 'unknown') {
-
-      tokenFound.push(true);
-
-    } else {
-
-      tokenFound.push(false);
-
-    }
+    tokenFound.push(isTokenFound(charDetails));
 
     if (seeked === maxSeek || i === inStr.length - 1) {
 
