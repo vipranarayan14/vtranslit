@@ -1,6 +1,6 @@
 import { getAvailableSchemes, getScheme, schemes } from './schemes';
 
-export const vTranslitSchemes = {
+export {
 
   getAvailableSchemes,
   getScheme,

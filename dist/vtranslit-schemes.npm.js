@@ -3,10 +3,10 @@
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
-	else if(typeof exports === 'object')
-		exports["vTranslitSchemes"] = factory();
-	else
-		root["vTranslitSchemes"] = factory();
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -83,17 +83,13 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vTranslitSchemes = undefined;
+exports.schemes = exports.getScheme = exports.getAvailableSchemes = undefined;
 
 var _schemes = __webpack_require__(1);
 
-var vTranslitSchemes = exports.vTranslitSchemes = {
-
-  getAvailableSchemes: _schemes.getAvailableSchemes,
-  getScheme: _schemes.getScheme,
-  schemes: _schemes.schemes
-
-};
+exports.getAvailableSchemes = _schemes.getAvailableSchemes;
+exports.getScheme = _schemes.getScheme;
+exports.schemes = _schemes.schemes;
 
 /***/ }),
 /* 1 */
