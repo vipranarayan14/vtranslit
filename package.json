@@ -15,7 +15,6 @@
     "build": "rimraf dist && webpack",
     "eslint": "eslint ./**/*.js",
     "precommit": "npm run eslint",
-    "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
   },
