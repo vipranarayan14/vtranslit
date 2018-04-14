@@ -2,8 +2,8 @@ import { getAvailableSchemes, getScheme } from './get-scheme';
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { getCharDetails } from './get-char-details';
 import { processTokens } from './process-tokens';
-import { tokenize } from './tokenize';
 import { translitTokens } from './translit-tokens';
+import { vTokenize } from 'vtokenize';
 
 const init = (fromSchemeCode, toSchemeCode) => {
 
@@ -19,7 +19,7 @@ const init = (fromSchemeCode, toSchemeCode) => {
 
   return inStr => {
 
-    const tokens = tokenize(
+    const tokens = vTokenize(
       inStr,
       maxTokenLength,
       getCharDetails(fromSchemeTree)
