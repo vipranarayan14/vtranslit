@@ -1,6 +1,6 @@
-const libraryName = 'vTranslit';
-
 const path = require('path');
+
+const libraryName = 'vTranslit';
 const filename = 'vtranslit';
 
 const baseConfig = {
