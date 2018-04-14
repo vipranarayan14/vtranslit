@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { getScheme } from '../../../src/get-scheme';
+import { getScheme } from 'vtranslit-schemes';
 import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
 
 describe('fromSchemeTree for "Deva" scheme', () => {
