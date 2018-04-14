@@ -76,22 +76,22 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.vTranslit = undefined;
 
-var _getScheme = __webpack_require__(1);
+var _vtranslitSchemes = __webpack_require__(1);
 
-var _makeSchemeTree = __webpack_require__(7);
+var _makeSchemeTree = __webpack_require__(2);
 
-var _getCharDetails = __webpack_require__(8);
+var _getCharDetails = __webpack_require__(3);
 
-var _processTokens2 = __webpack_require__(9);
+var _processTokens2 = __webpack_require__(4);
 
-var _translitTokens = __webpack_require__(10);
+var _translitTokens = __webpack_require__(5);
 
-var _vtokenize = __webpack_require__(11);
+var _vtokenize = __webpack_require__(6);
 
 var init = function init(fromSchemeCode, toSchemeCode) {
 
-  var fromScheme = (0, _getScheme.getScheme)(fromSchemeCode);
-  var toScheme = (0, _getScheme.getScheme)(toSchemeCode);
+  var fromScheme = (0, _vtranslitSchemes.getScheme)(fromSchemeCode);
+  var toScheme = (0, _vtranslitSchemes.getScheme)(toSchemeCode);
 
   var _makeFromSchemeTree = (0, _makeSchemeTree.makeFromSchemeTree)(fromScheme),
       fromSchemeTree = _makeFromSchemeTree.fromSchemeTree,
@@ -114,9 +114,106 @@ var init = function init(fromSchemeCode, toSchemeCode) {
 };
 
 var vTranslit = exports.vTranslit = {
-  getAvailableSchemes: _getScheme.getAvailableSchemes,
+  getAvailableSchemes: _vtranslitSchemes.getAvailableSchemes,
   init: init
 };
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function webpackUniversalModuleDefinition(root, factory) {
+	if(true)
+		module.exports = factory();
+	else if(typeof define === 'function' && define.amd)
+		define([], factory);
+	else {
+		var a = factory();
+		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
+	}
+})(typeof self !== 'undefined' ? self : this, function() {
+return /******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.schemes = exports.getScheme = exports.getAvailableSchemes = undefined;
+
+var _schemes = __webpack_require__(1);
+
+exports.getAvailableSchemes = _schemes.getAvailableSchemes;
+exports.getScheme = _schemes.getScheme;
+exports.schemes = _schemes.schemes;
 
 /***/ }),
 /* 1 */
@@ -128,7 +225,7 @@ var vTranslit = exports.vTranslit = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getScheme = exports.getAvailableSchemes = undefined;
+exports.getScheme = exports.getAvailableSchemes = exports.schemes = undefined;
 
 var _vtranslitDevaScheme = __webpack_require__(2);
 
@@ -140,13 +237,19 @@ var _vtranslitTamlScheme = __webpack_require__(5);
 
 var _vtranslitTeluScheme = __webpack_require__(6);
 
-var schemes = [_vtranslitItrnScheme.itransScheme, _vtranslitDevaScheme.devanagariScheme, _vtranslitKndaScheme.kannadaScheme, _vtranslitTamlScheme.tamilScheme, _vtranslitTeluScheme.teluguScheme];
+var schemes = exports.schemes = {
+  'Deva': _vtranslitDevaScheme.devanagariScheme,
+  'Itrn': _vtranslitItrnScheme.itransScheme,
+  'Knda': _vtranslitKndaScheme.kannadaScheme,
+  'Taml': _vtranslitTamlScheme.tamilScheme,
+  'Telu': _vtranslitTeluScheme.teluguScheme
+};
 
 var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
 
   var availableSchemes = [];
 
-  schemes.forEach(function (scheme) {
+  Object.values(schemes).forEach(function (scheme) {
 
     availableSchemes.push({
       code: scheme.about.schemeCode,
@@ -158,9 +261,13 @@ var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSch
 };
 
 var getScheme = exports.getScheme = function getScheme(schemeCode) {
-  return schemes.find(function (scheme) {
-    return scheme.about.schemeCode === schemeCode;
-  });
+
+  if (schemes[schemeCode]) {
+
+    return schemes[schemeCode];
+  }
+
+  throw new Error('No Scheme found with the given schemeCode: \'' + schemeCode + '\'');
 };
 
 /***/ }),
@@ -289,8 +396,12 @@ var teluguScheme = exports.teluguScheme = {
   }
 };
 
+/***/ })
+/******/ ]);
+});
+
 /***/ }),
-/* 7 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -407,7 +518,7 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
 };
 
 /***/ }),
-/* 8 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -452,7 +563,7 @@ var getCharDetails = exports.getCharDetails = function getCharDetails(fromScheme
 };
 
 /***/ }),
-/* 9 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -506,7 +617,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 };
 
 /***/ }),
-/* 10 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -544,7 +655,7 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
 };
 
 /***/ }),
-/* 11 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {

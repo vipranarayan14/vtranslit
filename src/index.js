@@ -1,4 +1,4 @@
-import { getAvailableSchemes, getScheme } from './get-scheme';
+import { getAvailableSchemes, getScheme } from 'vtranslit-schemes';
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { getCharDetails } from './get-char-details';
 import { processTokens } from './process-tokens';
