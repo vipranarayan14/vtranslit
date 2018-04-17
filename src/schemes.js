@@ -4,7 +4,7 @@ import { kannadaScheme } from './vtranslit-schemes/vtranslit-Knda-scheme';
 import { tamilScheme } from './vtranslit-schemes/vtranslit-Taml-scheme';
 import { teluguScheme } from './vtranslit-schemes/vtranslit-Telu-scheme';
 
-export const schemes = {
+const schemes = {
   'Deva': devanagariScheme,
   'Itrn': itransScheme,
   'Knda': kannadaScheme,
