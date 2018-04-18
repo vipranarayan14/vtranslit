@@ -137,8 +137,6 @@ var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSch
 
   schemes.forEach(function (scheme) {
 
-    console.log(scheme.about.schemeName);
-
     availableSchemes.push({
       code: scheme.about.schemeCode,
       name: scheme.about.schemeName
