@@ -206,11 +206,6 @@ var teluguScheme = exports.teluguScheme = {
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.vTranslitSchemes = undefined;
-
 var _schemes = __webpack_require__(6);
 
 var _vtranslitDevaScheme = __webpack_require__(0);
@@ -223,7 +218,7 @@ var _vtranslitTamlScheme = __webpack_require__(3);
 
 var _vtranslitTeluScheme = __webpack_require__(4);
 
-var vTranslitSchemes = exports.vTranslitSchemes = {
+module.exports = {
 
   devanagariScheme: _vtranslitDevaScheme.devanagariScheme,
   getAvailableSchemes: _schemes.getAvailableSchemes,
