@@ -70,11 +70,38 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vtranslitDevaScheme = __webpack_require__(1);
+
+var _vtranslitItrnScheme = __webpack_require__(2);
+
+var _vtranslitKndaScheme = __webpack_require__(3);
+
+var _vtranslitTamlScheme = __webpack_require__(4);
+
+var _vtranslitTeluScheme = __webpack_require__(5);
+
+module.exports = {
+
+  devanagariScheme: _vtranslitDevaScheme.devanagariScheme,
+  itransScheme: _vtranslitItrnScheme.itransScheme,
+  kannadaScheme: _vtranslitKndaScheme.kannadaScheme,
+  tamilScheme: _vtranslitTamlScheme.tamilScheme,
+  teluguScheme: _vtranslitTeluScheme.teluguScheme
+
+};
+
+/***/ }),
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -100,7 +127,7 @@ var devanagariScheme = exports.devanagariScheme = {
 };
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -126,7 +153,7 @@ var itransScheme = exports.itransScheme = {
 };
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -152,7 +179,7 @@ var kannadaScheme = exports.kannadaScheme = {
 };
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -174,7 +201,7 @@ var tamilScheme = exports.tamilScheme = {
 };
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -197,92 +224,6 @@ var teluguScheme = exports.teluguScheme = {
     'vowelMarks': ['', '\u0C3E', '\u0C3F', '\u0C40', '\u0C41', '\u0C42', '\u0C43', '\u0C44', '', '', '\u0C46', '\u0C47', '\u0C48', '\u0C4A', '\u0C43', '\u0C4C'],
     'vowels': ['\u0C05', '\u0C06', '\u0C07', '\u0C00', '\u0C09', '\u0C0A', '\u0C03', '', '\u0C0C', '', '\u0C0E', '\u0C0F', '\u0C10', '\u0C12', '\u0C13', '\u0C14']
   }
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _schemes = __webpack_require__(6);
-
-var _vtranslitDevaScheme = __webpack_require__(0);
-
-var _vtranslitItrnScheme = __webpack_require__(1);
-
-var _vtranslitKndaScheme = __webpack_require__(2);
-
-var _vtranslitTamlScheme = __webpack_require__(3);
-
-var _vtranslitTeluScheme = __webpack_require__(4);
-
-module.exports = {
-
-  devanagariScheme: _vtranslitDevaScheme.devanagariScheme,
-  getAvailableSchemes: _schemes.getAvailableSchemes,
-  getScheme: _schemes.getScheme,
-  itransScheme: _vtranslitItrnScheme.itransScheme,
-  kannadaScheme: _vtranslitKndaScheme.kannadaScheme,
-  tamilScheme: _vtranslitTamlScheme.tamilScheme,
-  teluguScheme: _vtranslitTeluScheme.teluguScheme
-
-};
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getScheme = exports.getAvailableSchemes = undefined;
-
-var _vtranslitDevaScheme = __webpack_require__(0);
-
-var _vtranslitItrnScheme = __webpack_require__(1);
-
-var _vtranslitKndaScheme = __webpack_require__(2);
-
-var _vtranslitTamlScheme = __webpack_require__(3);
-
-var _vtranslitTeluScheme = __webpack_require__(4);
-
-var schemes = {
-  'Deva': _vtranslitDevaScheme.devanagariScheme,
-  'Itrn': _vtranslitItrnScheme.itransScheme,
-  'Knda': _vtranslitKndaScheme.kannadaScheme,
-  'Taml': _vtranslitTamlScheme.tamilScheme,
-  'Telu': _vtranslitTeluScheme.teluguScheme
-};
-
-var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
-
-  var availableSchemes = [];
-
-  Object.values(schemes).forEach(function (scheme) {
-
-    availableSchemes.push({
-      code: scheme.about.schemeCode,
-      name: scheme.about.schemeName
-    });
-  });
-
-  return availableSchemes;
-};
-
-var getScheme = exports.getScheme = function getScheme(schemeCode) {
-
-  if (schemes[schemeCode]) {
-
-    return schemes[schemeCode];
-  }
-
-  throw new Error('No Scheme found with the given schemeCode: \'' + schemeCode + '\'');
 };
 
 /***/ })
