@@ -3,10 +3,10 @@
 		module.exports = factory();
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
-	else {
-		var a = factory();
-		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
-	}
+	else if(typeof exports === 'object')
+		exports["vTranslitSchemes"] = factory();
+	else
+		root["vTranslitSchemes"] = factory();
 })(typeof self !== 'undefined' ? self : this, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -209,7 +209,7 @@ var teluguScheme = exports.teluguScheme = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.teluguScheme = exports.tamilScheme = exports.kannadaScheme = exports.itransScheme = exports.devanagariScheme = exports.getScheme = exports.getAvailableSchemes = undefined;
+exports.vTranslitSchemes = undefined;
 
 var _schemes = __webpack_require__(6);
 
@@ -223,13 +223,17 @@ var _vtranslitTamlScheme = __webpack_require__(3);
 
 var _vtranslitTeluScheme = __webpack_require__(4);
 
-exports.getAvailableSchemes = _schemes.getAvailableSchemes;
-exports.getScheme = _schemes.getScheme;
-exports.devanagariScheme = _vtranslitDevaScheme.devanagariScheme;
-exports.itransScheme = _vtranslitItrnScheme.itransScheme;
-exports.kannadaScheme = _vtranslitKndaScheme.kannadaScheme;
-exports.tamilScheme = _vtranslitTamlScheme.tamilScheme;
-exports.teluguScheme = _vtranslitTeluScheme.teluguScheme;
+var vTranslitSchemes = exports.vTranslitSchemes = {
+
+  devanagariScheme: _vtranslitDevaScheme.devanagariScheme,
+  getAvailableSchemes: _schemes.getAvailableSchemes,
+  getScheme: _schemes.getScheme,
+  itransScheme: _vtranslitItrnScheme.itransScheme,
+  kannadaScheme: _vtranslitKndaScheme.kannadaScheme,
+  tamilScheme: _vtranslitTamlScheme.tamilScheme,
+  teluguScheme: _vtranslitTeluScheme.teluguScheme
+
+};
 
 /***/ }),
 /* 6 */
@@ -287,5 +291,5 @@ var getScheme = exports.getScheme = function getScheme(schemeCode) {
 };
 
 /***/ })
-/******/ ]);
+/******/ ])["vTranslitSchemes"];
 });
