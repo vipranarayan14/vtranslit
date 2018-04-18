@@ -1,15 +1,9 @@
-import { devanagariScheme } from './vtranslit-schemes/vtranslit-Deva-scheme';
-import { itransScheme } from './vtranslit-schemes/vtranslit-Itrn-scheme';
-import { kannadaScheme } from './vtranslit-schemes/vtranslit-Knda-scheme';
-import { tamilScheme } from './vtranslit-schemes/vtranslit-Taml-scheme';
-import { teluguScheme } from './vtranslit-schemes/vtranslit-Telu-scheme';
+import { getAvailableSchemes, getScheme, schemes } from './schemes';
 
-module.exports = {
+export const vTranslitSchemes = {
 
-  devanagariScheme,
-  itransScheme,
-  kannadaScheme,
-  tamilScheme,
-  teluguScheme
+  getAvailableSchemes,
+  getScheme,
+  schemes
 
 };

@@ -1,22 +1,22 @@
-import { devanagariScheme } from './vtranslit-schemes/vtranslit-Deva-scheme';
-import { itransScheme } from './vtranslit-schemes/vtranslit-Itrn-scheme';
-import { kannadaScheme } from './vtranslit-schemes/vtranslit-Knda-scheme';
-import { tamilScheme } from './vtranslit-schemes/vtranslit-Taml-scheme';
-import { teluguScheme } from './vtranslit-schemes/vtranslit-Telu-scheme';
+import vTranslitDevaScheme from 'vtranslit-deva-scheme';
+import vTranslitItrnScheme from 'vtranslit-itrn-scheme';
+import vTranslitKndaScheme from 'vtranslit-knda-scheme';
+import vTranslitTamlScheme from 'vtranslit-taml-scheme';
+import vTranslitTeluScheme from 'vtranslit-telu-scheme';
 
-const schemes = {
-  'Deva': devanagariScheme,
-  'Itrn': itransScheme,
-  'Knda': kannadaScheme,
-  'Taml': tamilScheme,
-  'Telu': teluguScheme
-};
+export const schemes = [
+  vTranslitDevaScheme,
+  vTranslitItrnScheme,
+  vTranslitKndaScheme,
+  vTranslitTamlScheme,
+  vTranslitTeluScheme
+];
 
 export const getAvailableSchemes = () => {
 
   const availableSchemes = [];
 
-  Object.values(schemes).forEach(scheme => {
+  schemes.forEach(scheme => {
 
     availableSchemes.push({
       code: scheme.about.schemeCode,
@@ -31,9 +31,11 @@ export const getAvailableSchemes = () => {
 
 export const getScheme = schemeCode => {
 
-  if (schemes[schemeCode]) {
+  const scheme = schemes.find(_scheme => _scheme.about.schemeCode === schemeCode);
 
-    return schemes[schemeCode];
+  if (scheme) {
+
+    return scheme;
 
   }
 

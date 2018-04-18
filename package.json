@@ -37,5 +37,12 @@
   "bugs": {
     "url": "https://github.com/vipranarayan14/vtranslit-schemes/issues"
   },
-  "homepage": "https://github.com/vipranarayan14/vtranslit-schemes#readme"
+  "homepage": "https://github.com/vipranarayan14/vtranslit-schemes#readme",
+  "dependencies": {
+    "vtranslit-deva-scheme": "github:vipranarayan14/vtranslit-deva-scheme",
+    "vtranslit-itrn-scheme": "github:vipranarayan14/vtranslit-itrn-scheme",
+    "vtranslit-knda-scheme": "github:vipranarayan14/vtranslit-knda-scheme",
+    "vtranslit-taml-scheme": "github:vipranarayan14/vtranslit-taml-scheme",
+    "vtranslit-telu-scheme": "github:vipranarayan14/vtranslit-telu-scheme"
+  }
 }
