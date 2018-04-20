@@ -77,16 +77,16 @@ describe('vtranslit from Deva to Itrn', () => {
 
   });
 
-  it('should transliterate `क्षेत्रज्ञ` to `kShetraj~na`', () => {
+  it('should transliterate `क्षेत्रज्ञ` to `kShEtraj~na`', () => {
 
-    expect(vt('क्षेत्रज्ञ')).to.equal('kShetraj~na');
+    expect(vt('क्षेत्रज्ञ')).to.equal('kShEtraj~na');
 
   });
 
   it('should transliterate given phrase', () => {
 
     expect(vt('गीतागोपालौ औषधार्थं वनम् एति ।'))
-      .to.equal('gItAgopAlau auShadhArthaM vanam eti |');
+      .to.equal('gItAgOpAlau auShadhArthaM vanam Eti |');
 
   });
 
@@ -96,8 +96,8 @@ describe('vtranslit from Deva to Itrn', () => {
       'वागर्थाविव संपृक्तौ वागर्थप्रतिपत्तये ।' +
       'जगतः पितरौ वन्दे पार्वतीपरमेश्वरौ ॥'
     )).to.equal(
-      'vAgarthAviva saMpRRiktau vAgarthapratipattaye |' +
-      'jagataH pitarau vande pArvatIparameshvarau ||'
+      'vAgarthAviva saMpRRiktau vAgarthapratipattayE |' +
+      'jagataH pitarau vandE pArvatIparamEshvarau ||'
     );
 
   });

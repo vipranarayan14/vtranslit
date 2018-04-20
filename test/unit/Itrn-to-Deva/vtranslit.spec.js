@@ -84,15 +84,15 @@ describe('vtranslit from Itrn to Deva', () => {
 
   });
 
-  it('should transliterate to `क्षेत्रज्ञ` for `kShetraj~na`', () => {
+  it('should transliterate to `क्षेत्रज्ञ` for `kShEtraj~na`', () => {
 
-    expect(vt('kShetraj~na')).to.equal('क्षेत्रज्ञ');
+    expect(vt('kShEtraj~na')).to.equal('क्षेत्रज्ञ');
 
   });
 
   it('should transliterate given phrase', () => {
 
-    expect(vt('gItaagopAlau auShadhArthaM vanam eti |'))
+    expect(vt('gItaagOpAlau auShadhArthaM vanam Eti |'))
       .to.equal('गीतागोपालौ औषधार्थं वनम् एति ।');
 
   });
@@ -100,8 +100,8 @@ describe('vtranslit from Itrn to Deva', () => {
   it('should transliterate the given verse', () => {
 
     expect(vt(
-      'vAgarthAviva saMpRRiktau vAgarthapratipattaye |' +
-      'jagataH pitarau vande pArvatIparameshvarau ||')).to.equal(
+      'vAgarthAviva saMpRRiktau vAgarthapratipattayE |' +
+      'jagataH pitarau vandE pArvatIparamEshvarau ||')).to.equal(
       'वागर्थाविव संपृक्तौ वागर्थप्रतिपत्तये ।' +
       'जगतः पितरौ वन्दे पार्वतीपरमेश्वरौ ॥'
     );
