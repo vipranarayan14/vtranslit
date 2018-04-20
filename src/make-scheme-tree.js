@@ -115,6 +115,7 @@ export const makeFromSchemeTree = fromScheme => {
     makeFromSchemeBranch(fromScheme, 'consonants', tokenLengths),
     makeFromSchemeBranch(fromScheme, 'vowels', tokenLengths),
     makeFromSchemeBranch(fromScheme, 'vowelMarks', tokenLengths),
+    makeFromSchemeBranch(fromScheme, 'ayogavaha', tokenLengths),
     makeFromSchemeBranch(fromScheme, 'symbols', tokenLengths)
 
   );
@@ -136,6 +137,7 @@ export const makeToSchemeTree = toScheme => {
     makeToSchemeBranch(toScheme, 'consonants', 'deadConsonants'),
     makeToSchemeBranch(toScheme, 'vowels', 'vowelMarks'),
     makeToSchemeBranch(toScheme, 'vowelMarks', 'vowels'),
+    makeToSchemeBranch(toScheme, 'ayogavaha'),
     makeToSchemeBranch(toScheme, 'symbols')
   );
 
