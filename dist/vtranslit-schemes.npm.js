@@ -70,7 +70,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -83,17 +83,31 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vTranslitSchemes = undefined;
+exports.schemes = undefined;
 
-var _schemes = __webpack_require__(1);
+var _vtranslitDevaScheme = __webpack_require__(3);
 
-var vTranslitSchemes = exports.vTranslitSchemes = {
+var _vtranslitDevaScheme2 = _interopRequireDefault(_vtranslitDevaScheme);
 
-  getAvailableSchemes: _schemes.getAvailableSchemes,
-  getScheme: _schemes.getScheme,
-  schemes: _schemes.schemes
+var _vtranslitItrnScheme = __webpack_require__(4);
 
-};
+var _vtranslitItrnScheme2 = _interopRequireDefault(_vtranslitItrnScheme);
+
+var _vtranslitKndaScheme = __webpack_require__(5);
+
+var _vtranslitKndaScheme2 = _interopRequireDefault(_vtranslitKndaScheme);
+
+var _vtranslitTamlScheme = __webpack_require__(6);
+
+var _vtranslitTamlScheme2 = _interopRequireDefault(_vtranslitTamlScheme);
+
+var _vtranslitTeluScheme = __webpack_require__(7);
+
+var _vtranslitTeluScheme2 = _interopRequireDefault(_vtranslitTeluScheme);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var schemes = exports.schemes = [_vtranslitDevaScheme2.default, _vtranslitItrnScheme2.default, _vtranslitKndaScheme2.default, _vtranslitTamlScheme2.default, _vtranslitTeluScheme2.default];
 
 /***/ }),
 /* 1 */
@@ -105,37 +119,41 @@ var vTranslitSchemes = exports.vTranslitSchemes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getScheme = exports.getAvailableSchemes = exports.schemes = undefined;
+exports.vTranslitSchemes = undefined;
 
-var _vtranslitDevaScheme = __webpack_require__(2);
+var _getAvailableSchemes = __webpack_require__(2);
 
-var _vtranslitDevaScheme2 = _interopRequireDefault(_vtranslitDevaScheme);
+var _getScheme = __webpack_require__(8);
 
-var _vtranslitItrnScheme = __webpack_require__(3);
+var _schemes = __webpack_require__(0);
 
-var _vtranslitItrnScheme2 = _interopRequireDefault(_vtranslitItrnScheme);
+var vTranslitSchemes = exports.vTranslitSchemes = {
 
-var _vtranslitKndaScheme = __webpack_require__(4);
+  getAvailableSchemes: _getAvailableSchemes.getAvailableSchemes,
+  getScheme: _getScheme.getScheme,
+  schemes: _schemes.schemes
 
-var _vtranslitKndaScheme2 = _interopRequireDefault(_vtranslitKndaScheme);
+};
 
-var _vtranslitTamlScheme = __webpack_require__(5);
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var _vtranslitTamlScheme2 = _interopRequireDefault(_vtranslitTamlScheme);
+"use strict";
 
-var _vtranslitTeluScheme = __webpack_require__(6);
 
-var _vtranslitTeluScheme2 = _interopRequireDefault(_vtranslitTeluScheme);
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getAvailableSchemes = undefined;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var schemes = exports.schemes = [_vtranslitDevaScheme2.default, _vtranslitItrnScheme2.default, _vtranslitKndaScheme2.default, _vtranslitTamlScheme2.default, _vtranslitTeluScheme2.default];
+var _schemes = __webpack_require__(0);
 
 var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
 
   var availableSchemes = [];
 
-  schemes.forEach(function (scheme) {
+  _schemes.schemes.forEach(function (scheme) {
 
     availableSchemes.push({
       code: scheme.about.schemeCode,
@@ -146,22 +164,8 @@ var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSch
   return availableSchemes;
 };
 
-var getScheme = exports.getScheme = function getScheme(schemeCode) {
-
-  var scheme = schemes.find(function (_scheme) {
-    return _scheme.about.schemeCode === schemeCode;
-  });
-
-  if (scheme) {
-
-    return scheme;
-  }
-
-  throw new Error('No Scheme found with the given schemeCode: \'' + schemeCode + '\'');
-};
-
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -270,7 +274,7 @@ var vTranslitDevaScheme = exports.vTranslitDevaScheme = {
 });
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -379,7 +383,7 @@ var vTranslitItrnScheme = exports.vTranslitItrnScheme = {
 });
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -488,7 +492,7 @@ var vTranslitKndaScheme = exports.vTranslitKndaScheme = {
 });
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -593,7 +597,7 @@ var vTranslitTamlScheme = exports.vTranslitTamlScheme = {
 });
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -700,6 +704,34 @@ var vTranslitTeluScheme = exports.vTranslitTeluScheme = {
 /***/ })
 /******/ ])["vTranslitTeluScheme"];
 });
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getScheme = undefined;
+
+var _schemes = __webpack_require__(0);
+
+var getScheme = exports.getScheme = function getScheme(schemeCode) {
+
+  var scheme = _schemes.schemes.find(function (_scheme) {
+    return _scheme.about.schemeCode === schemeCode;
+  });
+
+  if (scheme) {
+
+    return scheme;
+  }
+
+  throw new Error('No Scheme found with the given schemeCode: \'' + schemeCode + '\'');
+};
 
 /***/ })
 /******/ ])["vTranslitSchemes"];
