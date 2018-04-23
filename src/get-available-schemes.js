@@ -7,8 +7,8 @@ export const getAvailableSchemes = () => {
   schemes.forEach(scheme => {
 
     availableSchemes.push({
-      code: scheme.about.schemeCode,
-      name: scheme.about.schemeName
+      code: scheme.about.code,
+      name: scheme.about.name
     });
 
   });

@@ -2,7 +2,11 @@ import { schemes } from './schemes';
 
 export const getScheme = schemeCode => {
 
-  const scheme = schemes.find(_scheme => _scheme.about.schemeCode === schemeCode);
+  const scheme = schemes.find(
+
+    _scheme => _scheme.about.code === schemeCode
+
+  );
 
   if (scheme) {
 
