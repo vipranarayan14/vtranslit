@@ -123,6 +123,7 @@ var init = function init(fromSchemeCode, toSchemeCode) {
 };
 
 var vTranslit = exports.vTranslit = {
+  findScheme: _vtranslitSchemes.findScheme,
   getAvailableSchemes: _vtranslitSchemes.getAvailableSchemes,
   init: init
 };
@@ -203,7 +204,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -216,17 +217,31 @@ return /******/ (function(modules) { // webpackBootstrap
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vTranslitSchemes = undefined;
+exports.schemes = undefined;
 
-var _schemes = __webpack_require__(1);
+var _vtranslitDevaScheme = __webpack_require__(4);
 
-var vTranslitSchemes = exports.vTranslitSchemes = {
+var _vtranslitDevaScheme2 = _interopRequireDefault(_vtranslitDevaScheme);
 
-  getAvailableSchemes: _schemes.getAvailableSchemes,
-  getScheme: _schemes.getScheme,
-  schemes: _schemes.schemes
+var _vtranslitItrnScheme = __webpack_require__(5);
 
-};
+var _vtranslitItrnScheme2 = _interopRequireDefault(_vtranslitItrnScheme);
+
+var _vtranslitKndaScheme = __webpack_require__(6);
+
+var _vtranslitKndaScheme2 = _interopRequireDefault(_vtranslitKndaScheme);
+
+var _vtranslitTamlScheme = __webpack_require__(7);
+
+var _vtranslitTamlScheme2 = _interopRequireDefault(_vtranslitTamlScheme);
+
+var _vtranslitTeluScheme = __webpack_require__(8);
+
+var _vtranslitTeluScheme2 = _interopRequireDefault(_vtranslitTeluScheme);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var schemes = exports.schemes = [_vtranslitDevaScheme2.default, _vtranslitItrnScheme2.default, _vtranslitKndaScheme2.default, _vtranslitTamlScheme2.default, _vtranslitTeluScheme2.default];
 
 /***/ }),
 /* 1 */
@@ -238,63 +253,120 @@ var vTranslitSchemes = exports.vTranslitSchemes = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.getScheme = exports.getAvailableSchemes = exports.schemes = undefined;
+exports.vTranslitSchemes = undefined;
 
-var _vtranslitDevaScheme = __webpack_require__(2);
+var _findScheme = __webpack_require__(2);
 
-var _vtranslitDevaScheme2 = _interopRequireDefault(_vtranslitDevaScheme);
+var _getAvailableSchemes = __webpack_require__(9);
 
-var _vtranslitItrnScheme = __webpack_require__(3);
+var _getScheme = __webpack_require__(10);
 
-var _vtranslitItrnScheme2 = _interopRequireDefault(_vtranslitItrnScheme);
+var _schemes = __webpack_require__(0);
 
-var _vtranslitKndaScheme = __webpack_require__(4);
+var vTranslitSchemes = exports.vTranslitSchemes = {
 
-var _vtranslitKndaScheme2 = _interopRequireDefault(_vtranslitKndaScheme);
+  findScheme: _findScheme.findScheme,
+  getAvailableSchemes: _getAvailableSchemes.getAvailableSchemes,
+  getScheme: _getScheme.getScheme,
+  schemes: _schemes.schemes
 
-var _vtranslitTamlScheme = __webpack_require__(5);
-
-var _vtranslitTamlScheme2 = _interopRequireDefault(_vtranslitTamlScheme);
-
-var _vtranslitTeluScheme = __webpack_require__(6);
-
-var _vtranslitTeluScheme2 = _interopRequireDefault(_vtranslitTeluScheme);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var schemes = exports.schemes = [_vtranslitDevaScheme2.default, _vtranslitItrnScheme2.default, _vtranslitKndaScheme2.default, _vtranslitTamlScheme2.default, _vtranslitTeluScheme2.default];
-
-var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
-
-  var availableSchemes = [];
-
-  schemes.forEach(function (scheme) {
-
-    availableSchemes.push({
-      code: scheme.about.schemeCode,
-      name: scheme.about.schemeName
-    });
-  });
-
-  return availableSchemes;
-};
-
-var getScheme = exports.getScheme = function getScheme(schemeCode) {
-
-  var scheme = schemes.find(function (_scheme) {
-    return _scheme.about.schemeCode === schemeCode;
-  });
-
-  if (scheme) {
-
-    return scheme;
-  }
-
-  throw new Error('No Scheme found with the given schemeCode: \'' + schemeCode + '\'');
 };
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findScheme = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _utils = __webpack_require__(3);
+
+var _schemes = __webpack_require__(0);
+
+var findSchemeForChar = function findSchemeForChar(char) {
+  return _schemes.schemes.find(function (scheme) {
+
+    var unicodeBlock = scheme.about.unicodeBlock;
+
+    var _unicodeBlock$split$m = unicodeBlock.split('-').map(function (limit) {
+      return parseInt(limit, 16);
+    }),
+        _unicodeBlock$split$m2 = _slicedToArray(_unicodeBlock$split$m, 2),
+        lowerLimit = _unicodeBlock$split$m2[0],
+        upperLimit = _unicodeBlock$split$m2[1];
+
+    var charCode = char.charCodeAt(0);
+
+    return charCode >= lowerLimit && charCode <= upperLimit;
+  });
+};
+
+var findScheme = exports.findScheme = function findScheme(str) {
+
+  var maxSampleSize = 10;
+  var sampleStr = str.slice(0, maxSampleSize);
+
+  var schemeForChars = [];
+
+  sampleStr.split('').forEach(function (char) {
+
+    var schemeForChar = findSchemeForChar(char);
+
+    if (schemeForChar) {
+
+      schemeForChars.push(schemeForChar.about.code);
+    }
+  });
+
+  return (0, _utils.maxOcurrance)(schemeForChars);
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var maxOcurrance = exports.maxOcurrance = function maxOcurrance(array) {
+
+  var counts = {};
+
+  var compare = 0,
+      mostOccured = null;
+
+  array.forEach(function (word) {
+
+    if (counts[word] === undefined) {
+
+      counts[word] = 1;
+    } else {
+
+      counts[word] += 1;
+    }
+
+    if (counts[word] > compare) {
+
+      compare = counts[word];
+      mostOccured = word;
+    }
+  });
+
+  return mostOccured;
+};
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -384,9 +456,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var vTranslitDevaScheme = exports.vTranslitDevaScheme = {
   'about': {
-    'schemeCode': 'Deva',
-    'schemeName': 'Devanagari',
-    'type': 'brahmic'
+    'code': 'Deva',
+    'name': 'Devanagari',
+    'type': 'brahmic',
+    'unicodeBlock': '0900-097F'
   },
   'data': {
     'ayogavaha': ['\u0902', '\u0903'],
@@ -403,7 +476,7 @@ var vTranslitDevaScheme = exports.vTranslitDevaScheme = {
 });
 
 /***/ }),
-/* 3 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -493,9 +566,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var vTranslitItrnScheme = exports.vTranslitItrnScheme = {
   'about': {
-    'schemeCode': 'Itrn',
-    'schemeName': 'ITRANS',
-    'type': 'roman'
+    'code': 'Itrn',
+    'name': 'ITRANS',
+    'type': 'roman',
+    'unicodeBlock': '0020-007F'
   },
   'data': {
     'ayogavaha': [['M', '.m'], ['H', '.h']],
@@ -512,7 +586,7 @@ var vTranslitItrnScheme = exports.vTranslitItrnScheme = {
 });
 
 /***/ }),
-/* 4 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -602,9 +676,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var vTranslitKndaScheme = exports.vTranslitKndaScheme = {
   'about': {
-    'schemeCode': 'Knda',
-    'schemeName': 'Kannada',
-    'type': 'brahmic'
+    'code': 'Knda',
+    'name': 'Kannada',
+    'type': 'brahmic',
+    'unicodeBlock': '0C80-0CFF'
   },
   'data': {
     'ayogavaha': ['\u0C82', '\u0C83'],
@@ -621,7 +696,7 @@ var vTranslitKndaScheme = exports.vTranslitKndaScheme = {
 });
 
 /***/ }),
-/* 5 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -710,7 +785,12 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var vTranslitTamlScheme = exports.vTranslitTamlScheme = {
-  'about': { 'schemeCode': 'Taml', 'schemeName': 'Tamil', 'type': 'brahmic' },
+  'about': {
+    'code': 'Taml',
+    'name': 'Tamil',
+    'type': 'brahmic',
+    'unicodeBlock': '0B80-0BFF'
+  },
   'data': {
     'ayogavaha': ['\u0B82', '\u0B83'],
     'consonants': ['\u0B95', '', '', '', '\u0B99', '\u0B9A', '', '\u0B9C', '', '\u0B9E', '\u0B9F', '', '', '', '\u0BA3', '\u0BA4', '', '', '', '\u0BA8', '\u0BA9', '\u0BAA', '', '', '', '\u0BAE', '\u0BAF', '\u0BB0', '\u0BB1', '\u0BB2', '\u0BB3', '\u0BB4', '\u0BB5', '\u0BB6', '\u0BB7', '\u0BB8', '\u0BB9'],
@@ -726,7 +806,7 @@ var vTranslitTamlScheme = exports.vTranslitTamlScheme = {
 });
 
 /***/ }),
-/* 6 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -816,9 +896,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 var vTranslitTeluScheme = exports.vTranslitTeluScheme = {
   'about': {
-    'schemeCode': 'Telu',
-    'schemeName': 'Telugu',
-    'type': 'brahmic'
+    'code': 'Telu',
+    'name': 'Telugu',
+    'type': 'brahmic',
+    'unicodeBlock': '0C00-0C7F'
   },
   'data': {
     'ayogavaha': ['\u0C02', '\u0C03'],
@@ -833,6 +914,63 @@ var vTranslitTeluScheme = exports.vTranslitTeluScheme = {
 /***/ })
 /******/ ])["vTranslitTeluScheme"];
 });
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getAvailableSchemes = undefined;
+
+var _schemes = __webpack_require__(0);
+
+var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSchemes() {
+
+  var availableSchemes = [];
+
+  _schemes.schemes.forEach(function (scheme) {
+
+    availableSchemes.push({
+      code: scheme.about.code,
+      name: scheme.about.name
+    });
+  });
+
+  return availableSchemes;
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getScheme = undefined;
+
+var _schemes = __webpack_require__(0);
+
+var getScheme = exports.getScheme = function getScheme(schemeCode) {
+
+  var scheme = _schemes.schemes.find(function (_scheme) {
+    return _scheme.about.code === schemeCode;
+  });
+
+  if (scheme) {
+
+    return scheme;
+  }
+
+  throw new Error('No Scheme found with the given schemeCode: \'' + schemeCode + '\'');
+};
 
 /***/ })
 /******/ ])["vTranslitSchemes"];
