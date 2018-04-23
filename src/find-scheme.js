@@ -1,20 +1,11 @@
 import { maxOcurrance } from './utils';
-
-const unicodeBlocks = {
-
-  'Deva': '0900-097F',
-  'Itrn': '0020-007F',
-  'Knda': '0C80-0CFF',
-  'Taml': '0B80-0BFF',
-  'Telu': '0C00-0C7F'
-
-};
+import { schemes } from './schemes';
 
 const findSchemeForChar = char =>
 
-  Object.keys(unicodeBlocks).find(scheme => {
+  schemes.find(scheme => {
 
-    const unicodeBlock = unicodeBlocks[scheme];
+    const unicodeBlock = scheme.about.unicodeBlock;
 
     const [lowerLimit, upperLimit] = unicodeBlock
       .split('-')
@@ -35,7 +26,13 @@ export const findScheme = str => {
 
   sampleStr.split('').forEach(char => {
 
-    schemeForChars.push(findSchemeForChar(char));
+    const schemeForChar = findSchemeForChar(char);
+
+    if (schemeForChar) {
+
+      schemeForChars.push(schemeForChar.about.code);
+
+    }
 
   });
 
