@@ -81,7 +81,7 @@
 
   if (options.string || options.i) {
 
-    const vt = vTranslit(options.from, options.to);
+    const vt = vTranslit.init(options.from, options.to);
 
     handleInput(vt);
 
