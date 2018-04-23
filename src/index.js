@@ -1,4 +1,4 @@
-import { getAvailableSchemes, getScheme } from 'vtranslit-schemes';
+import { findScheme, getAvailableSchemes, getScheme } from 'vtranslit-schemes';
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { getCharDetails } from './get-char-details';
 import { processTokens } from './process-tokens';
@@ -43,6 +43,7 @@ const init = (fromSchemeCode, toSchemeCode) => {
 };
 
 export const vTranslit = {
+  findScheme,
   getAvailableSchemes,
   init
 };
