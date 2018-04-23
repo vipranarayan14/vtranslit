@@ -22,7 +22,9 @@
     "postversion": "git push && git push --tags"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
