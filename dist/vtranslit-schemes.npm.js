@@ -802,8 +802,8 @@ var getAvailableSchemes = exports.getAvailableSchemes = function getAvailableSch
   _schemes.schemes.forEach(function (scheme) {
 
     availableSchemes.push({
-      code: scheme.about.schemeCode,
-      name: scheme.about.schemeName
+      code: scheme.about.code,
+      name: scheme.about.name
     });
   });
 
@@ -827,7 +827,7 @@ var _schemes = __webpack_require__(0);
 var getScheme = exports.getScheme = function getScheme(schemeCode) {
 
   var scheme = _schemes.schemes.find(function (_scheme) {
-    return _scheme.about.schemeCode === schemeCode;
+    return _scheme.about.code === schemeCode;
   });
 
   if (scheme) {
