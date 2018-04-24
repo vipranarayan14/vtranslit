@@ -99,6 +99,13 @@ var _vtokenize = __webpack_require__(6);
 
 var init = function init(fromSchemeCode, toSchemeCode) {
 
+  if (fromSchemeCode === toSchemeCode) {
+
+    return function (inStr) {
+      return inStr;
+    };
+  }
+
   var fromScheme = (0, _vtranslitSchemes.getScheme)(fromSchemeCode);
   var toScheme = (0, _vtranslitSchemes.getScheme)(toSchemeCode);
 
