@@ -9,15 +9,37 @@
   const options = require('yargs')
     .usage('Usage: $0 -f [scheme] -t [scheme] -s [string] -i [file] -o [output]')
     .options({
-      'f': { alias: 'from', default: 'Itrn', describe: 'scheme to transliterate from', type: 'string' },
-      'i': { describe: 'path to the file to transliterate', type: 'string' },
-      'o': { describe: 'path to write the transliterated output', type: 'string' },
-      's': { alias: 'string', describe: 'string to transliterate', type: 'string' },
-      't': { alias: 'to', default: 'Deva', describe: 'scheme to transliterate to', type: 'string' },
+      'f': {
+        alias: 'from',
+        default: 'Itrn',
+        describe: 'scheme to transliterate from',
+        type: 'string'
+      },
+      'i': {
+        describe: 'path to the file to transliterate',
+        type: 'string'
+      },
+      'o': {
+        describe: 'path to write the transliterated output',
+        type: 'string'
+      },
+      's': {
+        alias: 'string',
+        describe: 'string to transliterate',
+        type: 'string'
+      },
+      't': {
+        alias: 'to',
+        default: 'Deva',
+        describe: 'scheme to transliterate to',
+        type: 'string'
+      },
     })
+    .help('h')
+    .alias('h', 'help')
     .argv;
 
-  const log = (...args) => console.log(...args); // eslint-disable-line no-console
+  const log = console.log; // eslint-disable-line no-console
 
   const handleOutput = outputString => {
 
@@ -70,10 +92,6 @@
         transliterate(vt, data);
 
       });
-
-    } else {
-
-      log('Either a string (-s) or a file (-i) as input is required.');
 
     }
 
