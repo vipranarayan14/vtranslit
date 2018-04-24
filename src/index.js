@@ -7,6 +7,12 @@ import { vTokenize } from 'vtokenize';
 
 const init = (fromSchemeCode, toSchemeCode) => {
 
+  if (fromSchemeCode === toSchemeCode) {
+
+    return inStr => inStr;
+
+  }
+
   const fromScheme = getScheme(fromSchemeCode);
   const toScheme = getScheme(toSchemeCode);
 
