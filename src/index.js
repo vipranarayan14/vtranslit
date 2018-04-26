@@ -1,11 +1,11 @@
-import { findScheme, getAvailableSchemes, getScheme } from 'vtranslit-schemes';
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { getCharDetails } from './get-char-details';
 import { processTokens } from './process-tokens';
 import { translitTokens } from './translit-tokens';
 import { vTokenize } from 'vtokenize';
+import { vTranslitSchemes } from 'vtranslit-schemes';
 
-const init = (fromSchemeCode, toSchemeCode) => {
+const init = getScheme => (fromSchemeCode, toSchemeCode) => {
 
   if (fromSchemeCode === toSchemeCode) {
 
@@ -48,8 +48,14 @@ const init = (fromSchemeCode, toSchemeCode) => {
 
 };
 
-export const vTranslit = {
-  findScheme,
-  getAvailableSchemes,
-  init
+export const vTranslit = schemes => {
+
+  const Schemes = vTranslitSchemes(schemes);
+
+  return {
+    findScheme: Schemes.findScheme,
+    getAvailableSchemes: Schemes.getAvailableSchemes,
+    init: init(Schemes.getScheme)
+  };
+
 };
