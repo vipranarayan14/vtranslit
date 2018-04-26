@@ -131,7 +131,14 @@ var init = function init(getScheme) {
   };
 };
 
-var vTranslit = exports.vTranslit = function vTranslit(schemes) {
+var vTranslit = exports.vTranslit = function vTranslit() {
+  var schemes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+
+  if (!schemes.length) {
+
+    throw new Error('Function vTranslit requires vtranslit schemes in an array format.');
+  }
 
   var schemesManager = (0, _manageSchemes.manageSchemes)(schemes);
 
@@ -372,6 +379,11 @@ var findSchemeForChar = function findSchemeForChar(schemes) {
 
 var findScheme = exports.findScheme = function findScheme(schemes) {
   return function (str) {
+
+    if (!str || typeof str !== 'string') {
+
+      throw new Error('Function requires a string to find its scheme');
+    }
 
     var maxSampleSize = 10;
     var sampleStr = str.slice(0, maxSampleSize);
