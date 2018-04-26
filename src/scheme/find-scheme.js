@@ -1,4 +1,4 @@
-import { maxOcurrance } from './utils';
+import { maxOcurrance } from './../utils';
 
 const findSchemeForChar = schemes => char =>
 

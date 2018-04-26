@@ -1,8 +1,8 @@
 export const getScheme = schemes => schemeCode => {
 
-  const scheme = schemes.find(
+  const scheme = schemes.find(_scheme =>
 
-    _scheme => _scheme.about.code === schemeCode
+    _scheme.about.code === schemeCode
 
   );
 

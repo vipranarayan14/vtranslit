@@ -1,4 +1,4 @@
-export const getAvailableSchemes = schemes => () => {
+export const listAvailableSchemes = schemes => () => {
 
   const availableSchemes = [];
 
