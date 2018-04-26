@@ -1,13 +1,15 @@
 import { findScheme } from './find-scheme';
 import { getAvailableSchemes } from './get-available-schemes';
 import { getScheme } from './get-scheme';
-import { schemes } from './schemes';
 
-export const vTranslitSchemes = {
+export const vTranslitSchemes = schemes => (
 
-  findScheme,
-  getAvailableSchemes,
-  getScheme,
-  schemes
+  {
 
-};
+    findScheme: findScheme(schemes),
+    getAvailableSchemes: getAvailableSchemes(schemes),
+    getScheme: getScheme(schemes),
+
+  }
+
+);

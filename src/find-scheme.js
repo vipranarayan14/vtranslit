@@ -1,7 +1,6 @@
 import { maxOcurrance } from './utils';
-import { schemes } from './schemes';
 
-const findSchemeForChar = char =>
+const findSchemeForChar = schemes => char =>
 
   schemes.find(scheme => {
 
@@ -17,7 +16,7 @@ const findSchemeForChar = char =>
 
   });
 
-export const findScheme = str => {
+export const findScheme = schemes => str => {
 
   const maxSampleSize = 10;
   const sampleStr = str.slice(0, maxSampleSize);
@@ -26,7 +25,7 @@ export const findScheme = str => {
 
   sampleStr.split('').forEach(char => {
 
-    const schemeForChar = findSchemeForChar(char);
+    const schemeForChar = findSchemeForChar(schemes)(char);
 
     if (schemeForChar) {
 

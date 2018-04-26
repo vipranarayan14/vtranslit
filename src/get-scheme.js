@@ -1,6 +1,4 @@
-import { schemes } from './schemes';
-
-export const getScheme = schemeCode => {
+export const getScheme = schemes => schemeCode => {
 
   const scheme = schemes.find(
 

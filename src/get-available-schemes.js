@@ -1,6 +1,4 @@
-import { schemes } from './schemes';
-
-export const getAvailableSchemes = () => {
+export const getAvailableSchemes = schemes => () => {
 
   const availableSchemes = [];
 
