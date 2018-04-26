@@ -1,6 +1,10 @@
 import { expect } from 'chai';
-import { getScheme } from 'vtranslit-schemes';
 import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
+import { manageSchemes } from '../../../src/scheme/manage-schemes';
+import vTranslitItrnScheme from 'vtranslit-itrn-scheme';
+
+const schemesManager = manageSchemes([vTranslitItrnScheme]);
+const getSchemeFor = schemesManager.get;
 
 describe('fromSchemeTree  for "Itrn" scheme', () => {
 
@@ -12,7 +16,7 @@ describe('fromSchemeTree  for "Itrn" scheme', () => {
 
   };
 
-  const fromScheme = getScheme('Itrn');
+  const fromScheme = getSchemeFor('Itrn');
 
   const { fromSchemeTree } = makeFromSchemeTree(fromScheme, state);
 

@@ -1,6 +1,10 @@
 import { expect } from 'chai';
-import { getScheme } from 'vtranslit-schemes';
 import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
+import { manageSchemes } from '../../../src/scheme/manage-schemes';
+import vTranslitDevaScheme from 'vtranslit-deva-scheme';
+
+const schemesManager = manageSchemes([vTranslitDevaScheme]);
+const getSchemeFor = schemesManager.get;
 
 describe('fromSchemeTree for "Deva" scheme', () => {
 
@@ -12,7 +16,7 @@ describe('fromSchemeTree for "Deva" scheme', () => {
 
   };
 
-  const fromScheme = getScheme('Deva');
+  const fromScheme = getSchemeFor('Deva');
 
   const { fromSchemeTree } = makeFromSchemeTree(fromScheme, state);
 

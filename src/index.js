@@ -1,9 +1,9 @@
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { getCharDetails } from './get-char-details';
+import { manageSchemes } from './scheme/manage-schemes';
 import { processTokens } from './process-tokens';
 import { translitTokens } from './translit-tokens';
 import { vTokenize } from 'vtokenize';
-import { vTranslitSchemes } from 'vtranslit-schemes';
 
 const init = getScheme => (fromSchemeCode, toSchemeCode) => {
 
@@ -50,12 +50,14 @@ const init = getScheme => (fromSchemeCode, toSchemeCode) => {
 
 export const vTranslit = schemes => {
 
-  const Schemes = vTranslitSchemes(schemes);
+  const schemesManager = manageSchemes(schemes);
 
   return {
-    findScheme: Schemes.findScheme,
-    getAvailableSchemes: Schemes.getAvailableSchemes,
-    init: init(Schemes.getScheme)
+
+    find: schemesManager.find,
+    init: init(schemesManager.get),
+    list: schemesManager.list
+
   };
 
 };
