@@ -20,22 +20,28 @@ npm install vtranslit
 
 ## Node usage
 
-```bash
-const { vTranslit } = require('../');
-
-const vt = vTranslit('Itrn', 'Deva');
-
-vt('stringToTransliterate');
-```
-
-## Browser usage
-
 ```js
-const vTranslit = window.vTranslit;
+const { vTranslit } = require('vtranslit');
 
-const vt = vtranslit('Itrn', 'Deva');
+// install necessary schemes from "https://github.com/vipranarayan14/" using npm
+const vTranslitDevaScheme = require('vtranslit-deva-scheme');
+const vTranslitItrnScheme = require('vtranslit-itrn-scheme');
 
-vt('stringToTransliterate');
+// add schemes to vTranslit
+const vtranslit = vTranslit([
+  vTranslitDevaScheme,
+  vTranslitItrnScheme,
+]);
+
+// from ITRANS scheme to Devanagari scheme
+const vtItrnToDeva = vtranslit.init('Itrn', 'Deva');
+
+console.log(vtItrnToDeva('<stringToTransliterate>');
+
+// from Devanagari scheme to ITRANS scheme
+const vtDevaToItrn = vtranslit.init('Deva', 'Itrn');
+
+console.log(vtDevaToItrn('<stringToTransliterate>');
 ```
 
 The codes for scheme are based on the [ISO 15924](https://en.wikipedia.org/wiki/ISO_15924) (Codes for the representation of names of scripts), expect ITRANS which is given a similar code in accordance with the standards definition.
