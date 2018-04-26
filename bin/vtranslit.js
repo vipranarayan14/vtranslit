@@ -4,6 +4,20 @@
 
   const { vTranslit } = require('../');
 
+  const vTranslitDevaScheme = require('vtranslit-deva-scheme');
+  const vTranslitItrnScheme = require('vtranslit-itrn-scheme');
+  const vTranslitKndaScheme = require('vtranslit-knda-scheme');
+  const vTranslitTamlScheme = require('vtranslit-taml-scheme');
+  const vTranslitTeluScheme = require('vtranslit-telu-scheme');
+
+  const vtranslit = vTranslit([
+    vTranslitDevaScheme,
+    vTranslitItrnScheme,
+    vTranslitKndaScheme,
+    vTranslitTamlScheme,
+    vTranslitTeluScheme
+  ]);
+
   const fs = require('fs');
 
   const options = require('yargs')
@@ -99,7 +113,7 @@
 
   if (options.string || options.i) {
 
-    const vt = vTranslit.init(options.from, options.to);
+    const vt = vtranslit.init(options.from, options.to);
 
     handleInput(vt);
 

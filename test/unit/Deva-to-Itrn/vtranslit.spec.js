@@ -1,9 +1,16 @@
 import { expect } from 'chai';
 import { vTranslit } from '../../../src/index';
+import vTranslitDevaScheme from 'vtranslit-deva-scheme';
+import vTranslitItrnScheme from 'vtranslit-itrn-scheme';
+
+const vtranslit = vTranslit([
+  vTranslitDevaScheme,
+  vTranslitItrnScheme
+]);
+
+const vt = vtranslit.init('Deva', 'Itrn');
 
 describe('vtranslit from Deva to Itrn', () => {
-
-  const vt = vTranslit.init('Deva', 'Itrn');
 
   it('should not transliterate `#$%&*!$%()^&^$#&(=+-` and just return them', () => {
 
