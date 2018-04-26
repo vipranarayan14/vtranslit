@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { findScheme } from '../../src/find-scheme';
+import { findScheme } from '../../src/scheme/find-scheme';
 import vTranslitDevaScheme from 'vtranslit-deva-scheme';
 import vTranslitItrnScheme from 'vtranslit-itrn-scheme';
 
