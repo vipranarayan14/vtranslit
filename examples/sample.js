@@ -1,7 +1,15 @@
 const { vTranslit } = require('../');
 
-const vtItrnToDeva = vTranslit.init('Itrn', 'Deva');
-const vtDevaToItrn = vTranslit.init('Deva', 'Itrn');
+const vTranslitDevaScheme = require('vtranslit-deva-scheme');
+const vTranslitItrnScheme = require('vtranslit-itrn-scheme');
+
+const vtranslit = vTranslit([
+  vTranslitDevaScheme,
+  vTranslitItrnScheme,
+]);
+
+const vtItrnToDeva = vtranslit.init('Itrn', 'Deva');
+const vtDevaToItrn = vtranslit.init('Deva', 'Itrn');
 
 const stringsInItrn = [
   `
@@ -21,7 +29,7 @@ const stringsInDeva = [
   `
 ];
 
-const logTranslited = (strings, vtranslit) =>
+const logTranslited = (strings, vt) =>
 
   strings.forEach((str, index) => {
 
@@ -36,7 +44,7 @@ ${ str }
     console.log(`
 Output:
 ******************
-${ vtranslit(str) }
+${ vt(str) }
 ******************
 `);
     /* eslint-enable no-console */
