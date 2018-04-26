@@ -18,6 +18,12 @@ const findSchemeForChar = schemes => char =>
 
 export const findScheme = schemes => str => {
 
+  if (!str || typeof str !== 'string') {
+
+    throw new Error('Function requires a string to find its scheme');
+
+  }
+
   const maxSampleSize = 10;
   const sampleStr = str.slice(0, maxSampleSize);
 

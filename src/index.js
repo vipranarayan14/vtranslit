@@ -48,7 +48,13 @@ const init = getScheme => (fromSchemeCode, toSchemeCode) => {
 
 };
 
-export const vTranslit = schemes => {
+export const vTranslit = (schemes = []) => {
+
+  if (!schemes.length) {
+
+    throw new Error('Function vTranslit requires vtranslit schemes in an array format.');
+
+  }
 
   const schemesManager = manageSchemes(schemes);
 
