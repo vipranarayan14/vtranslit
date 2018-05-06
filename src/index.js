@@ -1,17 +1,20 @@
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
 import { getCharDetails } from './get-char-details';
 import { manageSchemes } from './scheme/manage-schemes';
+import { prepareOptions } from './prepare-options';
 import { processTokens } from './process-tokens';
 import { translitTokens } from './translit-tokens';
 import { vTokenize } from 'vtokenize';
 
-const init = getScheme => (fromSchemeCode, toSchemeCode) => {
+const init = getScheme => (fromSchemeCode, toSchemeCode, userOptions) => {
 
   if (fromSchemeCode === toSchemeCode) {
 
     return inStr => inStr;
 
   }
+
+  const options = prepareOptions(userOptions);
 
   const fromScheme = getScheme(fromSchemeCode);
   const toScheme = getScheme(toSchemeCode);
@@ -39,7 +42,8 @@ const init = getScheme => (fromSchemeCode, toSchemeCode) => {
     const outStr = translitTokens(
       processedTokens,
       tokensType,
-      toSchemeTree
+      toSchemeTree,
+      options
     );
 
     return outStr.join('');
