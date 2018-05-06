@@ -1,6 +1,13 @@
 const getAkshara = akshara => (Array.isArray(akshara)) ? akshara[0] : akshara;
 
-const makeFromSchemeLeaf = (akshara, aksharaIndex, alternateIndex, schemeBranch, schemeSubset, tokenLengths) => {
+const makeFromSchemeLeaf = (
+  akshara,
+  aksharaIndex,
+  alternateIndex,
+  schemeBranch,
+  schemeSubset,
+  tokenLengths
+) => {
 
   if (akshara) {
 
@@ -19,7 +26,14 @@ const makeFromSchemeLeaf = (akshara, aksharaIndex, alternateIndex, schemeBranch,
 
 };
 
-const makeToSchemeLeaf = (akshara, aksharaIndex, scheme, schemeBranch, schemeSubset, addSchemeSubset) => {
+const makeToSchemeLeaf = (
+  akshara,
+  aksharaIndex,
+  scheme,
+  schemeBranch,
+  schemeSubset,
+  addSchemeSubset
+) => {
 
   const charDetails = {
     char: {},
@@ -94,7 +108,14 @@ const makeToSchemeBranch = (scheme, schemeSubset, addSchemeSubset = '') => {
 
   scheme.data[schemeSubset].forEach((akshara, aksharaIndex) => {
 
-    makeToSchemeLeaf(akshara, aksharaIndex, scheme, schemeBranch, schemeSubset, addSchemeSubset);
+    makeToSchemeLeaf(
+      akshara,
+      aksharaIndex,
+      scheme,
+      schemeBranch,
+      schemeSubset,
+      addSchemeSubset
+    );
 
   });
 
