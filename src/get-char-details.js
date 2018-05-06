@@ -1,37 +1,49 @@
-/* eslint-disable complexity */
+const reservedChars = char =>
+
+  ({
+
+    ' ': {
+      char,
+      type: 'pause'
+    },
+
+    '#{': {
+      char,
+      type: 'marker-open-toggle-mode',
+    },
+
+    '_': {
+      char,
+      type: 'skip'
+    },
+
+    '}#': {
+      char,
+      type: 'marker-close-toggle-mode',
+    }
+
+  }[char]);
 
 export const getCharDetails = fromSchemeTree => char => {
 
-  let charDetails = {};
+  const charDetailsInReservedTokens = reservedChars(char);
   const charDetailsInFromSchemeTree = fromSchemeTree[char];
 
-  if (char === ' ') {
+  const charDetailsForOtherChars = {
+    char,
+    type: 'unknown'
+  };
 
-    charDetails = {
-      char,
-      type: 'pause'
-    };
+  if (charDetailsInReservedTokens) {
 
-  } else if (char === '_') {
-
-    charDetails = {
-      char,
-      type: 'skip'
-    };
+    return charDetailsInReservedTokens;
 
   } else if (charDetailsInFromSchemeTree) {
 
-    charDetails = charDetailsInFromSchemeTree;
-
-  } else {
-
-    charDetails = {
-      char,
-      type: 'unknown'
-    };
+    return charDetailsInFromSchemeTree;
 
   }
 
-  return charDetails;
+  return charDetailsForOtherChars;
 
 };
