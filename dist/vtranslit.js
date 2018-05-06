@@ -82,14 +82,16 @@ var _getCharDetails = __webpack_require__(2);
 
 var _manageSchemes = __webpack_require__(3);
 
-var _processTokens2 = __webpack_require__(8);
+var _prepareOptions = __webpack_require__(8);
 
-var _translitTokens = __webpack_require__(9);
+var _processTokens2 = __webpack_require__(9);
 
-var _vtokenize = __webpack_require__(10);
+var _translitTokens = __webpack_require__(10);
+
+var _vtokenize = __webpack_require__(11);
 
 var init = function init(getScheme) {
-  return function (fromSchemeCode, toSchemeCode) {
+  return function (fromSchemeCode, toSchemeCode, userOptions) {
 
     if (fromSchemeCode === toSchemeCode) {
 
@@ -97,6 +99,8 @@ var init = function init(getScheme) {
         return inStr;
       };
     }
+
+    var options = (0, _prepareOptions.prepareOptions)(userOptions);
 
     var fromScheme = getScheme(fromSchemeCode);
     var toScheme = getScheme(toSchemeCode);
@@ -115,7 +119,7 @@ var init = function init(getScheme) {
           processedTokens = _processTokens.processedTokens,
           tokensType = _processTokens.tokensType;
 
-      var outStr = (0, _translitTokens.translitTokens)(processedTokens, tokensType, toSchemeTree);
+      var outStr = (0, _translitTokens.translitTokens)(processedTokens, tokensType, toSchemeTree, options);
 
       return outStr.join('');
     };
@@ -269,38 +273,52 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-/* eslint-disable complexity */
+var reservedChars = function reservedChars(char) {
+  return {
+
+    ' ': {
+      char: char,
+      type: 'pause'
+    },
+
+    '#{': {
+      char: char,
+      type: 'marker-open-toggle-mode'
+    },
+
+    '_': {
+      char: char,
+      type: 'skip'
+    },
+
+    '}#': {
+      char: char,
+      type: 'marker-close-toggle-mode'
+    }
+
+  }[char];
+};
 
 var getCharDetails = exports.getCharDetails = function getCharDetails(fromSchemeTree) {
   return function (char) {
 
-    var charDetails = {};
+    var charDetailsInReservedTokens = reservedChars(char);
     var charDetailsInFromSchemeTree = fromSchemeTree[char];
 
-    if (char === ' ') {
+    var charDetailsForOtherChars = {
+      char: char,
+      type: 'unknown'
+    };
 
-      charDetails = {
-        char: char,
-        type: 'pause'
-      };
-    } else if (char === '_') {
+    if (charDetailsInReservedTokens) {
 
-      charDetails = {
-        char: char,
-        type: 'skip'
-      };
+      return charDetailsInReservedTokens;
     } else if (charDetailsInFromSchemeTree) {
 
-      charDetails = charDetailsInFromSchemeTree;
-    } else {
-
-      charDetails = {
-        char: char,
-        type: 'unknown'
-      };
+      return charDetailsInFromSchemeTree;
     }
 
-    return charDetails;
+    return charDetailsForOtherChars;
   };
 };
 
@@ -495,6 +513,26 @@ var listAvailableSchemes = exports.listAvailableSchemes = function listAvailable
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var defaultOptions = {
+
+  toggleMode: 0
+
+};
+
+var prepareOptions = exports.prepareOptions = function prepareOptions(userOptions) {
+  return Object.assign({}, defaultOptions, userOptions);
+};
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 /* eslint-disable complexity */
 
 var processTokens = exports.processTokens = function processTokens(Tokens, fromSchemeTree, toScheme) {
@@ -540,7 +578,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -551,26 +589,68 @@ Object.defineProperty(exports, "__esModule", {
 });
 /* eslint-disable complexity */
 
-var translitTokens = exports.translitTokens = function translitTokens(tokens, tokensType, toSchemeTree) {
+var canTranslitForOpenMarker = function canTranslitForOpenMarker(toggleMode) {
+
+  if (toggleMode === 1) {
+
+    return false;
+  } else if (toggleMode === 2) {
+
+    return true;
+  }
+
+  return true;
+};
+
+var canTranslitForCloseMarker = function canTranslitForCloseMarker(toggleMode) {
+
+  if (toggleMode === 1) {
+
+    return true;
+  } else if (toggleMode === 2) {
+
+    return false;
+  }
+
+  return true;
+};
+
+var translitTokens = exports.translitTokens = function translitTokens(tokens, tokensType, toSchemeTree, options) {
 
   var outStr = [];
+
+  var canTranslit = true;
+
+  if (options.toggleMode === 2) {
+
+    canTranslit = false;
+  }
 
   tokens.forEach(function (token, index) {
 
     var tokenType = tokensType[index];
 
-    if (tokenType === 'unknown') {
-
-      outStr.push(token.char);
-    } else if (tokenType === 'pause') {
+    if (tokenType === 'unknown' || tokenType === 'pause') {
 
       outStr.push(token.char);
     } else if (tokenType === 'skip') {
 
       outStr.push('');
+    } else if (tokenType === 'marker-open-toggle-mode') {
+
+      canTranslit = canTranslitForOpenMarker(options.toggleMode);
+    } else if (tokenType === 'marker-close-toggle-mode') {
+
+      canTranslit = canTranslitForCloseMarker(options.toggleMode);
     } else {
 
-      outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
+      if (canTranslit) {
+
+        outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
+      } else {
+
+        outStr.push(token.char);
+      }
     }
   });
 
@@ -578,7 +658,7 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
