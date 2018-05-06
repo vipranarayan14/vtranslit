@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { vTranslit } from '../../../src/index';
-import vTranslitDevaScheme from 'vtranslit-deva-scheme';
-import vTranslitItrnScheme from 'vtranslit-itrn-scheme';
+import { vTranslitSchemeDeva } from 'vtranslit-scheme-deva';
+import { vTranslitSchemeItrn } from 'vtranslit-scheme-itrn';
 
 const vtranslit = vTranslit([
-  vTranslitDevaScheme,
-  vTranslitItrnScheme
+  vTranslitSchemeDeva,
+  vTranslitSchemeItrn
 ]);
 
 const vt = vtranslit.init('Itrn', 'Deva');

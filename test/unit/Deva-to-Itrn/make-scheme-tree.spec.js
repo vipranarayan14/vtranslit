@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import { makeFromSchemeTree } from '../../../src/make-scheme-tree';
 import { manageSchemes } from '../../../src/scheme/manage-schemes';
-import vTranslitDevaScheme from 'vtranslit-deva-scheme';
+import { vTranslitSchemeDeva } from 'vtranslit-scheme-deva';
 
-const schemesManager = manageSchemes([vTranslitDevaScheme]);
+const schemesManager = manageSchemes([vTranslitSchemeDeva]);
 const getSchemeFor = schemesManager.get;
 
 describe('fromSchemeTree for "Deva" scheme', () => {

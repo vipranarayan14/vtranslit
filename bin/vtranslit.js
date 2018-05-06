@@ -4,18 +4,18 @@
 
   const { vTranslit } = require('../');
 
-  const vTranslitDevaScheme = require('vtranslit-deva-scheme');
-  const vTranslitItrnScheme = require('vtranslit-itrn-scheme');
-  const vTranslitKndaScheme = require('vtranslit-knda-scheme');
-  const vTranslitTamlScheme = require('vtranslit-taml-scheme');
-  const vTranslitTeluScheme = require('vtranslit-telu-scheme');
+  const { vTranslitSchemeDeva } = require('vtranslit-scheme-deva');
+  const { vTranslitSchemeItrn } = require('vtranslit-scheme-itrn');
+  const { vTranslitSchemeKnda } = require('vtranslit-scheme-knda');
+  const { vTranslitSchemeTaml } = require('vtranslit-scheme-taml');
+  const { vTranslitSchemeTelu } = require('vtranslit-scheme-telu');
 
   const vtranslit = vTranslit([
-    vTranslitDevaScheme,
-    vTranslitItrnScheme,
-    vTranslitKndaScheme,
-    vTranslitTamlScheme,
-    vTranslitTeluScheme
+    vTranslitSchemeDeva,
+    vTranslitSchemeItrn,
+    vTranslitSchemeKnda,
+    vTranslitSchemeTaml,
+    vTranslitSchemeTelu
   ]);
 
   const fs = require('fs');

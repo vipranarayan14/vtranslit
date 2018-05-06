@@ -1,11 +1,11 @@
 import { expect } from 'chai';
 import { findScheme } from '../../src/scheme/find-scheme';
-import vTranslitDevaScheme from 'vtranslit-deva-scheme';
-import vTranslitItrnScheme from 'vtranslit-itrn-scheme';
+import { vTranslitSchemeDeva } from 'vtranslit-scheme-deva';
+import { vTranslitSchemeItrn } from 'vtranslit-scheme-itrn';
 
 const find = findScheme([
-  vTranslitDevaScheme,
-  vTranslitItrnScheme
+  vTranslitSchemeDeva,
+  vTranslitSchemeItrn
 ]);
 
 describe('findScheme', () => {
