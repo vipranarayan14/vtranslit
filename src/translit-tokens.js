@@ -1,5 +1,37 @@
 /* eslint-disable complexity */
 
+const canTranslitForOpenMarker = toggleMode => {
+
+  if (toggleMode === 1) {
+
+    return false;
+
+  } else if (toggleMode === 2) {
+
+    return true;
+
+  }
+
+  return true;
+
+};
+
+const canTranslitForCloseMarker = toggleMode => {
+
+  if (toggleMode === 1) {
+
+    return true;
+
+  } else if (toggleMode === 2) {
+
+    return false;
+
+  }
+
+  return true;
+
+};
+
 export const translitTokens = (tokens, tokensType, toSchemeTree, options) => {
 
   const outStr = [];
@@ -26,27 +58,11 @@ export const translitTokens = (tokens, tokensType, toSchemeTree, options) => {
 
     } else if (tokenType === 'marker-open-toggle-mode') {
 
-      if (options.toggleMode === 1) {
-
-        canTranslit = false;
-
-      } else if (options.toggleMode === 2) {
-
-        canTranslit = true;
-
-      }
+      canTranslit = canTranslitForOpenMarker(options.toggleMode);
 
     } else if (tokenType === 'marker-close-toggle-mode') {
 
-      if (options.toggleMode === 1) {
-
-        canTranslit = true;
-
-      } else if (options.toggleMode === 2) {
-
-        canTranslit = false;
-
-      }
+      canTranslit = canTranslitForCloseMarker(options.toggleMode);
 
     } else {
 
