@@ -1,5 +1,5 @@
 import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
-import { getCharDetails } from './get-char-details';
+import { getTokenDetails } from './get-token-details';
 import { manageSchemes } from './scheme/manage-schemes';
 import { prepareOptions } from './prepare-options';
 import { processTokens } from './process-tokens';
@@ -31,7 +31,7 @@ const init = getScheme => (fromSchemeCode, toSchemeCode, userOptions) => {
     const tokens = vTokenize(
       inStr,
       maxTokenLength,
-      getCharDetails(fromSchemeTree, options)
+      getTokenDetails(fromSchemeTree, options)
     );
 
     const {
