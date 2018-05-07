@@ -12,16 +12,6 @@
             "type": "npm",
             "script": "eslint",
             "problemMatcher": []
-        },
-        {
-            "type": "npm",
-            "script": "timetest",
-            "problemMatcher": []
-        },
-        {
-            "type": "npm",
-            "script": "start",
-            "problemMatcher": []
         }
     ]
 }
