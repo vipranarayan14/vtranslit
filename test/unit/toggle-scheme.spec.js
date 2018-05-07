@@ -9,16 +9,16 @@ const vtranslit = vTranslit([
 ]);
 
 /*
-  options.toggleScheme: 0 // no toggling i.e. all are translit'ed
-  options.toggleScheme: 1 // everything translit'ed except #{}# contents
-  options.toggleScheme: 2 // only #{}# translit'ed.
+  options.translitMode: 0 'everything' // no toggling i.e. all are translit'ed
+  options.translitMode: 1 'outside-markers-only' // everything translit'ed except #{}# contents
+  options.translitMode: 2 'inside-markers-only' // only #{}# translit'ed.
 */
 
-describe('vTranslit in toggleScheme 0', () => {
+describe('vTranslit in translitMode 0', () => {
 
   const options = {
 
-    toggleScheme: 0
+    translitMode: 0
 
   };
 
@@ -32,11 +32,11 @@ describe('vTranslit in toggleScheme 0', () => {
 
 });
 
-describe('vTranslit in toggleScheme 1', () => {
+describe('vTranslit in translitMode 1', () => {
 
   const options = {
 
-    toggleScheme: 1
+    translitMode: 1
 
   };
 
@@ -50,11 +50,11 @@ describe('vTranslit in toggleScheme 1', () => {
 
 });
 
-describe('vTranslit in toggleScheme 2', () => {
+describe('vTranslit in translitMode 2', () => {
 
   const options = {
 
-    toggleScheme: 2
+    translitMode: 2
 
   };
 

@@ -1,12 +1,12 @@
 /* eslint-disable complexity */
 
-const canTranslitForOpenMarker = toggleScheme => {
+const canTranslitForOpenMarker = translitMode => {
 
-  if (toggleScheme === 1) {
+  if (translitMode === 1) {
 
     return false;
 
-  } else if (toggleScheme === 2) {
+  } else if (translitMode === 2) {
 
     return true;
 
@@ -16,13 +16,13 @@ const canTranslitForOpenMarker = toggleScheme => {
 
 };
 
-const canTranslitForCloseMarker = toggleScheme => {
+const canTranslitForCloseMarker = translitMode => {
 
-  if (toggleScheme === 1) {
+  if (translitMode === 1) {
 
     return true;
 
-  } else if (toggleScheme === 2) {
+  } else if (translitMode === 2) {
 
     return false;
 
@@ -38,7 +38,7 @@ export const translitTokens = (tokens, tokensType, toSchemeTree, options) => {
 
   let canTranslit = true;
 
-  if (options.toggleScheme === 2) {
+  if (options.translitMode === 2) {
 
     canTranslit = false;
 
@@ -58,11 +58,11 @@ export const translitTokens = (tokens, tokensType, toSchemeTree, options) => {
 
     } else if (tokenType === 'marker-open-toggle-mode') {
 
-      canTranslit = canTranslitForOpenMarker(options.toggleScheme);
+      canTranslit = canTranslitForOpenMarker(options.translitMode);
 
     } else if (tokenType === 'marker-close-toggle-mode') {
 
-      canTranslit = canTranslitForCloseMarker(options.toggleScheme);
+      canTranslit = canTranslitForCloseMarker(options.translitMode);
 
     } else {
 
