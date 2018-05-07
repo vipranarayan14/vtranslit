@@ -7,6 +7,9 @@ const defaultOptions = {
 export const prepareOptions = userOptions =>
 
   Object.assign({},
+
     defaultOptions,
+
     userOptions
+
   );
