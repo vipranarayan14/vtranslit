@@ -9,16 +9,16 @@ const vtranslit = vTranslit([
 ]);
 
 /*
-  options.toggleMode: 0 // no toggling i.e. all are translit'ed
-  options.toggleMode: 1 // everything translit'ed except #{}# contents
-  options.toggleMode: 2 // only #{}# translit'ed.
+  options.toggleScheme: 0 // no toggling i.e. all are translit'ed
+  options.toggleScheme: 1 // everything translit'ed except #{}# contents
+  options.toggleScheme: 2 // only #{}# translit'ed.
 */
 
-describe('vTranslit in toggleMode 0', () => {
+describe('vTranslit in toggleScheme 0', () => {
 
   const options = {
 
-    toggleMode: 0
+    toggleScheme: 0
 
   };
 
@@ -32,11 +32,11 @@ describe('vTranslit in toggleMode 0', () => {
 
 });
 
-describe('vTranslit in toggleMode 1', () => {
+describe('vTranslit in toggleScheme 1', () => {
 
   const options = {
 
-    toggleMode: 1
+    toggleScheme: 1
 
   };
 
@@ -50,11 +50,11 @@ describe('vTranslit in toggleMode 1', () => {
 
 });
 
-describe('vTranslit in toggleMode 2', () => {
+describe('vTranslit in toggleScheme 2', () => {
 
   const options = {
 
-    toggleMode: 2
+    toggleScheme: 2
 
   };
 

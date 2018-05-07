@@ -1,6 +1,6 @@
 const defaultOptions = {
 
-  toggleMode: 0
+  toggleScheme: 0
 
 };
 
