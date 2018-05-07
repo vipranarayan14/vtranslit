@@ -87,7 +87,7 @@ exports.vTranslit = undefined;
 
 var _makeSchemeTree = __webpack_require__(1);
 
-var _getCharDetails = __webpack_require__(2);
+var _getTokenDetails = __webpack_require__(2);
 
 var _manageSchemes = __webpack_require__(3);
 
@@ -122,7 +122,7 @@ var init = function init(getScheme) {
 
     return function (inStr) {
 
-      var tokens = (0, _vtokenize.vTokenize)(inStr, maxTokenLength, (0, _getCharDetails.getCharDetails)(fromSchemeTree));
+      var tokens = (0, _vtokenize.vTokenize)(inStr, maxTokenLength, (0, _getTokenDetails.getTokenDetails)(fromSchemeTree, options));
 
       var _processTokens = (0, _processTokens2.processTokens)(tokens, fromSchemeTree, toScheme),
           processedTokens = _processTokens.processedTokens,
@@ -282,52 +282,63 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var reservedChars = function reservedChars(char) {
-  return {
+var reservedCharsList = {
 
-    ' ': {
-      char: char,
-      type: 'pause'
-    },
+  ' ': {
+    type: 'pause'
+  },
 
-    '#{': {
-      char: char,
-      type: 'marker-open-toggle-mode'
-    },
+  '_': {
+    type: 'skip'
+  }
 
-    '_': {
-      char: char,
-      type: 'skip'
-    },
-
-    '}#': {
-      char: char,
-      type: 'marker-close-toggle-mode'
-    }
-
-  }[char];
 };
 
-var getCharDetails = exports.getCharDetails = function getCharDetails(fromSchemeTree) {
-  return function (char) {
+var markers = {
 
-    var charDetailsInReservedTokens = reservedChars(char);
-    var charDetailsInFromSchemeTree = fromSchemeTree[char];
+  '#{': {
+    type: 'marker-open-toggle-mode'
+  },
 
-    var charDetailsForOtherChars = {
-      char: char,
+  '}#': {
+    type: 'marker-close-toggle-mode'
+  }
+
+};
+
+var findInReservedTokens = function findInReservedTokens(char, reservedChars) {
+
+  var reservedChar = reservedChars[char];
+
+  return reservedChar ? Object.assign({}, reservedChar, { char: char }) : null;
+};
+
+var initReservedTokens = function initReservedTokens(options) {
+  return options.translitMode > 0 ? Object.assign({}, reservedCharsList, markers) : reservedCharsList;
+};
+
+var getTokenDetails = exports.getTokenDetails = function getTokenDetails(fromSchemeTree, options) {
+  return function (token) {
+
+    var reservedTokens = initReservedTokens(options);
+
+    var tokenInReservedTokens = findInReservedTokens(token, reservedTokens);
+    var tokenInFromSchemeTree = fromSchemeTree[token];
+
+    var unknownTokenDetails = {
+      char: token,
       type: 'unknown'
     };
 
-    if (charDetailsInReservedTokens) {
+    if (tokenInReservedTokens) {
 
-      return charDetailsInReservedTokens;
-    } else if (charDetailsInFromSchemeTree) {
+      return tokenInReservedTokens;
+    } else if (tokenInFromSchemeTree) {
 
-      return charDetailsInFromSchemeTree;
+      return tokenInFromSchemeTree;
     }
 
-    return charDetailsForOtherChars;
+    return unknownTokenDetails;
   };
 };
 
@@ -524,7 +535,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var defaultOptions = {
 
-  toggleMode: 0
+  translitMode: 0
 
 };
 
@@ -598,12 +609,12 @@ Object.defineProperty(exports, "__esModule", {
 });
 /* eslint-disable complexity */
 
-var canTranslitForOpenMarker = function canTranslitForOpenMarker(toggleMode) {
+var canTranslitForOpenMarker = function canTranslitForOpenMarker(translitMode) {
 
-  if (toggleMode === 1) {
+  if (translitMode === 1) {
 
     return false;
-  } else if (toggleMode === 2) {
+  } else if (translitMode === 2) {
 
     return true;
   }
@@ -611,12 +622,12 @@ var canTranslitForOpenMarker = function canTranslitForOpenMarker(toggleMode) {
   return true;
 };
 
-var canTranslitForCloseMarker = function canTranslitForCloseMarker(toggleMode) {
+var canTranslitForCloseMarker = function canTranslitForCloseMarker(translitMode) {
 
-  if (toggleMode === 1) {
+  if (translitMode === 1) {
 
     return true;
-  } else if (toggleMode === 2) {
+  } else if (translitMode === 2) {
 
     return false;
   }
@@ -630,7 +641,7 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
 
   var canTranslit = true;
 
-  if (options.toggleMode === 2) {
+  if (options.translitMode === 2) {
 
     canTranslit = false;
   }
@@ -647,10 +658,10 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
       outStr.push('');
     } else if (tokenType === 'marker-open-toggle-mode') {
 
-      canTranslit = canTranslitForOpenMarker(options.toggleMode);
+      canTranslit = canTranslitForOpenMarker(options.translitMode);
     } else if (tokenType === 'marker-close-toggle-mode') {
 
-      canTranslit = canTranslitForCloseMarker(options.toggleMode);
+      canTranslit = canTranslitForCloseMarker(options.translitMode);
     } else {
 
       if (canTranslit) {
