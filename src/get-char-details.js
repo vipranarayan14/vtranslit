@@ -1,32 +1,71 @@
-const reservedChars = char =>
+const reservedCharsList = {
 
-  ({
+  ' ': {
+    type: 'pause'
+  },
 
-    ' ': {
-      char,
-      type: 'pause'
-    },
+  '_': {
+    type: 'skip'
+  }
 
-    '#{': {
-      char,
-      type: 'marker-open-toggle-mode',
-    },
+};
 
-    '_': {
-      char,
-      type: 'skip'
-    },
+const markers = {
 
-    '}#': {
-      char,
-      type: 'marker-close-toggle-mode',
-    }
+  '#{': {
+    type: 'marker-open-toggle-mode',
+  },
 
-  }[char]);
+  '}#': {
+    type: 'marker-close-toggle-mode',
+  }
 
-export const getCharDetails = fromSchemeTree => char => {
+};
 
-  const charDetailsInReservedTokens = reservedChars(char);
+const findInReservedChars = (char, reservedChars) => {
+
+  const reservedChar = reservedChars[char];
+
+  return (reservedChar) ? (
+
+    Object.assign({},
+
+      reservedChar,
+
+      { char }
+    )
+
+  ) : (
+
+    null
+
+  );
+
+};
+
+const initReservedChars = options =>
+
+  (options.translitMode > 0) ? (
+
+    Object.assign({},
+
+      reservedCharsList,
+
+      markers
+
+    )
+
+  ) : (
+
+    reservedCharsList
+
+  );
+
+export const getCharDetails = (fromSchemeTree, options) => char => {
+
+  const reservedChars = initReservedChars(options);
+
+  const charDetailsInReservedTokens = findInReservedChars(char, reservedChars);
   const charDetailsInFromSchemeTree = fromSchemeTree[char];
 
   const charDetailsForOtherChars = {

@@ -31,7 +31,7 @@ const init = getScheme => (fromSchemeCode, toSchemeCode, userOptions) => {
     const tokens = vTokenize(
       inStr,
       maxTokenLength,
-      getCharDetails(fromSchemeTree)
+      getCharDetails(fromSchemeTree, options)
     );
 
     const {

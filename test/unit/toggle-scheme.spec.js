@@ -26,7 +26,7 @@ describe('vTranslit in translitMode 0', () => {
 
   it('should translit the everything of the given string.', () => {
 
-    expect(vt('#{mahA}#viSNu')).to.equal('महाविष्णु');
+    expect(vt('#{mahA}# viSNu')).to.equal('#{महा}# विष्णु');
 
   });
 
