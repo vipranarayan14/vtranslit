@@ -1,6 +1,6 @@
 /* eslint-disable complexity */
 
-export const processTokens = (Tokens, fromSchemeTree, toScheme) => {
+export const processTokens = (Tokens, fromSchemeTree, toSchemeType) => {
 
   const tokens = Tokens.slice();
 
@@ -16,7 +16,7 @@ export const processTokens = (Tokens, fromSchemeTree, toScheme) => {
 
     let tokenType = token.type;
 
-    if (toScheme.about.type === 'brahmic') {
+    if (toSchemeType === 'brahmic') {
 
       if (tokenType === 'deadConsonants' && nextToken.type === 'vowelMarks') {
 
@@ -32,7 +32,7 @@ export const processTokens = (Tokens, fromSchemeTree, toScheme) => {
 
       }
 
-    } else if (toScheme.about.type === 'roman') {
+    } else if (toSchemeType === 'roman') {
 
       if (tokenType === 'consonants' && nextToken.type === 'vowelMarks') {
 
