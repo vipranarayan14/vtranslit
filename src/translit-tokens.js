@@ -6,7 +6,7 @@ const canTranslitForOpenMarker = translitMode => {
 
     return false;
 
-  } else if (translitMode === 2) {
+  } else if (translitMode >= 2) {
 
     return true;
 
@@ -22,7 +22,7 @@ const canTranslitForCloseMarker = translitMode => {
 
     return true;
 
-  } else if (translitMode === 2) {
+  } else if (translitMode >= 2) {
 
     return false;
 
@@ -36,9 +36,11 @@ export const translitTokens = (tokens, tokensType, toSchemeTree, options) => {
 
   const outStr = [];
 
-  let canTranslit = true;
+  let canTranslit = true,
+    captureSchemeCode = false,
+    capturedSchemeCode = '';
 
-  if (options.translitMode === 2) {
+  if (options.translitMode >= 2) {
 
     canTranslit = false;
 
@@ -48,27 +50,88 @@ export const translitTokens = (tokens, tokensType, toSchemeTree, options) => {
 
     const tokenType = tokensType[index];
 
-    if (tokenType === 'unknown' || tokenType === 'pause') {
+    if (tokenType === 'marker-open-translit-mode') {
 
-      outStr.push(token.char);
+      canTranslit = canTranslitForOpenMarker(options.translitMode);
+
+    } else if (tokenType === 'marker-close-translit-mode') {
+
+      canTranslit = canTranslitForCloseMarker(options.translitMode);
+
+    } else if (tokenType === 'marker-translit-scheme') {
+
+      if (canTranslit) {
+
+        capturedSchemeCode = '';
+        captureSchemeCode = true;
+
+      } else {
+
+        outStr.push(token.char);
+
+      }
+
+    } else if (tokenType === 'pause') {
+
+      if (captureSchemeCode) {
+
+        captureSchemeCode = false;
+
+      } else {
+
+        outStr.push(token.char);
+
+      }
+
+    } else if (tokenType === 'unknown') {
+
+      if (canTranslit && options.translitMode === 3 && captureSchemeCode) {
+
+        capturedSchemeCode += token.char;
+
+      } else {
+
+        outStr.push(token.char);
+
+      }
 
     } else if (tokenType === 'skip') {
 
       outStr.push('');
 
-    } else if (tokenType === 'marker-open-toggle-mode') {
-
-      canTranslit = canTranslitForOpenMarker(options.translitMode);
-
-    } else if (tokenType === 'marker-close-toggle-mode') {
-
-      canTranslit = canTranslitForCloseMarker(options.translitMode);
-
     } else {
 
       if (canTranslit) {
 
-        outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
+        if (options.translitMode === 3) {
+
+          if (captureSchemeCode) {
+
+            capturedSchemeCode += token.char;
+
+          } else {
+
+            const $toSchemeTree = toSchemeTree[capturedSchemeCode];
+
+            if ($toSchemeTree) {
+
+              outStr.push(
+                $toSchemeTree[token.aksharaIndex].char[tokenType]
+              );
+
+            } else {
+
+              outStr.push(token.char);
+
+            }
+
+          }
+
+        } else {
+
+          outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
+
+        }
 
       } else {
 
