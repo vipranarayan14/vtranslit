@@ -1,6 +1,6 @@
 {
   "name": "vtranslit",
-  "version": "4.1.1",
+  "version": "4.2.0",
   "description": "A transliterator between ITRANS and any Indic Script.",
   "main": "dist/vtranslit.npm.js",
   "files": [

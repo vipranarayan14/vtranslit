@@ -70,93 +70,11 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.vTranslit = undefined;
-
-var _makeSchemeTree = __webpack_require__(1);
-
-var _getTokenDetails = __webpack_require__(2);
-
-var _manageSchemes = __webpack_require__(3);
-
-var _prepareOptions = __webpack_require__(8);
-
-var _processTokens2 = __webpack_require__(9);
-
-var _translitTokens = __webpack_require__(10);
-
-var _vtokenize = __webpack_require__(11);
-
-var init = function init(getScheme) {
-  return function (fromSchemeCode, toSchemeCode, userOptions) {
-
-    if (fromSchemeCode === toSchemeCode) {
-
-      return function (inStr) {
-        return inStr;
-      };
-    }
-
-    var options = (0, _prepareOptions.prepareOptions)(userOptions);
-
-    var fromScheme = getScheme(fromSchemeCode);
-    var toScheme = getScheme(toSchemeCode);
-
-    var _makeFromSchemeTree = (0, _makeSchemeTree.makeFromSchemeTree)(fromScheme),
-        fromSchemeTree = _makeFromSchemeTree.fromSchemeTree,
-        maxTokenLength = _makeFromSchemeTree.maxTokenLength;
-
-    var toSchemeTree = (0, _makeSchemeTree.makeToSchemeTree)(toScheme);
-
-    return function (inStr) {
-
-      var tokens = (0, _vtokenize.vTokenize)(inStr, maxTokenLength, (0, _getTokenDetails.getTokenDetails)(fromSchemeTree, options));
-
-      var _processTokens = (0, _processTokens2.processTokens)(tokens, fromSchemeTree, toScheme),
-          processedTokens = _processTokens.processedTokens,
-          tokensType = _processTokens.tokensType;
-
-      var outStr = (0, _translitTokens.translitTokens)(processedTokens, tokensType, toSchemeTree, options);
-
-      return outStr.join('');
-    };
-  };
-};
-
-var vTranslit = exports.vTranslit = function vTranslit() {
-  var schemes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-
-  if (!schemes.length) {
-
-    throw new Error('Function vTranslit requires vtranslit schemes in an array format.');
-  }
-
-  var schemesManager = (0, _manageSchemes.manageSchemes)(schemes);
-
-  return {
-
-    find: schemesManager.find,
-    init: init(schemesManager.get),
-    list: schemesManager.list
-
-  };
-};
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -273,7 +191,196 @@ var makeToSchemeTree = exports.makeToSchemeTree = function makeToSchemeTree(toSc
 };
 
 /***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.translitString = undefined;
+
+var _getTokenDetails = __webpack_require__(5);
+
+var _processTokens2 = __webpack_require__(6);
+
+var _translitTokens = __webpack_require__(7);
+
+var _vtokenize = __webpack_require__(8);
+
+var getToSchemeType = function getToSchemeType(toScheme, options) {
+  return options.translitMode === 3 ? 'brahmic' : toScheme.about.type;
+};
+
+var translitString = exports.translitString = function translitString() {
+  for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+    params[_key] = arguments[_key];
+  }
+
+  return function (inStr) {
+    var toScheme = params[0],
+        fromSchemeTree = params[1],
+        toSchemeTree = params[2],
+        maxTokenLength = params[3],
+        options = params[4];
+
+
+    var tokens = (0, _vtokenize.vTokenize)(inStr, maxTokenLength, (0, _getTokenDetails.getTokenDetails)(fromSchemeTree, options));
+
+    var toSchemeType = getToSchemeType(toScheme, options);
+
+    var _processTokens = (0, _processTokens2.processTokens)(tokens, fromSchemeTree, toSchemeType),
+        processedTokens = _processTokens.processedTokens,
+        tokensType = _processTokens.tokensType;
+
+    var outStr = (0, _translitTokens.translitTokens)(processedTokens, tokensType, toSchemeTree, options);
+
+    return outStr.join('');
+  };
+};
+
+/***/ }),
 /* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.vTranslit = undefined;
+
+var _init = __webpack_require__(3);
+
+var _manageSchemes = __webpack_require__(11);
+
+var vTranslit = exports.vTranslit = function vTranslit() {
+  var schemes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+
+  if (!schemes.length) {
+
+    throw new Error('Function vTranslit requires vtranslit schemes in an array format.');
+  }
+
+  var schemesManager = (0, _manageSchemes.manageSchemes)(schemes);
+
+  return {
+
+    find: schemesManager.find,
+    init: (0, _init.init)(schemesManager.get, schemesManager.list),
+    list: schemesManager.list
+
+  };
+};
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.init = undefined;
+
+var _multiTranslit = __webpack_require__(4);
+
+var _prepareOptions = __webpack_require__(9);
+
+var _singleTranslit = __webpack_require__(10);
+
+var checkFromSchemeCode = function checkFromSchemeCode(fromSchemeCode) {
+
+  if (fromSchemeCode !== 'Itrn') {
+
+    throw new Error('Multi scheme translit requires from scheme to be `Itrn`.');
+  }
+};
+
+var init = exports.init = function init(getScheme, listSchemes) {
+  return function (fromSchemeCode, toSchemeCode, userOptions) {
+    return function (inStr) {
+
+      if (fromSchemeCode === toSchemeCode) {
+
+        return inStr;
+      }
+
+      var options = (0, _prepareOptions.prepareOptions)(userOptions);
+
+      if (toSchemeCode === 'Multi') {
+
+        checkFromSchemeCode(fromSchemeCode);
+
+        return (0, _multiTranslit.multiTranslit)(fromSchemeCode, listSchemes, getScheme, options)(inStr);
+      }
+
+      return (0, _singleTranslit.singleTranslit)(fromSchemeCode, toSchemeCode, getScheme, options)(inStr);
+    };
+  };
+};
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.multiTranslit = undefined;
+
+var _makeSchemeTree = __webpack_require__(0);
+
+var _translitString = __webpack_require__(1);
+
+var multiTranslit = exports.multiTranslit = function multiTranslit() {
+  for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+    params[_key] = arguments[_key];
+  }
+
+  var fromSchemeCode = params[0],
+      listSchemes = params[1],
+      getScheme = params[2],
+      options = params[3];
+
+
+  var fromScheme = getScheme(fromSchemeCode);
+  var toSchemes = [];
+
+  var _makeFromSchemeTree = (0, _makeSchemeTree.makeFromSchemeTree)(fromScheme),
+      fromSchemeTree = _makeFromSchemeTree.fromSchemeTree,
+      maxTokenLength = _makeFromSchemeTree.maxTokenLength;
+
+  listSchemes().forEach(function (scheme) {
+
+    toSchemes.push(getScheme(scheme.code));
+  });
+
+  var toSchemeTrees = {};
+
+  toSchemes.forEach(function (toScheme) {
+
+    toSchemeTrees[toScheme.about.code] = (0, _makeSchemeTree.makeToSchemeTree)(toScheme);
+  });
+
+  options.translitMode = 3; // 'marked' + 'multi'
+
+  return function (inStr) {
+    return (0, _translitString.translitString)(toSchemes, fromSchemeTree, toSchemeTrees, maxTokenLength, options)(inStr);
+  };
+};
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -297,11 +404,15 @@ var reservedCharsList = {
 var markers = {
 
   '#{': {
-    type: 'marker-open-toggle-mode'
+    type: 'marker-open-translit-mode'
+  },
+
+  '@': {
+    type: 'marker-translit-scheme'
   },
 
   '}#': {
-    type: 'marker-close-toggle-mode'
+    type: 'marker-close-translit-mode'
   }
 
 };
@@ -343,208 +454,7 @@ var getTokenDetails = exports.getTokenDetails = function getTokenDetails(fromSch
 };
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.manageSchemes = undefined;
-
-var _findScheme = __webpack_require__(4);
-
-var _getScheme = __webpack_require__(6);
-
-var _listAvailableSchemes = __webpack_require__(7);
-
-var manageSchemes = exports.manageSchemes = function manageSchemes(schemes) {
-  return {
-
-    find: (0, _findScheme.findScheme)(schemes),
-    get: (0, _getScheme.getScheme)(schemes),
-    list: (0, _listAvailableSchemes.listAvailableSchemes)(schemes)
-
-  };
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.findScheme = undefined;
-
-var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
-
-var _utils = __webpack_require__(5);
-
-var findSchemeForChar = function findSchemeForChar(schemes) {
-  return function (char) {
-    return schemes.find(function (scheme) {
-
-      var unicodeBlock = scheme.about.unicodeBlock;
-
-      var _unicodeBlock$split$m = unicodeBlock.split('-').map(function (limit) {
-        return parseInt(limit, 16);
-      }),
-          _unicodeBlock$split$m2 = _slicedToArray(_unicodeBlock$split$m, 2),
-          lowerLimit = _unicodeBlock$split$m2[0],
-          upperLimit = _unicodeBlock$split$m2[1];
-
-      var charCode = char.charCodeAt(0);
-
-      return charCode >= lowerLimit && charCode <= upperLimit;
-    });
-  };
-};
-
-var findScheme = exports.findScheme = function findScheme(schemes) {
-  return function (str) {
-
-    if (!str || typeof str !== 'string') {
-
-      throw new Error('Function requires a string to find its scheme');
-    }
-
-    var maxSampleSize = 10;
-    var sampleStr = str.slice(0, maxSampleSize);
-
-    var schemeForChars = [];
-
-    sampleStr.split('').forEach(function (char) {
-
-      var schemeForChar = findSchemeForChar(schemes)(char);
-
-      if (schemeForChar) {
-
-        schemeForChars.push(schemeForChar.about.code);
-      }
-    });
-
-    return (0, _utils.maxOcurrance)(schemeForChars);
-  };
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var maxOcurrance = exports.maxOcurrance = function maxOcurrance(array) {
-
-  var counts = {};
-
-  var compare = 0,
-      mostOccured = null;
-
-  array.forEach(function (word) {
-
-    if (counts[word] === undefined) {
-
-      counts[word] = 1;
-    } else {
-
-      counts[word] += 1;
-    }
-
-    if (counts[word] > compare) {
-
-      compare = counts[word];
-      mostOccured = word;
-    }
-  });
-
-  return mostOccured;
-};
-
-/***/ }),
 /* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var getScheme = exports.getScheme = function getScheme(schemes) {
-  return function (schemeCode) {
-
-    var scheme = schemes.find(function (_scheme) {
-      return _scheme.about.code === schemeCode;
-    });
-
-    if (scheme) {
-
-      return scheme;
-    }
-
-    throw new Error("No Scheme found with the given schemeCode: '" + schemeCode + "'");
-  };
-};
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var listAvailableSchemes = exports.listAvailableSchemes = function listAvailableSchemes(schemes) {
-  return function () {
-
-    var availableSchemes = [];
-
-    schemes.forEach(function (scheme) {
-
-      availableSchemes.push({
-        code: scheme.about.code,
-        name: scheme.about.name
-      });
-    });
-
-    return availableSchemes;
-  };
-};
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var defaultOptions = {
-
-  translitMode: 0
-
-};
-
-var prepareOptions = exports.prepareOptions = function prepareOptions(userOptions) {
-  return Object.assign({}, defaultOptions, userOptions);
-};
-
-/***/ }),
-/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -555,7 +465,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 /* eslint-disable complexity */
 
-var processTokens = exports.processTokens = function processTokens(Tokens, fromSchemeTree, toScheme) {
+var processTokens = exports.processTokens = function processTokens(Tokens, fromSchemeTree, toSchemeType) {
 
   var tokens = Tokens.slice();
 
@@ -571,7 +481,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 
     var tokenType = token.type;
 
-    if (toScheme.about.type === 'brahmic') {
+    if (toSchemeType === 'brahmic') {
 
       if (tokenType === 'deadConsonants' && nextToken.type === 'vowelMarks') {
 
@@ -583,7 +493,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 
         tokenType = 'vowels';
       }
-    } else if (toScheme.about.type === 'roman') {
+    } else if (toSchemeType === 'roman') {
 
       if (tokenType === 'consonants' && nextToken.type === 'vowelMarks') {
 
@@ -598,7 +508,7 @@ var processTokens = exports.processTokens = function processTokens(Tokens, fromS
 };
 
 /***/ }),
-/* 10 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -614,7 +524,7 @@ var canTranslitForOpenMarker = function canTranslitForOpenMarker(translitMode) {
   if (translitMode === 1) {
 
     return false;
-  } else if (translitMode === 2) {
+  } else if (translitMode >= 2) {
 
     return true;
   }
@@ -627,7 +537,7 @@ var canTranslitForCloseMarker = function canTranslitForCloseMarker(translitMode)
   if (translitMode === 1) {
 
     return true;
-  } else if (translitMode === 2) {
+  } else if (translitMode >= 2) {
 
     return false;
   }
@@ -639,9 +549,11 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
 
   var outStr = [];
 
-  var canTranslit = true;
+  var canTranslit = true,
+      captureSchemeCode = false,
+      capturedSchemeCode = '';
 
-  if (options.translitMode === 2) {
+  if (options.translitMode >= 2) {
 
     canTranslit = false;
   }
@@ -650,23 +562,68 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
 
     var tokenType = tokensType[index];
 
-    if (tokenType === 'unknown' || tokenType === 'pause') {
+    if (tokenType === 'marker-open-translit-mode') {
 
-      outStr.push(token.char);
+      canTranslit = canTranslitForOpenMarker(options.translitMode);
+    } else if (tokenType === 'marker-close-translit-mode') {
+
+      canTranslit = canTranslitForCloseMarker(options.translitMode);
+    } else if (tokenType === 'marker-translit-scheme') {
+
+      if (canTranslit) {
+
+        capturedSchemeCode = '';
+        captureSchemeCode = true;
+      } else {
+
+        outStr.push(token.char);
+      }
+    } else if (tokenType === 'pause') {
+
+      if (captureSchemeCode) {
+
+        captureSchemeCode = false;
+      } else {
+
+        outStr.push(token.char);
+      }
+    } else if (tokenType === 'unknown') {
+
+      if (canTranslit && options.translitMode === 3 && captureSchemeCode) {
+
+        capturedSchemeCode += token.char;
+      } else {
+
+        outStr.push(token.char);
+      }
     } else if (tokenType === 'skip') {
 
       outStr.push('');
-    } else if (tokenType === 'marker-open-toggle-mode') {
-
-      canTranslit = canTranslitForOpenMarker(options.translitMode);
-    } else if (tokenType === 'marker-close-toggle-mode') {
-
-      canTranslit = canTranslitForCloseMarker(options.translitMode);
     } else {
 
       if (canTranslit) {
 
-        outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
+        if (options.translitMode === 3) {
+
+          if (captureSchemeCode) {
+
+            capturedSchemeCode += token.char;
+          } else {
+
+            var $toSchemeTree = toSchemeTree[capturedSchemeCode];
+
+            if ($toSchemeTree) {
+
+              outStr.push($toSchemeTree[token.aksharaIndex].char[tokenType]);
+            } else {
+
+              outStr.push(token.char);
+            }
+          }
+        } else {
+
+          outStr.push(toSchemeTree[token.aksharaIndex].char[tokenType]);
+        }
       } else {
 
         outStr.push(token.char);
@@ -678,7 +635,7 @@ var translitTokens = exports.translitTokens = function translitTokens(tokens, to
 };
 
 /***/ }),
-/* 11 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -839,6 +796,248 @@ var vTokenize = exports.vTokenize = function vTokenize(str, maxTokenLength, getS
 /***/ })
 /******/ ]);
 });
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var defaultOptions = {
+
+  translitMode: 0
+
+};
+
+var prepareOptions = exports.prepareOptions = function prepareOptions(userOptions) {
+  return Object.assign({}, defaultOptions, userOptions);
+};
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.singleTranslit = undefined;
+
+var _makeSchemeTree = __webpack_require__(0);
+
+var _translitString = __webpack_require__(1);
+
+var singleTranslit = exports.singleTranslit = function singleTranslit() {
+  for (var _len = arguments.length, params = Array(_len), _key = 0; _key < _len; _key++) {
+    params[_key] = arguments[_key];
+  }
+
+  var fromSchemeCode = params[0],
+      toSchemeCode = params[1],
+      getScheme = params[2],
+      options = params[3];
+
+
+  var fromScheme = getScheme(fromSchemeCode);
+  var toScheme = getScheme(toSchemeCode);
+
+  var _makeFromSchemeTree = (0, _makeSchemeTree.makeFromSchemeTree)(fromScheme),
+      fromSchemeTree = _makeFromSchemeTree.fromSchemeTree,
+      maxTokenLength = _makeFromSchemeTree.maxTokenLength;
+
+  var toSchemeTree = (0, _makeSchemeTree.makeToSchemeTree)(toScheme);
+
+  return function (inStr) {
+    return (0, _translitString.translitString)(toScheme, fromSchemeTree, toSchemeTree, maxTokenLength, options)(inStr);
+  };
+};
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.manageSchemes = undefined;
+
+var _findScheme = __webpack_require__(12);
+
+var _getScheme = __webpack_require__(14);
+
+var _listAvailableSchemes = __webpack_require__(15);
+
+var manageSchemes = exports.manageSchemes = function manageSchemes(schemes) {
+  return {
+
+    find: (0, _findScheme.findScheme)(schemes),
+    get: (0, _getScheme.getScheme)(schemes),
+    list: (0, _listAvailableSchemes.listAvailableSchemes)(schemes)
+
+  };
+};
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.findScheme = undefined;
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _utils = __webpack_require__(13);
+
+var findSchemeForChar = function findSchemeForChar(schemes) {
+  return function (char) {
+    return schemes.find(function (scheme) {
+
+      var unicodeBlock = scheme.about.unicodeBlock;
+
+      var _unicodeBlock$split$m = unicodeBlock.split('-').map(function (limit) {
+        return parseInt(limit, 16);
+      }),
+          _unicodeBlock$split$m2 = _slicedToArray(_unicodeBlock$split$m, 2),
+          lowerLimit = _unicodeBlock$split$m2[0],
+          upperLimit = _unicodeBlock$split$m2[1];
+
+      var charCode = char.charCodeAt(0);
+
+      return charCode >= lowerLimit && charCode <= upperLimit;
+    });
+  };
+};
+
+var findScheme = exports.findScheme = function findScheme(schemes) {
+  return function (str) {
+
+    if (!str || typeof str !== 'string') {
+
+      throw new Error('Function requires a string to find its scheme');
+    }
+
+    var maxSampleSize = 10;
+    var sampleStr = str.slice(0, maxSampleSize);
+
+    var schemeForChars = [];
+
+    sampleStr.split('').forEach(function (char) {
+
+      var schemeForChar = findSchemeForChar(schemes)(char);
+
+      if (schemeForChar) {
+
+        schemeForChars.push(schemeForChar.about.code);
+      }
+    });
+
+    return (0, _utils.maxOcurrance)(schemeForChars);
+  };
+};
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var maxOcurrance = exports.maxOcurrance = function maxOcurrance(array) {
+
+  var counts = {};
+
+  var compare = 0,
+      mostOccured = null;
+
+  array.forEach(function (word) {
+
+    if (counts[word] === undefined) {
+
+      counts[word] = 1;
+    } else {
+
+      counts[word] += 1;
+    }
+
+    if (counts[word] > compare) {
+
+      compare = counts[word];
+      mostOccured = word;
+    }
+  });
+
+  return mostOccured;
+};
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var getScheme = exports.getScheme = function getScheme(schemes) {
+  return function (schemeCode) {
+
+    var scheme = schemes.find(function (_scheme) {
+      return _scheme.about.code === schemeCode;
+    });
+
+    if (scheme) {
+
+      return scheme;
+    }
+
+    throw new Error("No Scheme found with the given schemeCode: '" + schemeCode + "'");
+  };
+};
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var listAvailableSchemes = exports.listAvailableSchemes = function listAvailableSchemes(schemes) {
+  return function () {
+
+    var availableSchemes = [];
+
+    schemes.forEach(function (scheme) {
+
+      availableSchemes.push({
+        code: scheme.about.code,
+        name: scheme.about.name
+      });
+    });
+
+    return availableSchemes;
+  };
+};
 
 /***/ })
 /******/ ]);
