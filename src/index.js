@@ -1,39 +1,5 @@
+import { init } from './init';
 import { manageSchemes } from './scheme/manage-schemes';
-import { multiTranslit } from './multi-translit';
-import { prepareOptions } from './prepare-options';
-import { singleTranslit } from './single-translit';
-
-const init = (getScheme, listSchemes) =>
-
-  (fromSchemeCode, toSchemeCode, userOptions) => {
-
-    if (fromSchemeCode === toSchemeCode) {
-
-      return inStr => inStr;
-
-    }
-
-    const options = prepareOptions(userOptions);
-
-    if (toSchemeCode === 'Multi') {
-
-      return inStr => multiTranslit(
-        fromSchemeCode,
-        listSchemes,
-        getScheme,
-        options
-      )(inStr);
-
-    }
-
-    return inStr => singleTranslit(
-      fromSchemeCode,
-      toSchemeCode,
-      getScheme,
-      options
-    )(inStr);
-
-  };
 
 export const vTranslit = (schemes = []) => {
 
