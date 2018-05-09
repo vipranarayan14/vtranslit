@@ -13,11 +13,15 @@ const reservedCharsList = {
 const markers = {
 
   '#{': {
-    type: 'marker-open-toggle-mode',
+    type: 'marker-open-translit-mode',
+  },
+
+  '@': {
+    type: 'marker-translit-scheme'
   },
 
   '}#': {
-    type: 'marker-close-toggle-mode',
+    type: 'marker-close-translit-mode',
   }
 
 };
@@ -28,18 +32,9 @@ const findInReservedTokens = (char, reservedChars) => {
 
   return (reservedChar) ? (
 
-    Object.assign({},
+    Object.assign({}, reservedChar, { char })
 
-      reservedChar,
-
-      { char }
-    )
-
-  ) : (
-
-    null
-
-  );
+  ) : null;
 
 };
 
