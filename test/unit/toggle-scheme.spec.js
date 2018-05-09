@@ -10,8 +10,8 @@ const vtranslit = vTranslit([
 
 /*
   options.translitMode: 0 'everything' // no toggling i.e. all are translit'ed
-  options.translitMode: 1 'outside-markers-only' // everything translit'ed except #{}# contents
-  options.translitMode: 2 'inside-markers-only' // only #{}# translit'ed.
+  options.translitMode: 1 'not marked' // everything translit'ed except #{}# contents
+  options.translitMode: 2 'marked' // only #{}# translit'ed.
 */
 
 describe('vTranslit in translitMode 0', () => {
@@ -24,7 +24,7 @@ describe('vTranslit in translitMode 0', () => {
 
   const vt = vtranslit.init('Itrn', 'Deva', options);
 
-  it('should translit the everything of the given string.', () => {
+  it('should translit everything of the given string.', () => {
 
     expect(vt('#{mahA}# viSNu')).to.equal('#{महा}# विष्णु');
 
@@ -42,7 +42,7 @@ describe('vTranslit in translitMode 1', () => {
 
   const vt = vtranslit.init('Itrn', 'Deva', options);
 
-  it('should translit the everything execpt contents of #{}#.', () => {
+  it('should translit everything execpt contents of #{}#.', () => {
 
     expect(vt('#{Lord}# viSNu')).to.equal('Lord विष्णु');
 
