@@ -1,56 +1,39 @@
-import { makeFromSchemeTree, makeToSchemeTree } from './make-scheme-tree';
-import { getTokenDetails } from './get-token-details';
 import { manageSchemes } from './scheme/manage-schemes';
+import { multiTranslit } from './multi-translit';
 import { prepareOptions } from './prepare-options';
-import { processTokens } from './process-tokens';
-import { translitTokens } from './translit-tokens';
-import { vTokenize } from 'vtokenize';
+import { singleTranslit } from './single-translit';
 
-const init = getScheme => (fromSchemeCode, toSchemeCode, userOptions) => {
+const init = (getScheme, listSchemes) =>
 
-  if (fromSchemeCode === toSchemeCode) {
+  (fromSchemeCode, toSchemeCode, userOptions) => {
 
-    return inStr => inStr;
+    if (fromSchemeCode === toSchemeCode) {
 
-  }
+      return inStr => inStr;
 
-  const options = prepareOptions(userOptions);
+    }
 
-  const fromScheme = getScheme(fromSchemeCode);
-  const toScheme = getScheme(toSchemeCode);
+    const options = prepareOptions(userOptions);
 
-  const {
-    fromSchemeTree,
-    maxTokenLength
-  } = makeFromSchemeTree(fromScheme);
+    if (toSchemeCode === 'Multi') {
 
-  const toSchemeTree = makeToSchemeTree(toScheme);
+      return inStr => multiTranslit(
+        fromSchemeCode,
+        listSchemes,
+        getScheme,
+        options
+      )(inStr);
 
-  return inStr => {
+    }
 
-    const tokens = vTokenize(
-      inStr,
-      maxTokenLength,
-      getTokenDetails(fromSchemeTree, options)
-    );
-
-    const {
-      processedTokens,
-      tokensType
-    } = processTokens(tokens, fromSchemeTree, toScheme);
-
-    const outStr = translitTokens(
-      processedTokens,
-      tokensType,
-      toSchemeTree,
+    return inStr => singleTranslit(
+      fromSchemeCode,
+      toSchemeCode,
+      getScheme,
       options
-    );
-
-    return outStr.join('');
+    )(inStr);
 
   };
-
-};
 
 export const vTranslit = (schemes = []) => {
 
@@ -65,7 +48,7 @@ export const vTranslit = (schemes = []) => {
   return {
 
     find: schemesManager.find,
-    init: init(schemesManager.get),
+    init: init(schemesManager.get, schemesManager.list),
     list: schemesManager.list
 
   };
