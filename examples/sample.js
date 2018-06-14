@@ -1,11 +1,11 @@
 const { vTranslit } = require('../');
 
-const vTranslitDevaScheme = require('vtranslit-deva-scheme');
-const vTranslitItrnScheme = require('vtranslit-itrn-scheme');
+const { vTranslitSchemeDeva } = require('vtranslit-scheme-deva');
+const { vTranslitSchemeItrn } = require('vtranslit-scheme-itrn');
 
 const vtranslit = vTranslit([
-  vTranslitDevaScheme,
-  vTranslitItrnScheme,
+  vTranslitSchemeDeva,
+  vTranslitSchemeItrn
 ]);
 
 const vtItrnToDeva = vtranslit.init('Itrn', 'Deva');
