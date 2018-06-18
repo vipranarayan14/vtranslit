@@ -49,6 +49,10 @@
         type: 'string'
       },
     })
+
+    .alias('v', 'version')
+    .describe('v', 'show version information')
+
     .help('h')
     .alias('h', 'help')
     .argv;
