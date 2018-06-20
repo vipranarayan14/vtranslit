@@ -276,7 +276,7 @@ var vTranslit = exports.vTranslit = function vTranslit() {
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 exports.init = undefined;
 
@@ -288,33 +288,33 @@ var _singleTranslit = __webpack_require__(10);
 
 var checkFromSchemeCode = function checkFromSchemeCode(fromSchemeCode) {
 
-  if (fromSchemeCode !== 'Itrn') {
+    if (fromSchemeCode !== 'Itrn') {
 
-    throw new Error('Multi scheme translit requires from scheme to be `Itrn`.');
-  }
+        throw new Error('Multi scheme translit requires from scheme to be `Itrn`.');
+    }
 };
 
 var init = exports.init = function init(getScheme, listSchemes) {
-  return function (fromSchemeCode, toSchemeCode, userOptions) {
-    return function (inStr) {
+    return function (fromSchemeCode, toSchemeCode, userOptions) {
+        return function (inStr) {
 
-      if (fromSchemeCode === toSchemeCode) {
+            if (fromSchemeCode === toSchemeCode) {
 
-        return inStr;
-      }
+                return inStr;
+            }
 
-      var options = (0, _prepareOptions.prepareOptions)(userOptions);
+            var options = (0, _prepareOptions.prepareOptions)(userOptions);
 
-      if (toSchemeCode === 'Multi') {
+            if (toSchemeCode === 'Multi') {
 
-        checkFromSchemeCode(fromSchemeCode);
+                checkFromSchemeCode(fromSchemeCode);
 
-        return (0, _multiTranslit.multiTranslit)(fromSchemeCode, listSchemes, getScheme, options)(inStr);
-      }
+                return (0, _multiTranslit.multiTranslit)(fromSchemeCode, listSchemes, getScheme, options)(inStr);
+            }
 
-      return (0, _singleTranslit.singleTranslit)(fromSchemeCode, toSchemeCode, getScheme, options)(inStr);
+            return (0, _singleTranslit.singleTranslit)(fromSchemeCode, toSchemeCode, getScheme, options)(inStr);
+        };
     };
-  };
 };
 
 /***/ }),
@@ -452,50 +452,50 @@ var getTokenDetails = exports.getTokenDetails = function getTokenDetails(fromSch
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
+    value: true
 });
 /* eslint-disable complexity */
 
 var processTokens = exports.processTokens = function processTokens(Tokens, fromSchemeTree, toSchemeType) {
 
-  var tokens = Tokens.slice();
+    var tokens = Tokens.slice();
 
-  var tokensType = [];
+    var tokensType = [];
 
-  for (var index = 0; index < tokens.length; index += 1) {
+    for (var index = 0; index < tokens.length; index += 1) {
 
-    var token = tokens[index];
+        var token = tokens[index];
 
-    var nextToken = index < tokens.length - 1 ? tokens[index + 1] : { type: 'strEnd' };
+        var nextToken = index < tokens.length - 1 ? tokens[index + 1] : { type: 'strEnd' };
 
-    var prevToken = index > 0 ? tokens[index - 1] : { type: 'strStart' };
+        var prevToken = index > 0 ? tokens[index - 1] : { type: 'strStart' };
 
-    var tokenType = token.type;
+        var tokenType = token.type;
 
-    if (toSchemeType === 'brahmic') {
+        if (toSchemeType === 'brahmic') {
 
-      if (tokenType === 'deadConsonants' && nextToken.type === 'vowelMarks') {
+            if (tokenType === 'deadConsonants' && nextToken.type === 'vowelMarks') {
 
-        tokenType = 'consonants';
-      } else if (tokenType === 'vowels' && prevToken.type === 'deadConsonants') {
+                tokenType = 'consonants';
+            } else if (tokenType === 'vowels' && prevToken.type === 'deadConsonants') {
 
-        tokenType = 'vowelMarks';
-      } else if (tokenType === 'vowelMarks' && prevToken.type !== 'deadConsonants') {
+                tokenType = 'vowelMarks';
+            } else if (tokenType === 'vowelMarks' && prevToken.type !== 'deadConsonants') {
 
-        tokenType = 'vowels';
-      }
-    } else if (toSchemeType === 'roman') {
+                tokenType = 'vowels';
+            }
+        } else if (toSchemeType === 'roman') {
 
-      if (tokenType === 'consonants' && nextToken.type === 'vowelMarks') {
+            if (tokenType === 'consonants' && nextToken.type === 'vowelMarks') {
 
-        tokenType = 'deadConsonants';
-      }
+                tokenType = 'deadConsonants';
+            }
+        }
+
+        tokensType.push(tokenType);
     }
 
-    tokensType.push(tokenType);
-  }
-
-  return { processedTokens: tokens, tokensType: tokensType };
+    return { processedTokens: tokens, tokensType: tokensType };
 };
 
 /***/ }),
