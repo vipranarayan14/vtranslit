@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const VTranslitCli = require('./vtranslit-cli');
 
 const options = require('yargs')
