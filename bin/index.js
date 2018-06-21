@@ -4,54 +4,51 @@ const VTranslitCli = require('./vtranslit-cli');
 
 const options = require('yargs')
   .usage('Usage: $0 <command> [options]')
-  .command(
-    'string',
-    'input a string',
-    function (yargs) {
+  .command('string', 'input a string', yargs => yargs
+    .usage('Usage: $0 string [-s] <string> [options]')
+    .options({
+      'inputString': {
+        alias: 's',
+        description: 'The string to be transliterated',
+        type: 'string'
+      }
+    })
+    .argv
+  )
+  .command('file', 'input a file', yargs => yargs
+    .usage('Usage: $0 file -i <input_file path> [-o <output_file_path>] [options]')
+    .options({
 
-      return yargs
-        .usage('Usage: $0 string -s <string> [options]')
-        .options({
-          'inputString': {
-            alias: 's',
-            demand: 'Specify the string to be transliterated',
-            description: 'The string to be transliterated',
-            type: 'string'
-          }
-        })
-        .argv;
+      inputFilePath: {
+        alias: 'i',
+        demand: 'Specify the path to the file to be transliterated',
+        description: 'The path to the file to be transliterated',
+        type: 'string'
+      },
 
-    }
+      outputFilePath: {
+        alias: 'o',
+        description: 'The path to the file to be transliterated',
+        type: 'string'
+      }
+
+    })
 
   )
-  .command(
-    'file',
-    'input a file',
-    function (yargs) {
-
-      return yargs
-        .usage('Usage: $0 file -i <input_file path> [-o <output_file_path>] [options]')
-        .options({
-
-          inputFilePath: {
-            alias: 'i',
-            demand: 'Specify the path to the file to be transliterated',
-            description: 'The path to the file to be transliterated',
-            type: 'string'
-          },
-
-          outputFilePath: {
-            alias: 'o',
-            description: 'The path to the file to be transliterated',
-            type: 'string'
-          }
-
-        });
-
-    }
+  .command('find', 'input a string to find the scheme for.', yargs => yargs
+    .usage('Usage: $0 find [-s] <string>')
+    .options({
+      'inputString': {
+        alias: 's',
+        description: 'The string to find the scheme for.',
+        type: 'string'
+      }
+    })
+    .argv
 
   )
   .options({
+
     fromScheme: {
       alias: 'f',
       choices: ['Itrn', 'Deva', 'Knda', 'Taml', 'Telu'],
@@ -64,13 +61,14 @@ const options = require('yargs')
 
     toScheme: {
       alias: 't',
-      choices: ['Itrn', 'Deva', 'Knda', 'Taml', 'Telu'],
+      choices: ['Itrn', 'Deva', 'Knda', 'Taml', 'Telu', 'Multi'],
       default: 'Deva',
       demand: 'Specify Scheme to transliterate to',
       describe: 'Scheme to transliterate to',
       global: true,
       type: 'string'
     }
+
   })
 
   .alias('v', 'version')
@@ -97,11 +95,19 @@ const invalidCommandError = command => () => {
 
   },
 
+  'find': () => {
+
+    const vtranslitCli = new VTranslitCli(options.fromScheme, options.toScheme);
+
+    vtranslitCli.find(options.inputString || options._[1]);
+
+  },
+
   'string': () => {
 
     const vtranslitCli = new VTranslitCli(options.fromScheme, options.toScheme);
 
-    vtranslitCli.string(options.inputString);
+    vtranslitCli.string(options.inputString || options._[1]);
 
   }
 
