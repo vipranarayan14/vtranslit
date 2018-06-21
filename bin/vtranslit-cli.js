@@ -10,7 +10,7 @@ module.exports = class VTranslitCli {
     const { vTranslitSchemeTaml } = require('vtranslit-scheme-taml');
     const { vTranslitSchemeTelu } = require('vtranslit-scheme-telu');
 
-    const vtranslit = vTranslit([
+    this.vtranslit = vTranslit([
       vTranslitSchemeDeva,
       vTranslitSchemeItrn,
       vTranslitSchemeKnda,
@@ -18,7 +18,7 @@ module.exports = class VTranslitCli {
       vTranslitSchemeTelu
     ]);
 
-    this.vt = vtranslit.init(fromScheme, toScheme);
+    this.vt = this.vtranslit.init(fromScheme, toScheme);
     this.log = console.log; // eslint-disable-line no-console
 
   }
@@ -56,6 +56,12 @@ module.exports = class VTranslitCli {
       return this.log('Transliterated output:\n', output);
 
     });
+
+  }
+
+  find(str) {
+
+    this.log(this.vtranslit.find(str));
 
   }
 
