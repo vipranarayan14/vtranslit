@@ -2,6 +2,8 @@
   "name": "vtranslit",
   "version": "4.4.0",
   "description": "A transliterator between ITRANS and any Indic Script.",
+  "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
+  "license": "MIT",
   "main": "dist/vtranslit.npm.js",
   "files": [
     "bin",
@@ -16,8 +18,6 @@
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
   },
-  "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.2",
