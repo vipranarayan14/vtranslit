@@ -7,9 +7,6 @@
     "bin",
     "dist/vtranslit.npm.js"
   ],
-  "bin": {
-    "vtranslit": "bin/index.js"
-  },
   "scripts": {
     "build": "rimraf dist && webpack",
     "test": "mocha",
