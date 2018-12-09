@@ -255,24 +255,26 @@ exports.vTranslit = undefined;
 
 var _init = __webpack_require__(3);
 
-var _manageSchemes = __webpack_require__(11);
+var _manageSchemes2 = __webpack_require__(11);
+
+var _validateSchemes = __webpack_require__(16);
 
 var vTranslit = exports.vTranslit = function vTranslit() {
   var schemes = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
 
-  if (!schemes.length) {
+  var $schemes = (0, _validateSchemes.validateSchemes)(schemes);
 
-    throw new Error('Function vTranslit requires vtranslit schemes in an array format.');
-  }
-
-  var schemesManager = (0, _manageSchemes.manageSchemes)(schemes);
+  var _manageSchemes = (0, _manageSchemes2.manageSchemes)($schemes),
+      find = _manageSchemes.find,
+      get = _manageSchemes.get,
+      list = _manageSchemes.list;
 
   return {
 
-    find: schemesManager.find,
-    init: (0, _init.init)(schemesManager.get, schemesManager.list),
-    list: schemesManager.list
+    find: find,
+    init: (0, _init.init)(get, list),
+    list: list
 
   };
 };
@@ -1037,6 +1039,50 @@ var listAvailableSchemes = exports.listAvailableSchemes = function listAvailable
 
     return availableSchemes;
   };
+};
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+/* eslint-disable complexity */
+
+var validateSchemes = exports.validateSchemes = function validateSchemes(schemes) {
+
+  // handle `null`, `undefined`, etc.
+  if (!schemes) {
+
+    throw new Error('Function vTranslit should be initiated with a list vTranslit schemes.');
+  }
+
+  // handle `object`, `function`, etc.
+  else if (!Array.isArray(schemes)) {
+
+      throw new Error('vTranslit schemes are expected to be in array format.');
+    }
+
+    // handle single scheme array
+    else if (schemes.length < 2) {
+
+        throw new Error('Atleast two vTranslit schemes are required to init vTranslit.');
+      } else {
+
+        schemes.map(function (scheme) {
+
+          if (!scheme.about || !scheme.data || !scheme.about.code || !scheme.about.name || !scheme.about.type || !scheme.about.unicodeBlock) {
+
+            throw new Error('One or more of the provided vTranslit scheme are invalid.');
+          }
+        });
+
+        return schemes;
+      }
 };
 
 /***/ })
