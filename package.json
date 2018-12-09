@@ -31,7 +31,7 @@
   "scripts": {
     "build": "rimraf dist && webpack",
     "test": "mocha",
-    "eslint": "eslint ./**/*.js",
+    "eslint": "eslint .",
     "prepush": "npm run eslint",
     "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
