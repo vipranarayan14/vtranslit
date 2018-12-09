@@ -1,21 +1,22 @@
 import { init } from './init';
 import { manageSchemes } from './scheme/manage-schemes';
+import {validateSchemes} from './scheme/validate-schemes';
 
 export const vTranslit = (schemes = []) => {
 
-  if (!schemes.length) {
+  const $schemes = validateSchemes(schemes);
 
-    throw new Error('Function vTranslit requires vtranslit schemes in an array format.');
-
-  }
-
-  const schemesManager = manageSchemes(schemes);
+  const {
+    find,
+    get,
+    list
+  } = manageSchemes($schemes);
 
   return {
 
-    find: schemesManager.find,
-    init: init(schemesManager.get, schemesManager.list),
-    list: schemesManager.list
+    find,
+    init: init(get, list),
+    list
 
   };
 
