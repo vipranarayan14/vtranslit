@@ -3,10 +3,7 @@ const { vTranslit } = require('../');
 const { vTranslitSchemeDeva } = require('vtranslit-scheme-deva');
 const { vTranslitSchemeItrn } = require('vtranslit-scheme-itrn');
 
-const vtranslit = vTranslit([
-  vTranslitSchemeDeva,
-  vTranslitSchemeItrn
-]);
+const vtranslit = vTranslit([vTranslitSchemeDeva, vTranslitSchemeItrn]);
 
 const vtItrnToDeva = vtranslit.init('Itrn', 'Deva');
 const vtDevaToItrn = vtranslit.init('Deva', 'Itrn');
@@ -19,7 +16,7 @@ const stringsInItrn = [
   `,
   `
   chihnAH : @#$%^&*(){}[]\/?<>,~\`-=
-  itarAkShrANi: P, J, K, f, F, G  
+  itarAkShrANi: P, J, K, f, F, G
   `
 ];
 
@@ -37,14 +34,14 @@ const logTranslited = (strings, vt) =>
     console.log(`
 sampleString: ${index + 1}
 ******************
-${ str }
+${str}
 ******************
     `);
 
     console.log(`
 Output:
 ******************
-${ vt(str) }
+${vt(str)}
 ******************
 `);
     /* eslint-enable no-console */
