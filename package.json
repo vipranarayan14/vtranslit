@@ -13,7 +13,7 @@
     "build": "rimraf dist && webpack",
     "test": "mocha",
     "eslint": "eslint ./**/*.js",
-    "precommit": "npm run eslint",
+    "prepush": "npm run eslint",
     "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
