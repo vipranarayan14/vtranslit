@@ -47,9 +47,12 @@
     "husky": "^0.14.3",
     "mocha": "^4.1.0",
     "rimraf": "^2.6.2",
-    "webpack": "^3.10.0",
     "vtranslit-scheme-deva": "0.4.0",
-    "vtranslit-scheme-itrn": "0.3.0"
+    "vtranslit-scheme-itrn": "0.3.0",
+    "vtranslit-scheme-knda": "0.3.0",
+    "vtranslit-scheme-taml": "0.3.0",
+    "vtranslit-scheme-telu": "0.3.0",
+    "webpack": "^3.10.0"
   },
   "dependencies": {
     "vtokenize": "2.1.1"
