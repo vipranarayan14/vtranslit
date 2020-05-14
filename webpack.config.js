@@ -32,13 +32,13 @@ const browserConfig = Object.assign({}, baseConfig, {
   },
 });
 
-const npmConfig = Object.assign({}, baseConfig, {
+const nodeConfig = Object.assign({}, baseConfig, {
   output: {
-    filename: `${filename}.npm.js`,
+    filename: `${filename}.node.js`,
     library: libraryName,
     libraryTarget: 'umd',
     path: path.join(__dirname, 'dist'),
   },
 });
 
-module.exports = [browserConfig, npmConfig];
+module.exports = [browserConfig, nodeConfig];
