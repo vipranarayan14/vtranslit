@@ -19,10 +19,10 @@
     "url": "https://github.com/vipranarayan14/vtranslit/issues"
   },
   "homepage": "https://github.com/vipranarayan14/vtranslit#readme",
-  "main": "dist/vtranslit.npm.js",
+  "main": "dist/vtranslit.node.js",
   "files": [
     "bin",
-    "dist/vtranslit.npm.js"
+    "dist/vtranslit.node.js"
   ],
   "directories": {
     "example": "examples",
