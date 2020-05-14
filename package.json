@@ -2,8 +2,6 @@
   "name": "vtranslit",
   "version": "4.5.0",
   "description": "A transliterator between ITRANS and any Indic Script.",
-  "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "itrans",
     "transliterator",
@@ -11,31 +9,41 @@
     "devanagari",
     "nodejs"
   ],
+  "homepage": "https://github.com/vipranarayan14/vtranslit#readme",
+  "bugs": {
+    "url": "https://github.com/vipranarayan14/vtranslit/issues"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vipranarayan14/vtranslit.git"
   },
-  "bugs": {
-    "url": "https://github.com/vipranarayan14/vtranslit/issues"
-  },
-  "homepage": "https://github.com/vipranarayan14/vtranslit#readme",
+  "license": "MIT",
+  "author": "Prasanna Venkatesh T S <vipranarayan14@gmail.com>",
   "main": "dist/vtranslit.node.js",
-  "files": [
-    "bin",
-    "dist/vtranslit.node.js"
-  ],
   "directories": {
     "example": "examples",
     "test": "test"
   },
+  "files": [
+    "bin",
+    "dist/vtranslit.node.js"
+  ],
   "scripts": {
     "build": "rimraf dist && webpack",
-    "test": "mocha --recursive --require @babel/register",
     "eslint": "eslint .",
+    "test": "mocha --recursive --require @babel/register",
     "prepush": "npm run eslint",
     "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
+  },
+  "dependencies": {
+    "vtokenize": "2.1.1",
+    "vtranslit-scheme-deva": "0.4.0",
+    "vtranslit-scheme-itrn": "0.3.0",
+    "vtranslit-scheme-knda": "0.3.0",
+    "vtranslit-scheme-taml": "0.3.0",
+    "vtranslit-scheme-telu": "0.3.0"
   },
   "devDependencies": {
     "@babel/core": "7.9.6",
@@ -49,13 +57,5 @@
     "rimraf": "3.0.2",
     "webpack": "4.43.0",
     "webpack-cli": "3.3.11"
-  },
-  "dependencies": {
-    "vtokenize": "2.1.1",
-    "vtranslit-scheme-deva": "0.4.0",
-    "vtranslit-scheme-itrn": "0.3.0",
-    "vtranslit-scheme-knda": "0.3.0",
-    "vtranslit-scheme-taml": "0.3.0",
-    "vtranslit-scheme-telu": "0.3.0"
   }
 }
