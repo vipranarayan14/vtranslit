@@ -5,8 +5,9 @@ const filename = 'vtranslit';
 
 const baseConfig = {
   entry: './src/index.js',
+  mode: 'production',
   module: {
-    loaders: [
+    rules: [
       {
         exclude: /node_modules/,
         test: /\.js$/,
