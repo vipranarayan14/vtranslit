@@ -1,27 +1,21 @@
 import { maxOcurrance } from './../utils';
 
-const findSchemeForChar = schemes => char =>
-
-  schemes.find(scheme => {
-
+const findSchemeForChar = (schemes) => (char) =>
+  schemes.find((scheme) => {
     const unicodeBlock = scheme.about.unicodeBlock;
 
     const [lowerLimit, upperLimit] = unicodeBlock
       .split('-')
-      .map(limit => parseInt(limit, 16));
+      .map((limit) => parseInt(limit, 16));
 
     const charCode = char.charCodeAt(0);
 
     return charCode >= lowerLimit && charCode <= upperLimit;
-
   });
 
-export const findScheme = schemes => str => {
-
+export const findScheme = (schemes) => (str) => {
   if (!str || typeof str !== 'string') {
-
     throw new Error('Function requires a string to find its scheme');
-
   }
 
   const maxSampleSize = 10;
@@ -29,18 +23,13 @@ export const findScheme = schemes => str => {
 
   const schemeForChars = [];
 
-  sampleStr.split('').forEach(char => {
-
+  sampleStr.split('').forEach((char) => {
     const schemeForChar = findSchemeForChar(schemes)(char);
 
     if (schemeForChar) {
-
       schemeForChars.push(schemeForChar.about.code);
-
     }
-
   });
 
   return maxOcurrance(schemeForChars);
-
 };

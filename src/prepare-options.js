@@ -1,15 +1,12 @@
 const defaultOptions = {
-
-  translitMode: 0
-
+  translitMode: 0,
 };
 
-export const prepareOptions = userOptions =>
-
-  Object.assign({},
+export const prepareOptions = (userOptions) =>
+  Object.assign(
+    {},
 
     defaultOptions,
 
     userOptions
-
   );

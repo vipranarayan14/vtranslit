@@ -11,7 +11,7 @@ const vtranslit = vTranslit([
   vTranslitSchemeItrn,
   vTranslitSchemeKnda,
   vTranslitSchemeTaml,
-  vTranslitSchemeTelu
+  vTranslitSchemeTelu,
 ]);
 
 /*
@@ -20,19 +20,19 @@ const vtranslit = vTranslit([
 */
 
 describe('vTranslit with toScheme as `Multi`', () => {
-
   const vt = vtranslit.init('Itrn', 'Multi');
 
   it('should translit only the contents of `#{}#` to the scheme marked by `@`.', () => {
-
-    expect(vt(
-      `
+    expect(
+      vt(
+        `
       @Hello #{@Deva rAma}##{@Deva kRRiShNa}# !
       @Hello #{@Knda rAma}##{@Knda kRRiShNa}# !
       @Hello #{@Taml rAma}##{ @Taml kruShNa}# !
       @Hello #{@Telu rAma}##{@Telu kRRiShNa}# !
       `
-    )).to.equal(
+      )
+    ).to.equal(
       `
       @Hello रामकृष्ण !
       @Hello ರಾಮಕೃಷ್ಣ !
@@ -40,7 +40,5 @@ describe('vTranslit with toScheme as `Multi`', () => {
       @Hello రామకృష్ణ !
       `
     );
-
   });
-
 });

@@ -1,16 +1,12 @@
-export const listAvailableSchemes = schemes => () => {
-
+export const listAvailableSchemes = (schemes) => () => {
   const availableSchemes = [];
 
-  schemes.forEach(scheme => {
-
+  schemes.forEach((scheme) => {
     availableSchemes.push({
       code: scheme.about.code,
-      name: scheme.about.name
+      name: scheme.about.name,
     });
-
   });
 
   return availableSchemes;
-
 };

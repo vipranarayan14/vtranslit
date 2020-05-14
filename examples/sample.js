@@ -17,19 +17,17 @@ const stringsInItrn = [
   `
   chihnAH : @#$%^&*(){}[]\/?<>,~\`-=
   itarAkShrANi: P, J, K, f, F, G
-  `
+  `,
 ];
 
 const stringsInDeva = [
   `
   गीतागोपालौ औषधार्थं वनम् एति ।
-  `
+  `,
 ];
 
 const logTranslited = (strings, vt) =>
-
   strings.forEach((str, index) => {
-
     /* eslint-disable no-console */
     console.log(`
 sampleString: ${index + 1}
@@ -45,7 +43,6 @@ ${vt(str)}
 ******************
 `);
     /* eslint-enable no-console */
-
   });
 
 logTranslited(stringsInItrn, vtItrnToDeva);

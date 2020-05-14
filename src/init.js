@@ -2,46 +2,38 @@ import { multiTranslit } from './multi-translit';
 import { prepareOptions } from './prepare-options';
 import { singleTranslit } from './single-translit';
 
-const checkFromSchemeCode = fromSchemeCode => {
-
+const checkFromSchemeCode = (fromSchemeCode) => {
   if (fromSchemeCode !== 'Itrn') {
-
     throw new Error('Multi scheme translit requires from scheme to be `Itrn`.');
-
   }
-
 };
 
-export const init = (getScheme, listSchemes) =>
+export const init = (getScheme, listSchemes) => (
+  fromSchemeCode,
+  toSchemeCode,
+  userOptions
+) => (inStr) => {
+  if (fromSchemeCode === toSchemeCode) {
+    return inStr;
+  }
 
-  (fromSchemeCode, toSchemeCode, userOptions) => inStr => {
+  const options = prepareOptions(userOptions);
 
-    if (fromSchemeCode === toSchemeCode) {
+  if (toSchemeCode === 'Multi') {
+    checkFromSchemeCode(fromSchemeCode);
 
-      return inStr;
-
-    }
-
-    const options = prepareOptions(userOptions);
-
-    if (toSchemeCode === 'Multi') {
-
-      checkFromSchemeCode(fromSchemeCode);
-
-      return multiTranslit(
-        fromSchemeCode,
-        listSchemes,
-        getScheme,
-        options
-      )(inStr);
-
-    }
-
-    return singleTranslit(
+    return multiTranslit(
       fromSchemeCode,
-      toSchemeCode,
+      listSchemes,
       getScheme,
       options
     )(inStr);
+  }
 
-  };
+  return singleTranslit(
+    fromSchemeCode,
+    toSchemeCode,
+    getScheme,
+    options
+  )(inStr);
+};

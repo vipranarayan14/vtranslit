@@ -4,17 +4,15 @@ import { translitTokens } from './translit-tokens';
 import { vTokenize } from 'vtokenize';
 
 const getToSchemeType = (toScheme, options) =>
+  options.translitMode === 3 ? 'brahmic' : toScheme.about.type;
 
-  (options.translitMode === 3) ? 'brahmic' : toScheme.about.type;
-
-export const translitString = (...params) => inStr => {
-
+export const translitString = (...params) => (inStr) => {
   const [
     toScheme,
     fromSchemeTree,
     toSchemeTree,
     maxTokenLength,
-    options
+    options,
   ] = params;
 
   const tokens = vTokenize(
@@ -25,10 +23,11 @@ export const translitString = (...params) => inStr => {
 
   const toSchemeType = getToSchemeType(toScheme, options);
 
-  const {
-    processedTokens,
-    tokensType
-  } = processTokens(tokens, fromSchemeTree, toSchemeType);
+  const { processedTokens, tokensType } = processTokens(
+    tokens,
+    fromSchemeTree,
+    toSchemeType
+  );
 
   const outStr = translitTokens(
     processedTokens,
@@ -38,5 +37,4 @@ export const translitString = (...params) => inStr => {
   );
 
   return outStr.join('');
-
 };

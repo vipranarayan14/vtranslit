@@ -1,4 +1,4 @@
-const getAkshara = akshara => (Array.isArray(akshara)) ? akshara[0] : akshara;
+const getAkshara = (akshara) => (Array.isArray(akshara) ? akshara[0] : akshara);
 
 const makeFromSchemeLeaf = (
   akshara,
@@ -8,22 +8,16 @@ const makeFromSchemeLeaf = (
   schemeSubset,
   tokenLengths
 ) => {
-
   if (akshara) {
-
     schemeBranch[akshara] = {
-
       aksharaIndex: `${schemeSubset}#${aksharaIndex}`,
       alternateIndex,
       char: akshara,
-      type: schemeSubset
-
+      type: schemeSubset,
     };
 
     tokenLengths.push(akshara.length);
-
   }
-
 };
 
 const makeToSchemeLeaf = (
@@ -34,41 +28,32 @@ const makeToSchemeLeaf = (
   schemeSubset,
   addSchemeSubset
 ) => {
-
   const charDetails = {
     char: {},
-    type: schemeSubset
+    type: schemeSubset,
   };
 
   if (addSchemeSubset) {
-
     const addAkshara = scheme.data[addSchemeSubset][aksharaIndex];
 
     charDetails.char[addSchemeSubset] = getAkshara(addAkshara);
-
   }
 
   charDetails.char[schemeSubset] = getAkshara(akshara);
 
   schemeBranch[`${schemeSubset}#${aksharaIndex}`] = charDetails;
-
 };
 
 // returns a branch for fromSchemeTree.
 const makeFromSchemeBranch = (scheme, schemeSubset, tokenLengths) => {
-
   const schemeBranch = {};
 
   if (scheme.about.type === 'roman' && schemeSubset === 'consonants') {
-
     return schemeBranch;
-
-  };
+  }
 
   scheme.data[schemeSubset].forEach((akshara, aksharaIndex) => {
-
     if (!Array.isArray(akshara)) {
-
       makeFromSchemeLeaf(
         akshara,
         aksharaIndex,
@@ -79,11 +64,9 @@ const makeFromSchemeBranch = (scheme, schemeSubset, tokenLengths) => {
       );
 
       return;
-
     }
 
     akshara.forEach((alternateAkshara, alternateIndex) => {
-
       makeFromSchemeLeaf(
         alternateAkshara,
         aksharaIndex,
@@ -92,22 +75,17 @@ const makeFromSchemeBranch = (scheme, schemeSubset, tokenLengths) => {
         schemeSubset,
         tokenLengths
       );
-
     });
-
   });
 
   return schemeBranch;
-
 };
 
 // Returns a branch for toSchemeTree.
 const makeToSchemeBranch = (scheme, schemeSubset, addSchemeSubset = '') => {
-
   const schemeBranch = {};
 
   scheme.data[schemeSubset].forEach((akshara, aksharaIndex) => {
-
     makeToSchemeLeaf(
       akshara,
       aksharaIndex,
@@ -116,21 +94,19 @@ const makeToSchemeBranch = (scheme, schemeSubset, addSchemeSubset = '') => {
       schemeSubset,
       addSchemeSubset
     );
-
   });
 
   return schemeBranch;
-
 };
 
 //Returns a scheme tree nade with given 'fromScheme'.
-export const makeFromSchemeTree = fromScheme => {
-
+export const makeFromSchemeTree = (fromScheme) => {
   const tokenLengths = [];
 
   let maxTokenLength = 0;
 
-  const fromSchemeTree = Object.assign({},
+  const fromSchemeTree = Object.assign(
+    {},
 
     makeFromSchemeBranch(fromScheme, 'deadConsonants', tokenLengths),
     makeFromSchemeBranch(fromScheme, 'consonants', tokenLengths),
@@ -138,21 +114,19 @@ export const makeFromSchemeTree = fromScheme => {
     makeFromSchemeBranch(fromScheme, 'vowelMarks', tokenLengths),
     makeFromSchemeBranch(fromScheme, 'ayogavaha', tokenLengths),
     makeFromSchemeBranch(fromScheme, 'symbols', tokenLengths)
-
   );
 
   maxTokenLength = Math.max(...tokenLengths);
 
   return { fromSchemeTree, maxTokenLength };
-
 };
 
 //Returns a scheme tree nade with given 'toScheme'.
-export const makeToSchemeTree = toScheme => {
-
+export const makeToSchemeTree = (toScheme) => {
   let toSchemeTree = {};
 
-  toSchemeTree = Object.assign({},
+  toSchemeTree = Object.assign(
+    {},
     toSchemeTree,
     makeToSchemeBranch(toScheme, 'deadConsonants', 'consonants'),
     makeToSchemeBranch(toScheme, 'consonants', 'deadConsonants'),
@@ -163,5 +137,4 @@ export const makeToSchemeTree = toScheme => {
   );
 
   return toSchemeTree;
-
 };
