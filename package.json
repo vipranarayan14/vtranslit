@@ -30,7 +30,7 @@
   },
   "scripts": {
     "build": "rimraf dist && webpack",
-    "test": "mocha",
+    "test": "mocha --recursive --require @babel/register",
     "eslint": "eslint .",
     "prepush": "npm run eslint",
     "preversion": "npm run test",
