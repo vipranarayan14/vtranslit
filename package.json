@@ -38,23 +38,23 @@
     "postversion": "git push && git push --tags"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
-    "chai": "^4.1.2",
-    "eslint": "^4.15.0",
-    "husky": "^0.14.3",
-    "mocha": "^4.1.0",
-    "rimraf": "^2.6.2",
+    "@babel/core": "7.9.6",
+    "@babel/preset-env": "7.9.6",
+    "@babel/register": "7.9.0",
+    "babel-loader": "8.1.0",
+    "chai": "4.2.0",
+    "eslint": "7.0.0",
+    "husky": "4.2.5",
+    "mocha": "7.1.2",
+    "rimraf": "3.0.2",
+    "webpack": "4.43.0"
+  },
+  "dependencies": {
+    "vtokenize": "2.1.1",
     "vtranslit-scheme-deva": "0.4.0",
     "vtranslit-scheme-itrn": "0.3.0",
     "vtranslit-scheme-knda": "0.3.0",
     "vtranslit-scheme-taml": "0.3.0",
-    "vtranslit-scheme-telu": "0.3.0",
-    "webpack": "^3.10.0"
-  },
-  "dependencies": {
-    "vtokenize": "2.1.1"
+    "vtranslit-scheme-telu": "0.3.0"
   }
 }
